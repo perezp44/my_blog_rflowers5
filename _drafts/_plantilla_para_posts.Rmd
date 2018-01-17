@@ -1,0 +1,27 @@
+---
+title: Elección del titulo
+author: Pedro J. Pérez
+date: '2018-01-17'
+slug: elección-del-titulo
+categories: [blog]
+tags: [Hugo themes]
+description: 'Este post... '
+#banner:   'banners/nest_pas_unconf.png'
+#images:     #['img/nest_pas_unconf.png']
+#menu: ''
+---
+
+
+```{r chunk_setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, eval = TRUE )
+```
+
+```{r options_setup, echo = FALSE}
+options(scipen = 999) #- para quitar la notacion científica
+```
+ 
+¿Qué porque elegí el `icarus-theme` para mi blog? Pues es una historia larga y de poco interés salvo que quieras hacer tu mismo otro blog para hablar de tus avances con R; pero para mi es útil poder recordar un poco este proceso. Así que vamos allá. 
+
+## Intro
+
+Llevo tres 
