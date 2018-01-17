@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blog on R &amp; flowers V</title>
+    <link>https://rflowers5.netlify.com/tags/blog/</link>
+    <description>Recent content in Blog on R &amp; flowers V</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Powered by [Hugo](//gohugo.io). Theme by [PPOffice](http://github.com/ppoffice).</copyright>
+    <lastBuildDate>Wed, 17 Jan 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://rflowers5.netlify.com/tags/blog/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Creación y tuneado del blog</title>
+      <link>https://rflowers5.netlify.com/2018/01/17/creacion-y-tuneado-del-blog/</link>
+      <pubDate>Wed, 17 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://rflowers5.netlify.com/2018/01/17/creacion-y-tuneado-del-blog/</guid>
+      <description>Pues eso, a contar(un poco) como cree el blog con blogdown, y un poco más como lo tunee a mi gusto.
+Creación del blogHay muchos posts que explican como crear un blog con blogdown; así que aquí contaré lo mínimo-mínimo para recordarlo yo. En mi caso fue “suficiente” con leer (a trozos) el libro de Yihiu. En resumiendo (y no muy bien contado) lo que hice es:
+Primero, lógicamente, has de instalar blogdown.</description>
+    </item>
+    
+  </channel>
+</rss>

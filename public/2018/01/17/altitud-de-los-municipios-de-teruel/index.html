@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <title>Altitud de los municipios de Teruel &middot; R &amp; flowers V</title>
+    <meta name="generator" content="Hugo 0.31" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="author" content="Pedro J. Pérez">
+    
+      <meta name="description" content="Se trata de aprender un poco de web scrapping, así que me bajaré una tabla con la altura de los municipios de Teruel y confirmaremos que Valdelinares es el que está más alto; pero ¿y el segundo? ¿y mi pueblo?">
+    
+    
+    <link rel="canonical" href="https://rflowers5.netlify.com/2018/01/17/altitud-de-los-municipios-de-teruel/"/>
+    <link rel="icon" href="https://rflowers5.netlify.com/favicon.ico">
+    <link rel="apple-touch-icon" href="https://rflowers5.netlify.com/apple-touch-icon.png"/>
+    <link rel="stylesheet" href="https://rflowers5.netlify.com/css/style.css">
+    <link rel="stylesheet" href="https://rflowers5.netlify.com/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://rflowers5.netlify.com/css/monokai.css">
+    <link rel="stylesheet" href="https://rflowers5.netlify.com/fancybox/jquery.fancybox.css">
+    
+    <link rel="stylesheet" href="https://rflowers5.netlify.com/css/monokai.css">
+    
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
+    <meta property="og:title" content="Altitud de los municipios de Teruel" />
+<meta property="og:description" content="Se trata de aprender un poco de web scrapping, así que me bajaré una tabla con la altura de los municipios de Teruel y confirmaremos que Valdelinares es el que está más alto; pero ¿y el segundo? ¿y mi pueblo?" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://rflowers5.netlify.com/2018/01/17/altitud-de-los-municipios-de-teruel/" />
+
+
+
+<meta property="article:published_time" content="2018-01-17T00:00:00&#43;00:00"/>
+
+<meta property="article:modified_time" content="2018-01-17T00:00:00&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+<meta itemprop="name" content="Altitud de los municipios de Teruel">
+<meta itemprop="description" content="Se trata de aprender un poco de web scrapping, así que me bajaré una tabla con la altura de los municipios de Teruel y confirmaremos que Valdelinares es el que está más alto; pero ¿y el segundo? ¿y mi pueblo?">
+
+
+<meta itemprop="datePublished" content="2018-01-17T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2018-01-17T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="1374">
+
+
+
+<meta itemprop="keywords" content="web scrapping," />
+
+    <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Altitud de los municipios de Teruel"/>
+<meta name="twitter:description" content="Se trata de aprender un poco de web scrapping, así que me bajaré una tabla con la altura de los municipios de Teruel y confirmaremos que Valdelinares es el que está más alto; pero ¿y el segundo? ¿y mi pueblo?"/>
+<meta name="twitter:site" content="@pjpv4444"/>
+
+    
+
+    
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+<body>
+<div class="container">
+
+
+<div id="container">
+	<header id="header">
+  <div id="header-main" class="header-inner">
+    <div class="outer">
+      <a href="https://rflowers5.netlify.com/" id="logo">
+          
+          <i class="logo" style="background-image: url('https://rflowers5.netlify.com/css/img/logo.jpg')"></i>
+          
+          <span class="site-title">R &amp; flowers V</span>
+      </a>
+      <nav id="main-nav">
+          
+          
+          <a class="main-nav-link" href="https://rflowers5.netlify.com/">Home</a>
+          
+          
+          
+          
+          
+          
+
+          
+          <a class="main-nav-link" href="/about/">About</a>
+          
+
+          
+          
+          
+          
+          <a class="main-nav-link" href="https://rflowers5.netlify.com/tags/">Tags</a>
+          
+          
+          
+          <a class="main-nav-link" href="https://rflowers5.netlify.com/categories/">Categories</a>
+          
+          
+      </nav>
+        <nav id="sub-nav">
+          <div class="profile" id="profile-nav">
+            <a id="profile-anchor" href="javascript:;"><img class="avatar" src="https://rflowers5.netlify.com/css/img/avatar_mio.png"><i class="fa fa-caret-down"></i></a>
+          </div>
+        </nav>
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form">
+              <input type="search" name="q" class="search-form-input" placeholder="Search">
+              <button type="submit" class="search-form-submit">
+              </button>
+              <input type="hidden" name="sitesearch" value="https://rflowers5.netlify.com/" />
+         </form>
+        </div>
+    </div>
+  </div>
+  <div id="main-nav-mobile" class="header-sub header-inner">
+    <table class="menu outer">
+      <tbody>
+          <tr>
+          
+          
+          <td><a class="main-nav-link" href="https://rflowers5.netlify.com/">Home</a></td>
+          
+          
+          
+          
+          
+          
+
+          
+          <td><a class="main-nav-link" href="/about/">About</a></td>
+          
+
+          
+          
+          
+          
+          <td><a class="main-nav-link" href="https://rflowers5.netlify.com/tags/">Tags</a></td>
+          
+          
+          
+          <td><a class="main-nav-link" href="https://rflowers5.netlify.com/categories/">Categories</a></td>
+          
+          
+          <td>
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form">
+          <input type="search" name="q" class="search-form-input" placeholder="Search">
+          <input type="hidden" name="sitesearch" value="https://rflowers5.netlify.com/" />
+          </form>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</header>
+
+   	
+   	<div class="outer">
+   	
+    	<aside id="profile">
+  <div class="inner profile-inner">
+    <div class="base-info profile-block">
+      
+      <img id="avatar" src="https://rflowers5.netlify.com/css/img/avatar_mio.png">
+      
+      <h2 id="name">Pedro J. Pérez</h2>
+      <h3 id="title">Jugando con R</h3>
+      <span id="location"><i class="fa fa-map-marker"></i>Valencia(Spain)</span>
+      
+          <a id="follow" href="https://github.com/digitalcraftsman">
+              Follow
+          </a>
+      
+    </div>
+    <div class="article-info profile-block">
+      <div class="article-info-block">
+        3
+        <span>Posts</span>
+      </div>
+      <div class="article-info-block">
+        
+          3
+        
+        <span>
+            Tags
+        </span>
+      </div>
+    </div>
+    <div class="profile-block social-links">
+      <table>
+        <tr>
+          
+<td><a href="//github.com/perezp44" target="_blank" title="GitHub"><i class="fa fa-github"></i></a></td>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<td><a href="//twitter.com/pjpv4444" target="_blank" title="Twitter"><i class="fa fa-twitter"></i></a></td>
+
+
+          <td><a href="https://rflowers5.netlify.com/index.xml" target="_blank" title="RSS"><i class="fa fa-rss"></i></a></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</aside>
+
+    
+
+    <section id="main">
+    
+    <article id="page-undefined" class="article article-type-page" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+
+        <header class="article-header">
+    <a href="https://rflowers5.netlify.com/2018/01/17/altitud-de-los-municipios-de-teruel/">
+    <h1 class="article-title" itemprop="name">
+        Altitud de los municipios de Teruel
+    </h1>
+    </a>
+    <div class="article-meta">
+
+        
+        <div class="article-date">
+            <i class="fa fa-calendar"></i>
+            <time datetime="2018-01-17 00:00:00 &#43;0000 UTC" itemprop="datePublished">2018-01-17</time>
+            &middot;
+            1374
+            words
+            &middot;
+            7
+            minute read
+        </div>
+        
+        
+            
+            
+            <div class="article-category">
+                <i class="fa fa-folder"></i>
+                
+                
+                <a class="article-category-link" href="https://rflowers5.netlify.com/categories/municipios">municipios</a>
+                
+                
+            </div>
+            
+        
+
+        
+            
+            
+            <div class="article-category">
+                <i class="fa fa-tags"></i>
+                
+                
+                <a class="article-category-link" href="https://rflowers5.netlify.com/tags/web-scrapping">web scrapping</a>
+                
+                
+            </div>
+            
+        
+    </div>
+</header>
+
+        <div class="article-entry" itemprop="articleBody">
+            <script src="/rmarkdown-libs/htmlwidgets/htmlwidgets.js"></script>
+<script src="/rmarkdown-libs/jquery/jquery.min.js"></script>
+<script src="/rmarkdown-libs/datatables-binding/datatables.js"></script>
+<link href="/rmarkdown-libs/dt-core/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="/rmarkdown-libs/dt-core/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/dt-core/js/jquery.dataTables.min.js"></script>
+<link href="/rmarkdown-libs/dt-ext-scroller/css/scroller.dataTables.min.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/dt-ext-scroller/js/dataTables.scroller.min.js"></script>
+<link href="/rmarkdown-libs/nouislider/jquery.nouislider.min.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/nouislider/jquery.nouislider.min.js"></script>
+<link href="/rmarkdown-libs/selectize/selectize.bootstrap3.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/selectize/selectize.min.js"></script>
+
+
+<div id="intro" class="section level3">
+<h3>Intro</h3>
+<p>Este post es un reciclado del primer post medio serio de <code>R &amp; flowers 4</code>, que es un blog que aún existe pero en breve lo borraré. Resulta que me dio por aprender (un poquito) de <a href="https://es.wikipedia.org/wiki/Web_scraping">web scrapping</a>, así que se ocurrió “scrapear” una tabla de la Wikipedia, concretamente <a href="https://es.wikipedia.org/wiki/Anexo:Municipios_de_la_provincia_de_Teruel">esta tabla</a>. Es una tabla con información sobre los municipios de Teruel; entre otras cosas, se puede ver sus altitudes.</p>
+<p>Con ello podré ver que pueblo de Teruel está más alto. Con lo fácil que sería hacerlo desde la propia wiki: como la tabla es un <code>&lt;table class=&quot;sortable wikitable&quot; border=&quot;1&quot;&gt;</code> solo hay que pinchar en la columna apropiada de la tabla para verlo; pero para aprender, obviously, hay que hacerlo con R!!!</p>
+<p>Durante el proceso me lié un poco y acabé usando dos paquetes de R, <a href="https://github.com/wch/webshot">webshot</a> y <a href="https://cran.r-project.org/web/packages/magick/vignettes/intro.html#image_io">magick</a>. El primero es para hacer <em>webshoots</em> y el segundo para manipular imágenes. Seguramente hablaré de ellos en un post porque quiero modificar el logo y el avatar del blog.</p>
+</div>
+<div id="scrapeando-una-tabla-de-la-wiki" class="section level3">
+<h3>Scrapeando una tabla de la Wiki</h3>
+<p>Volvemos al objetivo inicial: aprender sobre <em>web scrapping</em>. El impulso para hacer scrapping me lo dio <a href="https://www.r-bloggers.com/building-a-hacker-news-scraper-with-8-lines-of-r-code-using-rvest-library/amp/">este post</a>, pero no lo entiendo bien del todo, así que ya veremos cuando lo aprendo bien; de momento a capón y espero aprender durante el proceso.</p>
+<p>La tabla de la que quiero obtener la información está <a href="https://es.wikipedia.org/wiki/Anexo:Municipios_de_la_provincia_de_Teruel">aquí</a> y en el momento de escribir el blog tenía esta pinta:</p>
+<p><img src="/posts/2018/2018_01_17_altitud_municipios_teruel/tabla_municipios_Teruel.png" width="90%" style="display: block; margin: auto;" /></p>
+<p>Venga, a bajarnos la información de la tabla. Para ello usaré la función <code>rvest::read_html()</code> que: parses the html page of the given url and saves the result as an xml object. Después queda seleccionar la información que necesitas con <code>html_nodes()</code> para después extraer el texto con `<code>html_text()</code></p>
+<pre class="r"><code>library(&quot;rvest&quot;)
+library(&quot;tidyverse&quot;)
+content &lt;- read_html(&quot;https://es.wikipedia.org/wiki/Anexo:Municipios_de_la_provincia_de_Teruel&quot;)
+head &lt;- content %&gt;% html_nodes(&#39;head&#39;) 
+head &lt;- content %&gt;% html_nodes(&#39;head&#39;) %&gt;% html_text()</code></pre>
+<p>Con la función <code>rvest::html_nodes()</code> se puede extraer pieces out of HTML documents using XPath and css selectors. Mirando el código fuente de la página web veo que cada municipio está en un elemento como: <code>&lt;a href=&quot;/wiki/Ababuj&quot; title=&quot;Ababuj&quot;&gt;Ababuj&lt;/a&gt;</code> dentro de una tabla.</p>
+<p>Mirando el código fuente de la página web, se ve que solo hay una tabla, así que con el chunk de abajo podríamos seleccionar la tabla que quiero, pero lo tendríamos como texto.</p>
+<pre class="r"><code>body_table &lt;- content %&gt;% html_nodes(&#39;body&#39;)  %&gt;%
+                    html_nodes(&#39;table&#39;) %&gt;%
+                    html_nodes(&#39;td&#39;)    %&gt;% html_text()</code></pre>
+<p>Así que usaré la función <code>html_table()</code></p>
+<pre class="r"><code>body_table &lt;- content %&gt;% html_nodes(&#39;body&#39;)  %&gt;%
+                    html_nodes(&#39;table&#39;) %&gt;%
+                    html_table() 
+Teruel &lt;- body_table[[1]]</code></pre>
+<p>Ya tenemos la tabla, pero hay varios problemas:</p>
+<ul>
+<li>en la columna de altitudes, los datos tienen un punto que separa los miles, y la función <code>html_table</code> lo interpreta como un punto decimal. Esto lo he solucionado con <code>html_table(dec = &quot;,&quot;)</code>. Pero luego tocará quitar los puntos de separación de miles. También hay un problema con los nombres de las columnas: son no estándar, tienen caracteres raros.</li>
+</ul>
+<pre class="r"><code>body_table &lt;- content %&gt;% html_nodes(&#39;body&#39;)  %&gt;%
+                    html_nodes(&#39;table&#39;) %&gt;%
+                    html_table(dec = &quot;,&quot;) 
+Teruel &lt;- body_table[[1]]</code></pre>
+<p>Primero arreglo el problema con el nombre de las variables, pero a capón con <code>names()</code></p>
+<pre class="r"><code>names(Teruel) &lt;- c(&quot;Nombre&quot;, &quot;Extension&quot;, &quot;Poblacion&quot;, &quot;Densidad&quot;, &quot;Comarca&quot;, &quot;Partido_judicial&quot;, &quot;Altitud&quot;)</code></pre>
+<p>Ahora quito los puntos que señalizan los millares. Los quito con <code>Altitud = str_replace_all(Altitud,&quot;[[:punct:]]&quot;, &quot;&quot;)</code>. A lo bestia.</p>
+<pre class="r"><code>library(stringr)
+Teruel &lt;- Teruel %&gt;% map(str_trim) %&gt;% as.tibble() #- quita caracteres al final
+Teruel &lt;- Teruel %&gt;% mutate(Altitud = str_replace_all(Altitud,&quot;[[:punct:]]&quot;, &quot;&quot;)) </code></pre>
+<p>Sólo queda ordenar los pueblos por la variable <code>Altitud</code></p>
+<pre class="r"><code>Teruel &lt;- Teruel %&gt;% mutate(Altitud = as.double(Altitud)) %&gt;%    
+                     arrange(desc(Altitud))</code></pre>
+<p>Ya podemos imprimir los resultados… y los 4 pueblos/municipios más altos de Teruel son:</p>
+<pre class="r"><code>#devtools::install_github(&quot;perezp44/personal.pjp&quot;)
+library(personal.pjp)
+library(knitr)
+library(kableExtra)
+aa &lt;- Teruel %&gt;% select(1,3,5,7) %&gt;%  slice(1:4) 
+#knitr::kable(aa, digits = 2, align = &quot;c&quot;, caption = &quot;Los 4 municipios de Teruel con más altitud&quot; )
+kable(aa, &quot;html&quot;, digits = 2,  caption = &quot;Los 4 municipios de Teruel con más altitud&quot;) %&gt;%
+  kable_styling(bootstrap_options = c(&quot;striped&quot;, &quot;hover&quot;))</code></pre>
+<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-10">Table 1: </span>Los 4 municipios de Teruel con más altitud
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Nombre
+</th>
+<th style="text-align:left;">
+Poblacion
+</th>
+<th style="text-align:left;">
+Comarca
+</th>
+<th style="text-align:right;">
+Altitud
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Valdelinares
+</td>
+<td style="text-align:left;">
+106
+</td>
+<td style="text-align:left;">
+Gúdar-Javalambre
+</td>
+<td style="text-align:right;">
+1692
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Griegos
+</td>
+<td style="text-align:left;">
+143
+</td>
+<td style="text-align:left;">
+Sierra de Albarracín
+</td>
+<td style="text-align:right;">
+1601
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Gúdar
+</td>
+<td style="text-align:left;">
+77
+</td>
+<td style="text-align:left;">
+Gúdar-Javalambre
+</td>
+<td style="text-align:right;">
+1587
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Bronchales
+</td>
+<td style="text-align:left;">
+472
+</td>
+<td style="text-align:left;">
+Sierra de Albarracín
+</td>
+<td style="text-align:right;">
+1569
+</td>
+</tr>
+</tbody>
+</table>
+<p>Hecho!! Valdelinares con 1692 metros es el campeón. Griegos el segundo. Tengo que ir a Griegos!!!!</p>
+<p><br></p>
+<p>La tabla más mejor:</p>
+<pre class="r"><code>library(DT)
+aa &lt;- decimales_df_pjp(Teruel, 2)  %&gt;% select(1,7,3,5) #- rtdos con 2 decimales
+datatable(aa, extensions = &#39;Scroller&#39;, options = list( pageLength = 10, deferRender = TRUE,scrollY = 400,scroller = TRUE), rownames = F, filter = &quot;top&quot; )</code></pre>
+<div id="htmlwidget-1" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1">{"x":{"filter":"top","filterHTML":"<tr>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none; position: absolute; width: 200px;\">\n      <div data-min=\"201\" data-max=\"1692\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","extensions":["Scroller"],"data":[["Valdelinares","Griegos","Gúdar","Bronchales","Guadalaviar","Jabaloyas","Toril y Masegoso","Frías de Albarracín","Mosqueruela","Monteagudo del Castillo","Puertomingalvo","Orihuela del Tremedal","Terriente","Allepuz","Cañada de Benatanduz","El Vallecillo","Villar del Cobo","Moscardón","Pozondón","Alcalá de la Selva","El Pobo","Saldón","Noguera de Albarracín","Ródenas","Ababuj","Fortanete","Cedrillas","Villarroya de los Pinares","Jorcas","Valdecuenca","Cañada Vellida","Camarillas","Calomarde","Linares de Mora","Aguilar del Alfambra","Camarena de la Sierra","Cantavieja","Cuevas de Almudén","Monterde de Albarracín","El Castellar","Veguillas de la Sierra","Jarque de la Val","Rillo","Corbalán","Torrijas","Tramacastilla","Argente","Mezquita de Jarque","Fonfría","Rubielos de la Cérida","Camañas","Pancrudo","Torres de Albarracín","La Iglesuela del Cid","Aguatón","Hinojosa de Jarque","Alpeñés","Villar del Salz","Miravete de la Sierra","Peracense","Royuela","Bueña","Lidón","Fuentes Calientes","Palomar de Arroyos","Allueva","Almohaja","Salcedillo","Galve","Cosa","Visiedo","Albarracín","Abejuela","Rubiales","Bezas","Perales del Alfambra","Ojos Negros","La Zoma","Nogueruelas","Torrecilla del Rebollar","Bañón","Escorihuela","Bea","Fuenferrada","Pozuel del Campo","Segura de los Baños","Tronchón","Villarluengo","La Puebla de Valverde","Celadas","Ejulve","Anadón","Alobras","Formiche Alto","Aliaga","Odón","Castel de Cabra","Cubla","Cabra de Mora","Castejón de Tornos","Villanueva del Rebollar de la Sierra","Torre los Negros","Escucha","Arcos de las Salinas","Lagueruela","Tormón","Alfambra","Barrachina","Blancas","Singra","Orrios","Torralba de los Sisones","Cucalón","Mora de Rubielos","Gea de Albarracín","Cella","Ferreruela de Huerva","Tornos","Loscos","Lanzuela","Bello","Pitarque","Peralejos","Bádenas","Monforte de Moyuela","Villarquemado","Manzanera","Cascante del Río","Valacloche","Sarrión","Torremocha de Jiloca","Torrelacárcel","Torre de las Arcas","Alba","Vivel del Río Martín","Riodeva","Cuevas Labradas","Santa Eulalia","Fuentes de Rubielos","San Agustín","Villafranca del Campo","Villahermosa del Campo","Maicas","Cañizar del Olivar","Albentosa","Valbona","Gargallo","Utrillas","Monreal del Campo","La Hoz de la Vieja","Rubielos de Mora","Cortes de Aragón","Torrijo del Campo","Caminreal","Mirambel","Teruel","Fuentes Claras","Martín del Río","El Cuervo","La Mata de los Olmos","Plou","Tramacastiel","Santa Cruz de Nogueras","La Cuba","Calamocha","Villel","Huesa del Común","Los Olmos","Nogueras","Villastar","Monroyo","Montalbán","La Cerollera","Molinos","Estercuel","Bordón","Burbáguena","Báguena","Seno","Muniesa","San Martín del Río","Castellote","Crivillén","Josa","Blesa","Libros","Peñarroya de Tastavins","Torre de Arcas","La Cañada de Verich","Berge","Andorra","Fuentespalda","Fórnoles","Alacón","La Ginebrosa","Las Parras de Castellote","Obón","Alloza","Belmonte de San José","Olba","Alcaine","Alcorisa","Ráfales","Torrevelilla","La Fresneda","Beceite","La Portellada","Cretas","Valjunquera","Aguaviva","Oliete","Ariño","Calaceite","Valdealgorfa","Valderrobres","La Codoñera","Torre del Compte","Foz-Calanda","Mas de las Matas","Calanda","Lledó","Torrecilla de Alcañiz","Valdeltormo","Castelserás","Arens de Lledó","Mazaleón","Albalate del Arzobispo","Alcañiz","Urrea de Gaén","Vinaceite","Híjar","Azaila","Samper de Calanda","La Puebla de Híjar","Jatiel","Castelnou"],[1692,1601,1587,1569,1519,1495,1490,1482,1471,1451,1449,1447,1443,1424,1422,1419,1419,1413,1407,1404,1399,1395,1386,1370,1368,1353,1347,1337,1335,1331,1322,1314,1312,1311,1302,1294,1290,1281,1280,1275,1270,1269,1269,1261,1259,1254,1253,1251,1247,1240,1239,1235,1228,1227,1225,1224,1223,1219,1218,1217,1214,1213,1211,1209,1206,1200,1199,1195,1189,1185,1185,1182,1167,1167,1165,1165,1151,1151,1146,1142,1141,1133,1129,1128,1128,1122,1120,1119,1118,1116,1113,1112,1110,1108,1105,1090,1088,1088,1085,1085,1085,1083,1072,1068,1066,1051,1047,1047,1047,1047,1046,1041,1036,1035,1031,1023,1018,1018,1014,1012,1006,999,998,997,996,996,994,984,983,981,981,979,975,974,970,967,965,964,962,959,959,956,955,954,952,950,941,941,939,932,929,927,924,920,919,912,909,909,905,905,903,900,894,887,884,883,869,868,861,858,857,851,842,838,829,828,816,796,792,783,781,774,774,772,766,766,746,746,736,718,714,712,706,702,702,697,685,668,661,658,643,632,627,611,585,579,569,563,552,549,541,536,511,510,510,499,497,496,496,466,460,446,436,382,381,359,343,340,308,304,291,276,258,254,209,201],["106","143","77","472","236","83","35","151","621","67","144","572","191","121","39","54","202","64","71","496","142","28","152","79","73","222","631","163","41","56","38","117","90","296","73","145","745","148","66","64","20","91","111","107","57","125","224","118","30","43","135","133","167","496","20","151","25","79","33","77","247","63","55","116","189","21","28","10","170","61","145","1 102","55","61","78","269","445","22","219","142","162","177","30","62","90","40","100","200","550","406","208","27","79","175","366","229","138","62","79","64","47","98","995","105","69","34","622","143","158","84","152","181","108","1 649","405","2 878","70","231","175","28","282","93","83","21","63","904","554","91","28","1 129","128","200","30","231","86","173","128","1 122","125","177","323","99","38","110","290","211","122","3 238","2 709","79","755","72","506","735","129","35 841","576","429","91","281","48","85","39","50","4 579","347","86","124","31","480","390","1 350","116","286","259","131","292","370","45","653","191","794","88","38","125","141","497","88","106","254","8 266","317","105","331","216","69","39","673","126","249","69","3 556","159","199","486","607","254","598","386","660","459","893","1 105","651","2 335","377","148","279","1 360","3 956","169","447","317","834","205","567","2 087","16 424","516","308","1 806","133","884","982","49","177"],["Gúdar-Javalambre","Sierra de Albarracín","Gúdar-Javalambre","Sierra de Albarracín","Sierra de Albarracín","Sierra de Albarracín","Sierra de Albarracín","Sierra de Albarracín","Gúdar-Javalambre","Comunidad de Teruel","Gúdar-Javalambre","Sierra de Albarracín","Sierra de Albarracín","Maestrazgo","Maestrazgo","Sierra de Albarracín","Sierra de Albarracín","Sierra de Albarracín","Sierra de Albarracín","Gúdar-Javalambre","Comunidad de Teruel","Sierra de Albarracín","Sierra de Albarracín","Sierra de Albarracín","Comunidad de Teruel","Maestrazgo","Comunidad de Teruel","Maestrazgo","Comunidad de Teruel","Sierra de Albarracín","Comunidad de Teruel","Comarca de Teruel","Sierra de Albarracín","Gúdar-Javalambre","Comunidad de Teruel","Gúdar-Javalambre","Maestrazgo","Cuencas Mineras","Sierra de Albarracín","Gúdar-Javalambre","Comunidad de Teruel","Cuencas Mineras","Comunidad de Teruel","Comunidad de Teruel","Gúdar-Javalambre","Sierra de Albarracín","Comunidad de Teruel","Cuencas Mineras","Jiloca","Jiloca","Comunidad de Teruel","Comarca de Teruel","Sierra de Albarracín","Maestrazgo","Comunidad de Teruel","Cuencas Mineras","Comunidad de Teruel","Jiloca","Maestrazgo","Jiloca","Sierra de Albarracín","Jiloca","Comunidad de Teruel","Comunidad de Teruel","cuencas Mineras","Jiloca","Comunidad de Teruel","Cuencas Mineras","Comunidad de Teruel","Jiloca","Comunidad de Teruel","Sierra de Albarracín","Gúdar-Javalambre","Sierra de Albarracín","Sierra de Albarracín","Comunidad de Teruel","Jiloca","Cuencas Mineras","Gúdar-Javalambre","Jiloca","Jiloca","Comunidad de Teruel","Jiloca","Cuencas Mineras","Jiloca","Cuencas Mineras","Maestrazgo","Maestrazgo","Gúdar-Javalambre","Comunidad de Teruel","Andorra-Sierra de Arcos","Cuencas Mineras","Comunidad de Teruel","Gúdar-Javalambre","Cuencas Mineras","Jiloca","Cuencas Mineras","Comunidad de Teruel","Gúdar-Javalambre","Jiloca","Cuencas Mineras","Jiloca","Cuencas Mineras","Gúdar-Javalambre","Jiloca","Comunidad de Teruel","Comunidad de Teruel","Jiloca","Jiloca","Jiloca","Comunidad de Teruel","Jiloca","Jiloca","Gúdar-Javalambre","Sierra de Albarracín","Comunidad de Teruel","Jiloca","Jiloca","Jiloca","Jiloca","Jiloca","Maestrazgo","Comunidad de Teruel","Jiloca","Jiloca","Comunidad de Teruel","Gúdar-Javalambre","Comarca de Teruel","Comunidad de Teruel","Gúdar-Javalambre","Comunidad de Teruel","Comunidad de Teruel","Cuencas Mineras","Comunidad de Teruel","Cuencas Mineras","Comunidad de Teruel","Comunidad de Teruel","Comunidad de Teruel","Gúdar-Javalambre","Gúdar-Javalambre","Jiloca","Jiloca","Cuencas Mineras","Cuencas Mineras","Gúdar-Javalambre","Gúdar-Javalambre","Andorra-Sierra de Arcos","Cuencas Mineras","Jiloca","Cuencas Mineras","Gúdar-Javalambre","Cuencas Mineras","Jiloca","Jiloca","Maestrazgo","Comunidad de Teruel","Jiloca","Cuencas Mineras","Comunidad de Teruel","Bajo Aragón","Cuencas Mineras","Comunidad de Teruel","Jiloca","Maestrazgo","Jiloca","Comunidad de Teruel","Cuencas Mineras","Bajo Aragón","Jiloca","Comunidad de Teruel","Matarraña","Cuencas Mineras","Bajo Aragón","Maestrazgo","Andorra-Sierra de Arcos","Maestrazgo","Jiloca","Jiloca","Bajo Aragón","Cuencas Mineras","Jiloca","Maestrazgo","Andorra-Sierra de Arcos","Cuencas Mineras","Cuencas Mineras","Comunidad de Teruel","Matarraña","Matarraña","Bajo Aragón","Bajo Aragón","Andorra-Sierra de Arcos","Matarraña","Matarraña","Andorra-Sierra de Arcos","Bajo Aragón","Bajo Aragón","Cuencas Mineras","Andorra-Sierra de Arcos","Bajo Aragón","Gúdar-Javalambre","Cuencas Mineras","Bajo Aragón","Matarraña","Bajo Aragón","Matarraña","Matarraña","Matarraña","Matarraña","Matarraña","Bajo Aragón","Andorra-Sierra de Arcos","Andorra-Sierra de Arcos","Matarraña","Bajo Aragón","Matarraña","Bajo Aragón","Matarraña","Bajo Aragón","Bajo Aragón","Bajo Aragón","Matarraña","Bajo Aragón","Matarraña","Bajo Aragón","Matarraña","Matarraña","Bajo Martín","Bajo Aragón","Bajo Martín","Bajo Martín","Bajo Martín","Bajo Martín","Bajo Martín","Bajo Martín","Bajo Martín","Bajo Martín"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Nombre<\/th>\n      <th>Altitud<\/th>\n      <th>Poblacion<\/th>\n      <th>Comarca<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":10,"deferRender":true,"scrollY":400,"scroller":true,"columnDefs":[{"className":"dt-right","targets":1}],"order":[],"autoWidth":false,"orderClasses":false,"orderCellsTop":true},"selection":{"mode":"multiple","selected":null,"target":"row"}},"evals":[],"jsHooks":[]}</script>
+<p><br></p>
+</div>
+<div id="otra-forma-de-hacer-lo-mismo" class="section level3">
+<h3>Otra forma de hacer lo mismo</h3>
+<p>En lugar de con CSS selector se pueden usar <code>xpath</code> para seleccionar las partes de la página web que quieres bajar. Resulta que con el <strong>CSS selector</strong> vi que la <code>xpath</code> de la tabla es: <code>/html/body/div[3]/div[3]/div[4]/div/table</code>. Sí, de momento para mi también es pura magia.</p>
+<pre class="r"><code>url &lt;- &#39;https://es.wikipedia.org/wiki/Anexo:Municipios_de_la_provincia_de_Teruel&#39;
+Teruel &lt;- url %&gt;%
+  read_html() %&gt;%
+  html_nodes(xpath=&#39;/html/body/div[3]/div[3]/div[4]/div/table&#39;) %&gt;%
+  html_table(dec = &quot;,&quot;) 
+Teruel &lt;- Teruel[[1]]</code></pre>
+<p><br></p>
+</div>
+<div id="entendiendo-lo-que-he-hecho" class="section level3">
+<h3>Entendiendo lo que he hecho</h3>
+<p>Pues he hecho web scrapping. He bajado una tabla de la wikipedia y me la he traído a R como un dataframe.</p>
+<p>Las partes quieres bajar se pueden seleccionar con <code>CSS selectors</code> o con <code>xpaths</code></p>
+<p>He conseguido coger la tabla pero a capón, vamos que no me entero mucho … aún; así que algún día tendré que leer la <a href="https://github.com/hadley/rvest">vignette de rvest</a> y de allí te lleva a este <a href="http://flukeout.github.io/">tutorial sobre CSS selectors</a>. También habrá que mirar <code>vignette(&quot;selectorgadget&quot;)</code></p>
+<p>Ahora tocaría hacer un mapa con los pueblos de Teruel coloreados según su altitud, pero lo dejo para el próximo post, que como es un reciclado de <code>R &amp; flowers 4</code>, pues ya lo tengo hecho.</p>
+<p>Bye</p>
+</div>
+
+        </div>
+        <footer class="article-footer">
+    <a data-url="https://rflowers5.netlify.com/2018/01/17/altitud-de-los-municipios-de-teruel/" data-id="96f91a8eaade6d526ca247f8fcdacffa" class="article-share-link">
+        <i class="fa fa-share"></i>
+        Share
+    </a>
+    
+
+    <script>
+    (function ($) {
+        
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+    </script>
+</footer>
+
+    </div>
+
+    
+<nav id="article-nav">
+    
+    <a href="https://rflowers5.netlify.com/2018/01/17/creacion-y-tuneado-del-blog/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">
+          Older
+      </strong>
+      <div class="article-nav-title">Creación y tuneado del blog</div>
+    </a>
+    
+
+    
+</nav>
+
+
+</article>
+
+
+
+    </section>
+
+   	
+    	<aside id="sidebar">
+    
+<div class="widget-wrap">
+    <h3 class="widget-title">
+        Recents
+    </h3>
+    <div class="widget">
+        <ul id="recent-post">
+            
+            <li>
+                <div class="item-thumbnail">
+                    <a href="https://rflowers5.netlify.com/2018/01/17/altitud-de-los-municipios-de-teruel/" class="thumbnail">
+                    
+                        <span class="thumbnail-image thumbnail-none"></span>
+                    
+                    </a>
+                </div>
+                <div class="item-inner">
+                    
+                    
+                    <p class="item-category">
+                        
+                        <a class="article-category-link" href="https://rflowers5.netlify.com/categories/municipios">
+                        municipios
+                        </a>
+                    </p>
+                    
+                    
+                    <p class="item-title"><a href="https://rflowers5.netlify.com/2018/01/17/altitud-de-los-municipios-de-teruel/" class="title">Altitud de los municipios de Teruel</a></p>
+                    <p class="item-date">
+                        <time datetime="2018-01-17 00:00:00 &#43;0000 UTC" itemprop="datePublished">2018-01-17</time>
+                    </p>
+                </div>
+            </li>
+            
+            <li>
+                <div class="item-thumbnail">
+                    <a href="https://rflowers5.netlify.com/2018/01/17/creacion-y-tuneado-del-blog/" class="thumbnail">
+                    
+                        <span class="thumbnail-image thumbnail-none"></span>
+                    
+                    </a>
+                </div>
+                <div class="item-inner">
+                    
+                    
+                    <p class="item-category">
+                        
+                        <a class="article-category-link" href="https://rflowers5.netlify.com/categories/blog">
+                        blog
+                        </a>
+                    </p>
+                    
+                    
+                    <p class="item-title"><a href="https://rflowers5.netlify.com/2018/01/17/creacion-y-tuneado-del-blog/" class="title">Creación y tuneado del blog</a></p>
+                    <p class="item-date">
+                        <time datetime="2018-01-17 00:00:00 &#43;0000 UTC" itemprop="datePublished">2018-01-17</time>
+                    </p>
+                </div>
+            </li>
+            
+            <li>
+                <div class="item-thumbnail">
+                    <a href="https://rflowers5.netlify.com/2018/01/17/elecci%C3%B3n-del-hugo-theme/" class="thumbnail">
+                    
+                        <span class="thumbnail-image thumbnail-none"></span>
+                    
+                    </a>
+                </div>
+                <div class="item-inner">
+                    
+                    
+                    <p class="item-category">
+                        
+                        <a class="article-category-link" href="https://rflowers5.netlify.com/categories/blog">
+                        blog
+                        </a>
+                    </p>
+                    
+                    
+                    <p class="item-title"><a href="https://rflowers5.netlify.com/2018/01/17/elecci%C3%B3n-del-hugo-theme/" class="title">Elección del Hugo theme</a></p>
+                    <p class="item-date">
+                        <time datetime="2018-01-17 00:00:00 &#43;0000 UTC" itemprop="datePublished">2018-01-17</time>
+                    </p>
+                </div>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+
+    
+
+
+<div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+        <ul class="category-list">
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://rflowers5.netlify.com/categories/blog">
+                    blog
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://rflowers5.netlify.com/categories/municipios">
+                    municipios
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+
+
+
+    
+
+
+<div class="widget-wrap">
+    <h3 class="widget-title">
+        Tags
+    </h3>
+    <div class="widget">
+        <ul class="category-list">
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://rflowers5.netlify.com/tags/blog">
+                    blog
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://rflowers5.netlify.com/tags/hugo-themes">
+                    hugo-themes
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="https://rflowers5.netlify.com/tags/web-scrapping">
+                    web-scrapping
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+
+
+
+    
+
+
+<div class="widget-wrap">
+    <h3 class="widget-title">
+        Tag cloud
+    </h3>
+    <div class="widget tagcloud">
+        
+        
+        <a href="https://rflowers5.netlify.com/tags/blog" style="font-size: 12px;">blog</a>
+        
+        
+        <a href="https://rflowers5.netlify.com/tags/hugo-themes" style="font-size: 12px;">hugo-themes</a>
+        
+        
+        <a href="https://rflowers5.netlify.com/tags/web-scrapping" style="font-size: 12px;">web-scrapping</a>
+        
+    </div>
+</div>
+
+
+
+
+
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+
+    
+	</div>
+</div>
+
+<footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018
+      Powered by <a href="//gohugo.io">Hugo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>.
+    </div>
+  </div>
+</footer>
+
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-71846326-5', 'auto');
+ga('send', 'pageview');
+</script>
+
+<script src="https://rflowers5.netlify.com/fancybox/jquery.fancybox.pack.js"></script>
+<script src="https://rflowers5.netlify.com/js/script.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"></script>
+
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']]}
+  });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+
+</body>
+</html>

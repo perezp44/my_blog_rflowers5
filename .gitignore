@@ -5,9 +5,9 @@
 .RData
 .Ruserdata
 #--------------- Public folder
-public  
-blogdown
-Thumbs.db  #- para windows users
+#public  
+#blogdown
+3Thumbs.db  #- para windows users
 #---------------
 _cache/
 drafts/
