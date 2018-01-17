@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on R &amp; flowers V</title>
+    <link>/post/</link>
+    <description>Recent content in Posts on R &amp; flowers V</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Powered by [Hugo](//gohugo.io). Theme by [PPOffice](http://github.com/ppoffice).</copyright>
+    <lastBuildDate>Thu, 18 Jan 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Mapas de altitudes municipios de Teruel</title>
+      <link>/2018/01/18/mapas-de-altitudes-municipios-de-teruel/</link>
+      <pubDate>Thu, 18 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/2018/01/18/mapas-de-altitudes-municipios-de-teruel/</guid>
+      <description>IntroEn el post anterior hice web scrapping bajándome una tabla con los municipios de Teruel con su altitud; pero no hice ningún mapa. Hoy voy a hacerlos.
+Primero hace falta bajarse esta tabla de la Wikipedia con las altitudes y guardarla en un dataframe. Esto lo expliqué en el post anterior así que ya tenemos la tabla con las altitudes almacenada en un dataframe que se llama Teruel. Tuvimos que limpiarla un poquito!</description>
+    </item>
+    
+    <item>
+      <title>Altitud de los municipios de Teruel</title>
+      <link>/2018/01/17/altitud-de-los-municipios-de-teruel/</link>
+      <pubDate>Wed, 17 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/2018/01/17/altitud-de-los-municipios-de-teruel/</guid>
+      <description>IntroEste post es un reciclado del primer post medio serio de R &amp;amp; flowers 4, que es un blog que aún existe pero en breve lo borraré. Resulta que me dio por aprender (un poquito) de web scrapping, así que se ocurrió “scrapear” una tabla de la Wikipedia, concretamente esta tabla. Es una tabla con información sobre los municipios de Teruel; entre otras cosas, se puede ver sus altitudes.</description>
+    </item>
+    
+    <item>
+      <title>Creación y tuneado del blog</title>
+      <link>/2018/01/17/creacion-y-tuneado-del-blog/</link>
+      <pubDate>Wed, 17 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/2018/01/17/creacion-y-tuneado-del-blog/</guid>
+      <description>Pues eso, a contar(un poco) como cree el blog con blogdown, y un poco más como lo tunee a mi gusto.
+Creación del blogHay muchos posts que explican como crear un blog con blogdown; así que aquí contaré lo mínimo-mínimo para recordarlo yo. En mi caso fue “suficiente” con leer (a trozos) el libro de Yihiu. En resumiendo (y no muy bien contado) lo que hice es:
+Primero, lógicamente, has de instalar blogdown.</description>
+    </item>
+    
+    <item>
+      <title>Elección del Hugo theme</title>
+      <link>/2018/01/17/elecci%C3%B3n-del-hugo-theme/</link>
+      <pubDate>Wed, 17 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/2018/01/17/elecci%C3%B3n-del-hugo-theme/</guid>
+      <description>¿Qué porque elegí el icarus-theme para mi blog? Pues es una historia larga y de poco interés salvo que quieras hacer tu mismo otro blog para hablar de tus avances con R; pero para mi es útil poder recordar un poco este proceso. Así que vamos allá.
+Intro Llevo tres o cuatro años jugando con R (me divierto!!) y hace como dos años me dio por hacer un blog y resulta que me gusto la experiencia.</description>
+    </item>
+    
+  </channel>
+</rss>

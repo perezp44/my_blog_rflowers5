@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <title>Mapas de altitudes municipios de Teruel &middot; R &amp; flowers V</title>
+    <meta name="generator" content="Hugo 0.31" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="author" content="Pedro J. Pérez">
+    
+      <meta name="description" content="Voy a refrescar mis conocimientos sobre mapas en R. Para ello voy a hacer varios gráficos espaciales con las altitudes de los municipios de Teruel. Usaré el paquete `sf`.">
+    
+    
+    <link rel="canonical" href="/2018/01/18/mapas-de-altitudes-municipios-de-teruel/"/>
+    <link rel="icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png"/>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/monokai.css">
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+    
+    <link rel="stylesheet" href="/css/monokai.css">
+    
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
+    <meta property="og:title" content="Mapas de altitudes municipios de Teruel" />
+<meta property="og:description" content="Voy a refrescar mis conocimientos sobre mapas en R. Para ello voy a hacer varios gráficos espaciales con las altitudes de los municipios de Teruel. Usaré el paquete `sf`." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/2018/01/18/mapas-de-altitudes-municipios-de-teruel/" />
+
+
+
+<meta property="article:published_time" content="2018-01-18T00:00:00&#43;00:00"/>
+
+<meta property="article:modified_time" content="2018-01-18T00:00:00&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+<meta itemprop="name" content="Mapas de altitudes municipios de Teruel">
+<meta itemprop="description" content="Voy a refrescar mis conocimientos sobre mapas en R. Para ello voy a hacer varios gráficos espaciales con las altitudes de los municipios de Teruel. Usaré el paquete `sf`.">
+
+
+<meta itemprop="datePublished" content="2018-01-18T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2018-01-18T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="939">
+
+
+
+<meta itemprop="keywords" content="spatial maps," />
+
+    <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Mapas de altitudes municipios de Teruel"/>
+<meta name="twitter:description" content="Voy a refrescar mis conocimientos sobre mapas en R. Para ello voy a hacer varios gráficos espaciales con las altitudes de los municipios de Teruel. Usaré el paquete `sf`."/>
+<meta name="twitter:site" content="@pjpv4444"/>
+
+    
+
+    
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+<body>
+<div class="container">
+
+
+<div id="container">
+	<header id="header">
+  <div id="header-main" class="header-inner">
+    <div class="outer">
+      <a href="/" id="logo">
+          
+          <i class="logo" style="background-image: url('/css/img/logo.jpg')"></i>
+          
+          <span class="site-title">R &amp; flowers V</span>
+      </a>
+      <nav id="main-nav">
+          
+          
+          <a class="main-nav-link" href="/">Home</a>
+          
+          
+          
+          
+          
+          
+
+          
+          <a class="main-nav-link" href="/about/">About</a>
+          
+
+          
+          
+          
+          
+          <a class="main-nav-link" href="/tags/">Tags</a>
+          
+          
+          
+          <a class="main-nav-link" href="/categories/">Categories</a>
+          
+          
+      </nav>
+        <nav id="sub-nav">
+          <div class="profile" id="profile-nav">
+            <a id="profile-anchor" href="javascript:;"><img class="avatar" src="/css/img/avatar_mio.png"><i class="fa fa-caret-down"></i></a>
+          </div>
+        </nav>
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form">
+              <input type="search" name="q" class="search-form-input" placeholder="Search">
+              <button type="submit" class="search-form-submit">
+              </button>
+              <input type="hidden" name="sitesearch" value="/" />
+         </form>
+        </div>
+    </div>
+  </div>
+  <div id="main-nav-mobile" class="header-sub header-inner">
+    <table class="menu outer">
+      <tbody>
+          <tr>
+          
+          
+          <td><a class="main-nav-link" href="/">Home</a></td>
+          
+          
+          
+          
+          
+          
+
+          
+          <td><a class="main-nav-link" href="/about/">About</a></td>
+          
+
+          
+          
+          
+          
+          <td><a class="main-nav-link" href="/tags/">Tags</a></td>
+          
+          
+          
+          <td><a class="main-nav-link" href="/categories/">Categories</a></td>
+          
+          
+          <td>
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form">
+          <input type="search" name="q" class="search-form-input" placeholder="Search">
+          <input type="hidden" name="sitesearch" value="/" />
+          </form>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</header>
+
+   	
+   	<div class="outer">
+   	
+    	<aside id="profile">
+  <div class="inner profile-inner">
+    <div class="base-info profile-block">
+      
+      <img id="avatar" src="/css/img/avatar_mio.png">
+      
+      <h2 id="name">Pedro J. Pérez</h2>
+      <h3 id="title">Jugando con R</h3>
+      <span id="location"><i class="fa fa-map-marker"></i>Valencia(Spain)</span>
+      
+          <a id="follow" href="https://github.com/digitalcraftsman">
+              Follow
+          </a>
+      
+    </div>
+    <div class="article-info profile-block">
+      <div class="article-info-block">
+        4
+        <span>Posts</span>
+      </div>
+      <div class="article-info-block">
+        
+          4
+        
+        <span>
+            Tags
+        </span>
+      </div>
+    </div>
+    <div class="profile-block social-links">
+      <table>
+        <tr>
+          
+<td><a href="//github.com/perezp44" target="_blank" title="GitHub"><i class="fa fa-github"></i></a></td>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<td><a href="//twitter.com/pjpv4444" target="_blank" title="Twitter"><i class="fa fa-twitter"></i></a></td>
+
+
+          <td><a href="/index.xml" target="_blank" title="RSS"><i class="fa fa-rss"></i></a></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</aside>
+
+    
+
+    <section id="main">
+    
+    <article id="page-undefined" class="article article-type-page" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+
+        <header class="article-header">
+    <a href="/2018/01/18/mapas-de-altitudes-municipios-de-teruel/">
+    <h1 class="article-title" itemprop="name">
+        Mapas de altitudes municipios de Teruel
+    </h1>
+    </a>
+    <div class="article-meta">
+
+        
+        <div class="article-date">
+            <i class="fa fa-calendar"></i>
+            <time datetime="2018-01-18 00:00:00 &#43;0000 UTC" itemprop="datePublished">2018-01-18</time>
+            &middot;
+            939
+            words
+            &middot;
+            5
+            minute read
+        </div>
+        
+        
+            
+            
+            <div class="article-category">
+                <i class="fa fa-folder"></i>
+                
+                
+                <a class="article-category-link" href="/categories/municipios">municipios</a>
+                
+                
+            </div>
+            
+        
+
+        
+            
+            
+            <div class="article-category">
+                <i class="fa fa-tags"></i>
+                
+                
+                <a class="article-category-link" href="/tags/spatial-maps">spatial maps</a>
+                
+                
+            </div>
+            
+        
+    </div>
+</header>
+
+        <div class="article-entry" itemprop="articleBody">
+            <div id="intro" class="section level3">
+<h3>Intro</h3>
+<p>En el post anterior hice <a href="https://es.wikipedia.org/wiki/Web_scraping">web scrapping</a> bajándome una tabla con los municipios de Teruel con su altitud; pero no hice ningún mapa. Hoy voy a hacerlos.</p>
+<p>Primero hace falta bajarse <a href="https://es.wikipedia.org/wiki/Anexo:Municipios_de_la_provincia_de_Teruel">esta tabla</a> de la Wikipedia con las altitudes y guardarla en un dataframe. Esto lo expliqué en el <a href="http://rflowers4.netlify.com/blog/2017/12/23/altitud-de-los-pueblos-de-teruel-web-scrapping/">post anterior</a> así que ya tenemos la tabla con las altitudes almacenada en un dataframe que se llama <code>Teruel</code>. Tuvimos que limpiarla un poquito!! Abajo está todo el código que use en un único chunk:</p>
+<pre class="r"><code>#devtools::install_github(&quot;perezp44/personal.pjp&quot;)
+library(&quot;personal.pjp&quot;)
+
+library(&quot;rvest&quot;)
+library(&quot;tidyverse&quot;)
+content &lt;- read_html(&quot;https://es.wikipedia.org/wiki/Anexo:Municipios_de_la_provincia_de_Teruel&quot;)
+head &lt;- content %&gt;% html_nodes(&#39;head&#39;) 
+head &lt;- content %&gt;% html_nodes(&#39;head&#39;) %&gt;% html_text()
+
+body_table &lt;- content %&gt;% html_nodes(&#39;body&#39;)  %&gt;%
+                    html_nodes(&#39;table&#39;) %&gt;%
+                    html_table(dec = &quot;,&quot;) 
+Teruel &lt;- body_table[[1]]
+names(Teruel) &lt;- c(&quot;Nombre&quot;, &quot;Extension&quot;, &quot;Poblacion&quot;, &quot;Densidad&quot;, &quot;Comarca&quot;, &quot;Partido_judicial&quot;, &quot;Altitud&quot;)
+library(stringr)
+Teruel &lt;- Teruel %&gt;% map(str_trim) %&gt;% as.tibble() #- quita caracteres al final
+Teruel &lt;- Teruel %&gt;% mutate(Altitud = str_replace_all(Altitud,&quot;[[:punct:]]&quot;, &quot;&quot;))
+Teruel &lt;- Teruel %&gt;% mutate(Poblacion = str_replace_all(Poblacion,&quot; &quot;, &quot;&quot;))
+Teruel &lt;- Teruel %&gt;% mutate(Poblacion = as.double(Poblacion))
+Teruel &lt;- Teruel %&gt;% mutate(Altitud = as.double(Altitud)) %&gt;%    
+                     arrange(desc(Altitud))</code></pre>
+<p>Os recordaré que Valdelinares es el pueblo “más alto” de Teruel, seguido de Griegos, pero ¿y mi pueblo? Mi pueblo se llama <a href="https://es.wikipedia.org/wiki/Pancrudo">Pancrudo</a> y es muuuuuuyy alto, pero veámoslo en un gráfico.</p>
+<p><br></p>
+</div>
+<div id="mapa-con-las-altitudes" class="section level3">
+<h3>Mapa con las altitudes</h3>
+<p><br></p>
+<p>Primero he cargar los datos de lindes municipales. No quiero liarme mucho así que cargaré el fichero que usaba hace uno/dos añitos. No lo voy a actualizar ni chequear. <strong>PERO</strong>, lo que sí que he hecho es crear un package en Github para poder cargar los datos que uso en el blog desde R. Lo puedes ver <a href="https://github.com/perezp44/mypkgDataforblog">aquí</a>. Creo que en uno de los siguientes post contaré cómo y porque lo he hecho. No me quiero liar ahora. Me hacía falta!!</p>
+<pre class="r"><code>#devtools::install_github(&quot;perezp44/mypkgDataforblog&quot;)
+library(mypkgDataforblog)
+library(rgdal)
+municipios &lt;- municipios_CNIG  #- los cargo de mi pkg
+rm(aa, body_table, content, head)</code></pre>
+<p><br></p>
+<p>Selecciono los municipios de Teruel. Se me hace raro seleccionar con R-base pero es la única forma que conozco de seleccionar en <code>SpatialPoly</code>.</p>
+<pre class="r"><code>sel &lt;- municipios$NombreProv == &quot;Teruel&quot;
+municipios &lt;- municipios[sel,]</code></pre>
+<p><br></p>
+<p>A fusionar los ficheros de lindes con los de altitud sacados de Internete; es decir, incorporo la información de altitudes y demás al fichero con los polígonos espaciales.</p>
+<pre class="r"><code>aa &lt;- municipios@data
+municipios@data &lt;-  left_join( municipios@data , Teruel, by = c(&quot;NombreMuni&quot;= &quot;Nombre&quot;))</code></pre>
+<p><br></p>
+<p>Pues ya está. Sólo queda hacer el gráfico con <code>sp::spplot</code>:</p>
+<pre class="r"><code>sp::spplot(municipios, zcol = &quot;Altitud&quot;, cuts = 2, col.regions  = c(&quot;cadetblue1&quot;, &quot;antiquewhite2&quot;, &quot;antiquewhite4&quot;))</code></pre>
+<p><img src="/post/2018-01-18-mapas-de-altitudes-municipios-de-teruel_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p>Gráfico de los municipios por altura. En color azulito las zonas por debajo de 600 metros, aproximadamente el <a href="https://es.wikipedia.org/wiki/Bajo_Arag%C3%B3n">Bajo Aragón</a>. En marrón oscuro las zonas más altas entre ellas mi pueblo.</p>
+<p>Tengo que aprender un poco de palettes!! Justo acabo de ver <a href="https://github.com/AndreaCirilloAC/paletter">este pkg</a></p>
+<p>Pero seguro que con <code>tmap</code> sale más bonito, y voy a poner algún corte más en la escala</p>
+<pre class="r"><code>library(tmap)
+library(viridisLite)
+
+  tm_shape(municipios, alpha = 0.3) +
+  tm_fill(col = &quot;Altitud&quot;, title = &quot;Altitud&quot;, n = 5) +
+  tm_polygons(border.alpha = 0.6) +
+  tm_layout(legend.position = c(&quot;right&quot;, &quot;bottom&quot;))</code></pre>
+<p><img src="/post/2018-01-18-mapas-de-altitudes-municipios-de-teruel_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p>Sí!! Sale un poco más bonito.</p>
+<p><br></p>
+<p>Ahora un gráfico con los pueblos más altos que Pancrudo. Pancrudo es mi pueblo y lo voy a poner en rojo. En marrón oscuro los que nos ganan en altura. Tan tan arriba no creo que sea sano vivir!! 😱 😃</p>
+<p><br></p>
+</div>
+<div id="mapa-con-los-pueblos-mas-altos-que-pancrudo" class="section level3">
+<h3>Mapa con los pueblos más altos que Pancrudo</h3>
+<pre class="r"><code>#jpeg(&quot;./grafico_altura_Teruel.jpg&quot;)
+#dev.off()
+plot(municipios, col = &quot;antiquewhite2&quot;) 
+my_sel &lt;- subset(municipios, municipios$NombreMuni == &quot;Pancrudo&quot;)
+sel &lt;- municipios$Altitud &gt; my_sel$Altitud  &amp; !is.na(municipios$Altitud)
+plot(municipios[ sel, ], col = &quot;antiquewhite4&quot;, add = TRUE) 
+sel &lt;- municipios$Altitud == my_sel$Altitud  &amp; !is.na(municipios$Altitud)
+plot(municipios[ sel, ], col = &quot;red&quot;, add = TRUE) # add selected zones to map</code></pre>
+<p><img src="/post/2018-01-18-mapas-de-altitudes-municipios-de-teruel_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p>Como veis, Pancrudo está bastante alto, 1.235 metros según la Wiki, un poco menos según mi primo. Rillo nos gana, pero solo por 34 metros. ¿Seguro que han medido bien?</p>
+<p>Ya que estamos me da curiosidad y quiero hacer el <strong>mapa por densidad de población</strong>:</p>
+<p><br></p>
+</div>
+<div id="mapa-por-densidad-de-poblacion" class="section level2">
+<h2>Mapa por densidad de población</h2>
+<pre class="r"><code>sp::spplot(municipios, zcol = &quot;Densidad&quot;, cuts = 2, col.regions  = c(&quot;cadetblue1&quot;, &quot;antiquewhite2&quot;, &quot;antiquewhite4&quot;))</code></pre>
+<p><img src="/post/2018-01-18-mapas-de-altitudes-municipios-de-teruel_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p>Las 3 poblaciones en marrón (densidad &gt; q casi 60) son en este orden Utrillas, Teruel y Andorra. El agujero (polígono en blanco) que hay al lado de Teruel creo que es La Puebla de valverde. Aparece en blanco porque en los datos sacados del INE su nombre es “Puebla de Valverde, La” y en la tabla de internet es “La Puebla de Valverde”. No lo arreglo porque este blog es para aprender y relajarme y ya vale por hoy.</p>
+<p><br></p>
+<p>Bueno, como veis mis conocimientos sobre gráficos espaciales (y gráficos en general) en R es limitado, pero estoy en ello. De hecho hace como año y medio hacia gráficos bastante más potentes. Usé <code>ggmpap</code> <code>leaflet</code> y <code>ggplot2</code> y alguno más, pero todo se olvida, y ahora prefiero empezar con datos espaciales por lo nuevo; that is, el pkg <code>sf</code>. 😎, pero será en el próximo post.</p>
+<p><br></p>
+<p><strong>P.S:</strong> (Bastante técnico, al menos para mi)</p>
+<p>Resulta que yo quería haber puesto los 2 post sobre altitudes en uno sólo, pero resulta que cuando los juntaba me daba problemas la datatable. Mirando por internet vi la solución <a href="https://stackoverflow.com/questions/43594039/dt-package-not-working-with-blogdown-using-hugo-future-imperfect-theme">aquí</a>, pero funciona sólo a medias. La verdad es que lo mejor de R es la comunidad de usuarios!!</p>
+<p>La solución consiste en grabar la datatable como un objeto e insertarla en un iframe. Abajo está el código.</p>
+<pre class="r"><code>library(DT)
+aa &lt;- decimales_df_pjp(Teruel, 2)  %&gt;% select(1,7,3,5) #- rtdos con 2 decimales
+datatable_Teruel &lt;- datatable(aa, extensions = &#39;Scroller&#39;, options = list( pageLength = 10, deferRender = TRUE,scrollY = 400,scroller = TRUE), rownames = F, filter = &quot;top&quot;)</code></pre>
+<pre class="r"><code>library(htmlwidgets)
+library(htmltools)
+htmlwidgets::saveWidget(datatable_Teruel, file = &quot;C://Users/perezp/desktop/datatable_Teruel.html&quot;, selfcontained = TRUE)</code></pre>
+<p>e insertar la datatable así</p>
+<pre class="yaml"><code>Tabla: Municipios de Teruel ordenados por altitud
+
+&lt;iframe seamless src=&quot;/datatable_Teruel.html&quot; width=&quot;100%&quot; height=&quot;500&quot;&gt;&lt;/iframe&gt;</code></pre>
+</div>
+
+        </div>
+        <footer class="article-footer">
+    <a data-url="/2018/01/18/mapas-de-altitudes-municipios-de-teruel/" data-id="40fb44c97865befdf30ec4aae64739c1" class="article-share-link">
+        <i class="fa fa-share"></i>
+        Share
+    </a>
+    
+
+    <script>
+    (function ($) {
+        
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+    </script>
+</footer>
+
+    </div>
+
+    
+<nav id="article-nav">
+    
+    <a href="/2018/01/17/altitud-de-los-municipios-de-teruel/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">
+          Older
+      </strong>
+      <div class="article-nav-title">Altitud de los municipios de Teruel</div>
+    </a>
+    
+
+    
+</nav>
+
+
+</article>
+
+
+
+    </section>
+
+   	
+    	<aside id="sidebar">
+    
+<div class="widget-wrap">
+    <h3 class="widget-title">
+        Recents
+    </h3>
+    <div class="widget">
+        <ul id="recent-post">
+            
+            <li>
+                <div class="item-thumbnail">
+                    <a href="/2018/01/18/mapas-de-altitudes-municipios-de-teruel/" class="thumbnail">
+                    
+                        <span class="thumbnail-image thumbnail-none"></span>
+                    
+                    </a>
+                </div>
+                <div class="item-inner">
+                    
+                    
+                    <p class="item-category">
+                        
+                        <a class="article-category-link" href="/categories/municipios">
+                        municipios
+                        </a>
+                    </p>
+                    
+                    
+                    <p class="item-title"><a href="/2018/01/18/mapas-de-altitudes-municipios-de-teruel/" class="title">Mapas de altitudes municipios de Teruel</a></p>
+                    <p class="item-date">
+                        <time datetime="2018-01-18 00:00:00 &#43;0000 UTC" itemprop="datePublished">2018-01-18</time>
+                    </p>
+                </div>
+            </li>
+            
+            <li>
+                <div class="item-thumbnail">
+                    <a href="/2018/01/17/altitud-de-los-municipios-de-teruel/" class="thumbnail">
+                    
+                        <span class="thumbnail-image thumbnail-none"></span>
+                    
+                    </a>
+                </div>
+                <div class="item-inner">
+                    
+                    
+                    <p class="item-category">
+                        
+                        <a class="article-category-link" href="/categories/municipios">
+                        municipios
+                        </a>
+                    </p>
+                    
+                    
+                    <p class="item-title"><a href="/2018/01/17/altitud-de-los-municipios-de-teruel/" class="title">Altitud de los municipios de Teruel</a></p>
+                    <p class="item-date">
+                        <time datetime="2018-01-17 00:00:00 &#43;0000 UTC" itemprop="datePublished">2018-01-17</time>
+                    </p>
+                </div>
+            </li>
+            
+            <li>
+                <div class="item-thumbnail">
+                    <a href="/2018/01/17/creacion-y-tuneado-del-blog/" class="thumbnail">
+                    
+                        <span class="thumbnail-image thumbnail-none"></span>
+                    
+                    </a>
+                </div>
+                <div class="item-inner">
+                    
+                    
+                    <p class="item-category">
+                        
+                        <a class="article-category-link" href="/categories/blog">
+                        blog
+                        </a>
+                    </p>
+                    
+                    
+                    <p class="item-title"><a href="/2018/01/17/creacion-y-tuneado-del-blog/" class="title">Creación y tuneado del blog</a></p>
+                    <p class="item-date">
+                        <time datetime="2018-01-17 00:00:00 &#43;0000 UTC" itemprop="datePublished">2018-01-17</time>
+                    </p>
+                </div>
+            </li>
+            
+            <li>
+                <div class="item-thumbnail">
+                    <a href="/2018/01/17/elecci%C3%B3n-del-hugo-theme/" class="thumbnail">
+                    
+                        <span class="thumbnail-image thumbnail-none"></span>
+                    
+                    </a>
+                </div>
+                <div class="item-inner">
+                    
+                    
+                    <p class="item-category">
+                        
+                        <a class="article-category-link" href="/categories/blog">
+                        blog
+                        </a>
+                    </p>
+                    
+                    
+                    <p class="item-title"><a href="/2018/01/17/elecci%C3%B3n-del-hugo-theme/" class="title">Elección del Hugo theme</a></p>
+                    <p class="item-date">
+                        <time datetime="2018-01-17 00:00:00 &#43;0000 UTC" itemprop="datePublished">2018-01-17</time>
+                    </p>
+                </div>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+
+    
+
+
+<div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+        <ul class="category-list">
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="/categories/blog">
+                    blog
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="/categories/municipios">
+                    municipios
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+
+
+
+    
+
+
+<div class="widget-wrap">
+    <h3 class="widget-title">
+        Tags
+    </h3>
+    <div class="widget">
+        <ul class="category-list">
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="/tags/blog">
+                    blog
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="/tags/hugo-themes">
+                    hugo-themes
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="/tags/spatial-maps">
+                    spatial-maps
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="/tags/web-scrapping">
+                    web-scrapping
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+
+
+
+    
+
+
+<div class="widget-wrap">
+    <h3 class="widget-title">
+        Tag cloud
+    </h3>
+    <div class="widget tagcloud">
+        
+        
+        <a href="/tags/blog" style="font-size: 12px;">blog</a>
+        
+        
+        <a href="/tags/hugo-themes" style="font-size: 12px;">hugo-themes</a>
+        
+        
+        <a href="/tags/spatial-maps" style="font-size: 12px;">spatial-maps</a>
+        
+        
+        <a href="/tags/web-scrapping" style="font-size: 12px;">web-scrapping</a>
+        
+    </div>
+</div>
+
+
+
+
+
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+
+    
+	</div>
+</div>
+
+<footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018
+      Powered by <a href="//gohugo.io">Hugo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>.
+    </div>
+  </div>
+</footer>
+
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-71846326-5', 'auto');
+ga('send', 'pageview');
+</script>
+
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script src="/js/script.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"></script>
+
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']]}
+  });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+
+</body>
+</html>

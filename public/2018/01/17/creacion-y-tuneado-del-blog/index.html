@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <title>Creación y tuneado del blog &middot; R &amp; flowers V</title>
+    <meta name="generator" content="Hugo 0.31" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="author" content="Pedro J. Pérez">
+    
+      <meta name="description" content="Explico (un poco) como creé el blog y, un poco más, como lo tuneé a mi gusto.">
+    
+    
+    <link rel="canonical" href="/2018/01/17/creacion-y-tuneado-del-blog/"/>
+    <link rel="icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png"/>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/monokai.css">
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+    
+    <link rel="stylesheet" href="/css/monokai.css">
+    
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
+    <meta property="og:title" content="Creación y tuneado del blog" />
+<meta property="og:description" content="Explico (un poco) como creé el blog y, un poco más, como lo tuneé a mi gusto." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/2018/01/17/creacion-y-tuneado-del-blog/" />
+
+
+
+<meta property="article:published_time" content="2018-01-17T00:00:00&#43;00:00"/>
+
+<meta property="article:modified_time" content="2018-01-17T00:00:00&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+<meta itemprop="name" content="Creación y tuneado del blog">
+<meta itemprop="description" content="Explico (un poco) como creé el blog y, un poco más, como lo tuneé a mi gusto.">
+
+
+<meta itemprop="datePublished" content="2018-01-17T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2018-01-17T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="952">
+
+
+
+<meta itemprop="keywords" content="blog," />
+
+    <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Creación y tuneado del blog"/>
+<meta name="twitter:description" content="Explico (un poco) como creé el blog y, un poco más, como lo tuneé a mi gusto."/>
+<meta name="twitter:site" content="@pjpv4444"/>
+
+    
+
+    
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+<body>
+<div class="container">
+
+
+<div id="container">
+	<header id="header">
+  <div id="header-main" class="header-inner">
+    <div class="outer">
+      <a href="/" id="logo">
+          
+          <i class="logo" style="background-image: url('/css/img/logo.jpg')"></i>
+          
+          <span class="site-title">R &amp; flowers V</span>
+      </a>
+      <nav id="main-nav">
+          
+          
+          <a class="main-nav-link" href="/">Home</a>
+          
+          
+          
+          
+          
+          
+
+          
+          <a class="main-nav-link" href="/about/">About</a>
+          
+
+          
+          
+          
+          
+          <a class="main-nav-link" href="/tags/">Tags</a>
+          
+          
+          
+          <a class="main-nav-link" href="/categories/">Categories</a>
+          
+          
+      </nav>
+        <nav id="sub-nav">
+          <div class="profile" id="profile-nav">
+            <a id="profile-anchor" href="javascript:;"><img class="avatar" src="/css/img/avatar_mio.png"><i class="fa fa-caret-down"></i></a>
+          </div>
+        </nav>
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form">
+              <input type="search" name="q" class="search-form-input" placeholder="Search">
+              <button type="submit" class="search-form-submit">
+              </button>
+              <input type="hidden" name="sitesearch" value="/" />
+         </form>
+        </div>
+    </div>
+  </div>
+  <div id="main-nav-mobile" class="header-sub header-inner">
+    <table class="menu outer">
+      <tbody>
+          <tr>
+          
+          
+          <td><a class="main-nav-link" href="/">Home</a></td>
+          
+          
+          
+          
+          
+          
+
+          
+          <td><a class="main-nav-link" href="/about/">About</a></td>
+          
+
+          
+          
+          
+          
+          <td><a class="main-nav-link" href="/tags/">Tags</a></td>
+          
+          
+          
+          <td><a class="main-nav-link" href="/categories/">Categories</a></td>
+          
+          
+          <td>
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form">
+          <input type="search" name="q" class="search-form-input" placeholder="Search">
+          <input type="hidden" name="sitesearch" value="/" />
+          </form>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</header>
+
+   	
+   	<div class="outer">
+   	
+    	<aside id="profile">
+  <div class="inner profile-inner">
+    <div class="base-info profile-block">
+      
+      <img id="avatar" src="/css/img/avatar_mio.png">
+      
+      <h2 id="name">Pedro J. Pérez</h2>
+      <h3 id="title">Jugando con R</h3>
+      <span id="location"><i class="fa fa-map-marker"></i>Valencia(Spain)</span>
+      
+          <a id="follow" href="https://github.com/digitalcraftsman">
+              Follow
+          </a>
+      
+    </div>
+    <div class="article-info profile-block">
+      <div class="article-info-block">
+        4
+        <span>Posts</span>
+      </div>
+      <div class="article-info-block">
+        
+          4
+        
+        <span>
+            Tags
+        </span>
+      </div>
+    </div>
+    <div class="profile-block social-links">
+      <table>
+        <tr>
+          
+<td><a href="//github.com/perezp44" target="_blank" title="GitHub"><i class="fa fa-github"></i></a></td>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<td><a href="//twitter.com/pjpv4444" target="_blank" title="Twitter"><i class="fa fa-twitter"></i></a></td>
+
+
+          <td><a href="/index.xml" target="_blank" title="RSS"><i class="fa fa-rss"></i></a></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</aside>
+
+    
+
+    <section id="main">
+    
+    <article id="page-undefined" class="article article-type-page" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+
+        <header class="article-header">
+    <a href="/2018/01/17/creacion-y-tuneado-del-blog/">
+    <h1 class="article-title" itemprop="name">
+        Creación y tuneado del blog
+    </h1>
+    </a>
+    <div class="article-meta">
+
+        
+        <div class="article-date">
+            <i class="fa fa-calendar"></i>
+            <time datetime="2018-01-17 00:00:00 &#43;0000 UTC" itemprop="datePublished">2018-01-17</time>
+            &middot;
+            952
+            words
+            &middot;
+            5
+            minute read
+        </div>
+        
+        
+            
+            
+            <div class="article-category">
+                <i class="fa fa-folder"></i>
+                
+                
+                <a class="article-category-link" href="/categories/blog">blog</a>
+                
+                
+            </div>
+            
+        
+
+        
+            
+            
+            <div class="article-category">
+                <i class="fa fa-tags"></i>
+                
+                
+                <a class="article-category-link" href="/tags/blog">blog</a>
+                
+                
+            </div>
+            
+        
+    </div>
+</header>
+
+        <div class="article-entry" itemprop="articleBody">
+            <p>Pues eso, a contar(un poco) como cree el blog con blogdown, y un poco más como lo tunee a mi gusto.</p>
+<div id="creacion-del-blog" class="section level3">
+<h3>Creación del blog</h3>
+<p>Hay muchos posts que explican como crear un blog con blogdown; así que aquí contaré lo mínimo-mínimo para recordarlo yo. En mi caso fue “suficiente” con leer (a trozos) el libro de Yihiu. En resumiendo (y no muy bien contado) lo que hice es:</p>
+<ul>
+<li><p>Primero, lógicamente, has de instalar blogdown.</p></li>
+<li><p>En RStudio creas un Rproject del tipo <code>Website using blogdown</code>. El theme por defecto es <code>yihui/hugo-lithium-theme</code>. Yo lo cambie a <code>digitalcraftsman/hugo-icarus-theme</code> porque como explique en el anterior post quería usar el <code>icarus-theme</code>.</p></li>
+<li><p>En RStudio pinchar en el menú de <code>Addings</code> y seleccionar <code>Serve Site</code>. Ya está!!!</p></li>
+</ul>
+<p>Con estos 3 pasos el blog está creado, sólo queda tunearlo (poner tu nombre etc…) y subirlo a internete.</p>
+</div>
+<div id="tuneado-del-blog-lo-minimo" class="section level3">
+<h3>Tuneado del blog (lo mínimo)</h3>
+<p>Se pueden hacer muchas cosas, pero como yo no es que sepa mucho de html, css y demás, cuanto menos toque mejor, pero claro, el blog ha de llevar tu nombre, tus fotos, tus posts, etc…</p>
+<ul>
+<li><p>Lo primero es limpiar el blog (lo puedes hacer al final):</p></li>
+<li><p>En RStudio pinchas en el menú: <code>Build &gt;&gt; More &gt;&gt; Clean All</code>.</p></li>
+<li><p>También hay que quitar los post de muestra. Están en la carpeta <code>content/posts/</code>. Borras todos los archivos.</p></li>
+<li><p>Hay que modificar el archivo <code>config.toml</code>. Concretamente yo modifiqué (que me acuerde) lo siguiente:</p></li>
+</ul>
+<pre class="yaml"><code>#---------------- al principo hay que modificar
+baseurl = &quot;/&quot;     # después habrá que poner la dirección de internet, p.ej: &quot;https://example.org/&quot;
+title = &quot;R &amp; flowers V&quot;
+
+#---------------- en el apartado [params] hay que modificar
+[params]
+    author = &quot;Pedro J. Pérez&quot;
+    bio = &quot;Viciado con R&quot;
+    location = &quot;Valencia(Spain)&quot;
+    site_description = &quot;Blog para jugar y aprender con R&quot;
+    avatar = &quot;css/img/tu_avatar.png&quot;  #- has de poner el archivo &quot;tu_avatar.png&quot; en la carpeta /static/css/img
+    logo = &quot;css/img/tu_logo.jpg&quot;   #- has de poner el archivo &quot;tu_logo.png&quot; en la carpeta /static/css/img
+
+
+#----------- en el apartado [social] hay que poner tus datos de contacto(si los tienes)
+[social]
+    github  = &quot;digitalcraftsman&quot;
+    twitter = &quot;spf13&quot;
+</code></pre>
+<p>Esto es el tuneado básico. Además, hay que modificar el fichero <code>content/about/_index.md</code> para contar algo de ti. Luego cambié alguna cosa más, pero ya no es importante. De momento lo único que no me gusta de mi blog es el highlight de los r chunks. Ya veré como se cambian.</p>
+<p>¿Qué falta? Pues escribir un post(recuerda que los hemos borrado todos)</p>
+</div>
+<div id="escribiendo-un-post" class="section level3">
+<h3>Escribiendo un post</h3>
+<p>Yo suelo escribir los post en el formato Rmd. Puedes créalo en RStudio pero has de cambiar el yaml header para que se ajuste a la sintaxis de Hugo. Un ejemplo es el siguiente:</p>
+<pre class="yaml"><code>---
+title: Hello world!!
+author: Pedro J. Pérez
+date: &#39;2018-01-17&#39;
+slug: hello-world
+categories: [blog]
+tags: [hello]
+description: &#39;Este post es simplemente un hello world&#39;
+#banner:   &#39;banners/foto.png&#39;
+#images:    [&#39;img/first_post.png&#39;]
+#menu: &#39;&#39;
+---
+
+
+Este es mi primer post. Hello world!!
+
+Mañana escribo más.
+
+Bye
+</code></pre>
+<p>Si volvemos a pinchar en esta secuencia de menús <code>Addings &gt;&gt; Serve Site</code>, el blog se creará en la carpeta <code>public</code>. ya puedes subir esa carpeta a un servidor de Internet. Yihui recomienda alojarlo en Netlify, así que eso hice. Pero antes lo alojaré en Github</p>
+</div>
+<div id="subiendo-el-blog-a-github" class="section level3">
+<h3>Subiendo el blog a Github</h3>
+<p>Github es un sitio web (una plataforma para alojar) para alojar proyectos (como nuestro blog) utilizando el sistema de control de versiones Git. ¿Y qué es Git? Todo se complica (sí, al principio no es fácil), pues es un programa que permite controlar las versiones de un proyecto. El caso es que tener en Github el blog/proyecto alojado como un repo facilita su gestión. Para ello:</p>
+<ul>
+<li><p>Primero crear un nuevo repo en Github y guardar el origin. En mi caso: <code>https://github.com/perezp44/my_blog_rflowers5.git</code></p></li>
+<li><p>En bash te sitúas en la carpeta local donde está tu blog; en mi caso con: <code>cd c:/Users/perezp/Desktop/a_GIT_2016a/my_blog_rflowers5</code>. Para luego hacer:</p></li>
+</ul>
+<pre class="r"><code>git init
+git remote add origin https://github.com/perezp44/my_blog_rflowers5.git
+git add .
+git commit --all --message &quot;primer comit&quot;
+git push -u origin master</code></pre>
+<p>Sí, cuesta entenderlo, pero es que es para que no se me olvide a mi!!</p>
+<p>Cuando modifiques el blog por ejemplo al escribir un nuevo post has de hacer un deploy con RStudio <code>Addings &gt;&gt; Serve site</code> o desde la consola con <code>blogdown::hugo_build()</code>.</p>
+<p>Para subir los cambios a Github, desde Bash o desde la Terminal en RStudio:</p>
+<pre class="r"><code>git add -A
+git commit --all --message &quot;el comentario q quieras&quot;
+git push -u origin master</code></pre>
+<p>Una vez alojado el Rproject que contiene el blog en un repo de Github queda subirlo a Netlify.</p>
+</div>
+<div id="alojando-el-blog-en-netlify" class="section level3">
+<h3>Alojando el blog en Netlify</h3>
+<p>En Netlify entras haciendo login con tu cuenta de Github. Creas un nuevo site y sólo has de tener en cuenta:</p>
+<ul>
+<li>poner en Publish directory: public</li>
+<li>poner en Branch deploy: master</li>
+<li>algunos también ponen en Build command: hugo deploy (creo, xq yo no lo he hecho)</li>
+</ul>
+<p>Luego ya si quieres cambia el default subdomain. Yo lo he cambiado a <code>rflowers5.netlify.com</code></p>
+<p>Algo como:</p>
+<p><img src="/posts/2018/2018_01_17_tuneando_el_blog/deploy_in_netlify.png" width="90%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="nuevas-cosas-hechas" class="section level3">
+<h3>Nuevas cosas hechas</h3>
+<ul>
+<li>He añadido el archivo <code>LICENSE</code>.</li>
+</ul>
+</div>
+<div id="cosas-a-hacer" class="section level3">
+<h3>Cosas a hacer</h3>
+<ul>
+<li><p>Las afotos tengo que mejorarlas. Hacer nuevas o al menos hacerlas redonditas</p></li>
+<li><p>No me gusta el highlight de los r-chunks</p></li>
+<li><p>Jugar un poco a ver si admite bien los htmlwidgets y demás.</p></li>
+<li><p>Me gustaria tener una sección nueva que sea <code>Archives</code></p></li>
+</ul>
+</div>
+<div id="cosas-nuevas-que-aprendo-sobre-hugo-icarus" class="section level3">
+<h3>Cosas nuevas que aprendo sobre Hugo-Icarus</h3>
+<ul>
+<li>me ha dado por ver el <a href="https://github.com/digitalcraftsman/hugo-icarus-theme">source code de Icarus</a> que está en Gitbub y resulta que ahora mismo(17-enero-2018) hay 22 issues abiertas y 6 pull requests. Vamos que no se actualiza dsede hace 8 meses.</li>
+</ul>
+<hr />
+<p>PD: (consejos de Yihui)</p>
+<ul>
+<li>We strongly recommend that you uncheck the option “Preview site after building” in your RStudio project options You can also uncheck the option “Re-knit current preview when supporting files change,” since this option is not really useful after you call serve_site(). [Hecho]</li>
+</ul>
+</div>
+
+        </div>
+        <footer class="article-footer">
+    <a data-url="/2018/01/17/creacion-y-tuneado-del-blog/" data-id="abb1a160876cc169b468b6d5ddfffb22" class="article-share-link">
+        <i class="fa fa-share"></i>
+        Share
+    </a>
+    
+
+    <script>
+    (function ($) {
+        
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+    </script>
+</footer>
+
+    </div>
+
+    
+<nav id="article-nav">
+    
+    <a href="/2018/01/17/elecci%C3%B3n-del-hugo-theme/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">
+          Older
+      </strong>
+      <div class="article-nav-title">Elección del Hugo theme</div>
+    </a>
+    
+
+    
+    <a href="/2018/01/17/altitud-de-los-municipios-de-teruel/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">
+          Newer
+      </strong>
+      <div class="article-nav-title">Altitud de los municipios de Teruel</div>
+    </a>
+    
+</nav>
+
+
+</article>
+
+
+
+    </section>
+
+   	
+    	<aside id="sidebar">
+    
+<div class="widget-wrap">
+    <h3 class="widget-title">
+        Recents
+    </h3>
+    <div class="widget">
+        <ul id="recent-post">
+            
+            <li>
+                <div class="item-thumbnail">
+                    <a href="/2018/01/18/mapas-de-altitudes-municipios-de-teruel/" class="thumbnail">
+                    
+                        <span class="thumbnail-image thumbnail-none"></span>
+                    
+                    </a>
+                </div>
+                <div class="item-inner">
+                    
+                    
+                    <p class="item-category">
+                        
+                        <a class="article-category-link" href="/categories/municipios">
+                        municipios
+                        </a>
+                    </p>
+                    
+                    
+                    <p class="item-title"><a href="/2018/01/18/mapas-de-altitudes-municipios-de-teruel/" class="title">Mapas de altitudes municipios de Teruel</a></p>
+                    <p class="item-date">
+                        <time datetime="2018-01-18 00:00:00 &#43;0000 UTC" itemprop="datePublished">2018-01-18</time>
+                    </p>
+                </div>
+            </li>
+            
+            <li>
+                <div class="item-thumbnail">
+                    <a href="/2018/01/17/altitud-de-los-municipios-de-teruel/" class="thumbnail">
+                    
+                        <span class="thumbnail-image thumbnail-none"></span>
+                    
+                    </a>
+                </div>
+                <div class="item-inner">
+                    
+                    
+                    <p class="item-category">
+                        
+                        <a class="article-category-link" href="/categories/municipios">
+                        municipios
+                        </a>
+                    </p>
+                    
+                    
+                    <p class="item-title"><a href="/2018/01/17/altitud-de-los-municipios-de-teruel/" class="title">Altitud de los municipios de Teruel</a></p>
+                    <p class="item-date">
+                        <time datetime="2018-01-17 00:00:00 &#43;0000 UTC" itemprop="datePublished">2018-01-17</time>
+                    </p>
+                </div>
+            </li>
+            
+            <li>
+                <div class="item-thumbnail">
+                    <a href="/2018/01/17/creacion-y-tuneado-del-blog/" class="thumbnail">
+                    
+                        <span class="thumbnail-image thumbnail-none"></span>
+                    
+                    </a>
+                </div>
+                <div class="item-inner">
+                    
+                    
+                    <p class="item-category">
+                        
+                        <a class="article-category-link" href="/categories/blog">
+                        blog
+                        </a>
+                    </p>
+                    
+                    
+                    <p class="item-title"><a href="/2018/01/17/creacion-y-tuneado-del-blog/" class="title">Creación y tuneado del blog</a></p>
+                    <p class="item-date">
+                        <time datetime="2018-01-17 00:00:00 &#43;0000 UTC" itemprop="datePublished">2018-01-17</time>
+                    </p>
+                </div>
+            </li>
+            
+            <li>
+                <div class="item-thumbnail">
+                    <a href="/2018/01/17/elecci%C3%B3n-del-hugo-theme/" class="thumbnail">
+                    
+                        <span class="thumbnail-image thumbnail-none"></span>
+                    
+                    </a>
+                </div>
+                <div class="item-inner">
+                    
+                    
+                    <p class="item-category">
+                        
+                        <a class="article-category-link" href="/categories/blog">
+                        blog
+                        </a>
+                    </p>
+                    
+                    
+                    <p class="item-title"><a href="/2018/01/17/elecci%C3%B3n-del-hugo-theme/" class="title">Elección del Hugo theme</a></p>
+                    <p class="item-date">
+                        <time datetime="2018-01-17 00:00:00 &#43;0000 UTC" itemprop="datePublished">2018-01-17</time>
+                    </p>
+                </div>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+
+    
+
+
+<div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+        <ul class="category-list">
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="/categories/blog">
+                    blog
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="/categories/municipios">
+                    municipios
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+
+
+
+    
+
+
+<div class="widget-wrap">
+    <h3 class="widget-title">
+        Tags
+    </h3>
+    <div class="widget">
+        <ul class="category-list">
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="/tags/blog">
+                    blog
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="/tags/hugo-themes">
+                    hugo-themes
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="/tags/spatial-maps">
+                    spatial-maps
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="/tags/web-scrapping">
+                    web-scrapping
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+
+
+
+    
+
+
+<div class="widget-wrap">
+    <h3 class="widget-title">
+        Tag cloud
+    </h3>
+    <div class="widget tagcloud">
+        
+        
+        <a href="/tags/blog" style="font-size: 12px;">blog</a>
+        
+        
+        <a href="/tags/hugo-themes" style="font-size: 12px;">hugo-themes</a>
+        
+        
+        <a href="/tags/spatial-maps" style="font-size: 12px;">spatial-maps</a>
+        
+        
+        <a href="/tags/web-scrapping" style="font-size: 12px;">web-scrapping</a>
+        
+    </div>
+</div>
+
+
+
+
+
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+
+    
+	</div>
+</div>
+
+<footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018
+      Powered by <a href="//gohugo.io">Hugo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>.
+    </div>
+  </div>
+</footer>
+
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-71846326-5', 'auto');
+ga('send', 'pageview');
+</script>
+
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script src="/js/script.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"></script>
+
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']]}
+  });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+
+</body>
+</html>
