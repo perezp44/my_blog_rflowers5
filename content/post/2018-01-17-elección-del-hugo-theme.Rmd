@@ -1,0 +1,107 @@
+---
+title: Elección del Hugo theme
+author: Pedro J. Pérez
+date: '2018-01-17'
+slug: elección-del-hugo-theme
+categories: [blog]
+tags: [Hugo themes]
+description: 'Este blog está hecho desde R con el paquete Blogdown. Blogdown usa Hugo, y Hugo tiene diversas skins o themes. El theme de Hugo que he elegido para mi blog es Icarus. En este post describo el proceso y explico los motivos por los que me acabé decidiendo por Icarus; vamos que en el post cuento ¿cómo elegí el theme de mi Hugo blog?'
+#banner:   'banners/nest_pas_unconf.png'
+#images:     #['img/nest_pas_unconf.png']
+#menu: ''
+---
+
+
+```{r chunk_setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, eval = TRUE )
+```
+
+```{r options_setup, echo = FALSE}
+options(scipen = 999) #- para quitar la notacion científica
+```
+ 
+¿Qué porque elegí el `icarus-theme` para mi blog? Pues es una historia larga y de poco interés salvo que quieras hacer tu mismo otro blog para hablar de tus avances con R; pero para mi es útil poder recordar un poco este proceso. Así que vamos allá. 
+
+### Intro
+
+Llevo tres o cuatro años jugando con R (me divierto!!) y hace como dos años me dio por hacer un blog y resulta que me gusto la experiencia. Hace un mes me desatasque de faenas varias y me ha dado por retomar lo del blog (se aprende un montón!!), pero esta vez un poco más en serio (ya veremos!!). Lo más moderno y que parece más fácil ahora es hacerlo con [blogdown](https://bookdown.org/yihui/blogdown/), así que en uno-dos días me leí por encima el libro de  Yihui Xie y en 3-4 horas de pruebas tenía el blog en [Netlify](https://www.netlify.com/). Fue increíblemente fácil comparado con el proceso del anterior blog en el que usaba Jekyll.  
+[Blogdown](https://bookdown.org/yihui/blogdown/) es un paquete de R hecho por [Yihiu Xie](https://yihui.name/en/) y sirve para crear páginas web usando R Markdown y Hugo. [Hugo](https://gohugo.io/) es un framework (hecho en `Go`) que sirve para generar páginas web estáticas como este blog. Es open-source y es muy utilizado entre otras cosas porque es rápido. 
+Resulta que Hugo permite usar diferentes `themes` que además de proporcionar diferentes funcionalidades (tags, etc...) hacen que la página tenga una visualización especifica. Así que había que elegir un theme.
+
+### Primero elegí el blackburn theme, pero ...
+
+Por diversas razones [^1] el tema que más me gusto fue el [blackburn theme](https://themes.gohugo.io/blackburn/), y con ese tema construí un blog que ya no existe. El blog se llamaba `R & Flowers II` y me gustaba, y funcionaba, pero ... claro jugando con él me lo cargué [^2], así que decidí empezar de nuevo y surgió  `R & Flowers 4` (que aún existe, el tres me lo salté). Al principio estaba encantado con mi blog, pero trasteando con el me dí cuenta que tenía varios problemas, algunos los solucioné pero otros no sabía cómo. Por ejemplo:
+
+  - No me gustaba el highlight de los chunks. Esto lo pude solucionar con `highlightjs = "github"` en la sección de `[params]` del fichero `config.toml`
+  
+  - Problemas con los `htmlwidgets`. Resulta que en los primeros post inserte varias datatables generadas con el paquete `DT` y ... sólo se mostraba la primera datatable. La segunda y siguientes, para que se mostrarán tuve que hacer un hack que encontré [aquí](https://stackoverflow.com/questions/43594039/dt-package-not-working-with-blogdown-using-hugo-future-imperfect-theme). La "solución" consiste en grabar la datatable como un objeto e insertarlo en un iframe. Algo como:
+  
+```r
+library(htmlwidgets)
+library(htmltools)
+htmlwidgets::saveWidget(dt_Teruel, file = "C://Users/perezp/desktop/dt_Teruel.html", selfcontained = TRUE)
+# para luego insertarlo con
+<iframe seamless src="/dt_Teruel.html" width="100%" height="500"></iframe>
+```
+
+  - No tiene soporte para Mathjax (lo intenté pero era massa para mi)
+  
+  - Las tablas: ya podía usar lo que fuera, que no me las formateaba como yo quería; sin embargo en otros blogs que cotilleé, simplemente con `kable()` les salían chulas.
+  
+  
+Vamos que me vi obligado a que cambiar de theme, pero algún día volveré al `blackburn-theme` porque visualmente me gusta. Volveré cuando vea por ahí algún blog que haya solucionado todo esto; vamos que me espero a que [David Robinson](http://varianceexplained.org/) haga el paso de su blog de Jekyll a Hugo. Así que por si acaso vuelvo  a blackburn, me apunto algunas cosas que aprendí:
+
+  - El logo (el ababol) está en el config-toml en `brand`. La afoto está en `./static/img/logo.jpg`, y el trozo de código está en `. /layout/partials/brand.html`.
+  
+  - 3 ejemplos de blogs con este theme:  <https://www.mattcraddock.com/> ; <http://yoshiharuyamashita.com/> del creador del theme y  <https://simplystatistics.org/> de Rafa Irizarry, Roger Peng y Jeff Leek.
+  
+  - Si quieres que el deploy sea en `./docs` de Github tienes que incluir en el config. toml: `publishDir = "docs"` ; y además incluir un archivo  named `.nojekyll` in the root of your pages repo and pushing it to GitHub. This should only be necessary if your site uses files or directories that start with underscores since Jekyll considers these to be special resources and does not copy them to the final site.
+
+
+### Tocaba cambiar de theme
+
+Una vez decidido que dejaba el `blackburn theme`, me puse a mirar [Hugo themes](https://themes.gohugo.io/) y estuve dudando entre: [Icarus](https://themes.gohugo.io/hugo-icarus/), [White Plain](https://themes.gohugo.io/whiteplain/), [Bootstap4](https://themes.gohugo.io/bootstrap/), [Mainroad](https://themes.gohugo.io/mainroad/) y [Xmin](https://themes.gohugo.io/hugo-xmin/).
+
+El que más me gustaba visualmente era [Mainroad](https://themes.gohugo.io/mainroad/), pero al final vi que entre la R community los 2 temas más usados eran [Icarus](https://themes.gohugo.io/hugo-icarus/) y [Tranquilpeak](https://themes.gohugo.io/hugo-tranquilpeak-theme/), bueno también [Academic](https://themes.gohugo.io/academic/), pero este no me gustaba.
+
+Primero me decidí por [Tranquilpeak](https://themes.gohugo.io/hugo-tranquilpeak-theme/). Visualmente no me gustaba, pero vi 3 blogs que parecía que tenían todo lo que yo quería (tablas chulas etc...). Los 3 blogs son: [[Suzan Baert]](https://suzanbaert.netlify.com/), [[Shirin's playgRound]](https://shirinsplayground.netlify.com/) y [[aurora-mareviv]](https://aurora-mareviv.github.io/).
+
+Hice pruebas con el `tranquil-peak theme` y mi gozo en un pozo. No mostraba ecuaciones en Látex. [^3] Así que finalmente me decidí por el theme [Icarus](https://themes.gohugo.io/hugo-icarus/). Parece que tiene todo lo que quiero: tags, categorías, mathjax, nice tables, htmlwidgets ... ya vorem.
+
+En el próximo post contaré mis aventuras tuneando mi `Hugo-Icarus blog`
+
+
+Bye!!!
+
+<br>
+
+------------
+
+### Ejemplos de Icarus blogs
+
+- [Mara Averick](https://maraaverick.rbind.io/)
+
+
+- [ Borasky Research Journal](https://www.znmeb.mobi/)
+
+
+### Documentación de Icarus
+
+- [Hugo](https://gohugo.io/)
+
+- [Guía oficial de Hugo](https://gohugo.io/getting-started/installing/)
+
+- [Icarus-theme](https://themes.gohugo.io/hugo-icarus/)
+
+- [Web de Icarus](https://github.com/digitalcraftsman/hugo-icarus-theme)
+
+
+
+------------
+
+
+[^1]: Visualmente me gusta , es sencillo y claro; además me gusta que tenga la opción de poner tags y categories a los posts.
+
+[^2]: Resulta que hacer un blog con blogdown es muy-muy fácil, pero cuando vas cambiando cosas hay que saber algo de html, css y de más cosas, y en esto yo aun se bastante poco.
+
+[^3]: Ahora creo que en realidad el tranquil-peak theme si que permite mostrar formulas, sólo que la visualización la hice en el navegador de RStudio. Esto lo pensé después de ver que con las pruebas que hacia con el Icarus theme mostraba bien las formulas en Firefox pero no en el navegador de RStudio. También me ayudo que ví que aurora-maveric había solucionado lo de Mathjax en Tranquilpeak. Lo ví [aquí](https://github.com/kakawait/hugo-tranquilpeak-theme/pull/191). Pero para entonces ya estaba decidido a probar Icarus.

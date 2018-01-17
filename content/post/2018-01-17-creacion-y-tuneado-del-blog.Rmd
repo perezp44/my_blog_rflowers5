@@ -1,0 +1,199 @@
+---
+title: Creación y tuneado del blog
+author: Pedro J. Pérez
+date: '2018-01-17'
+slug: creacion-y-tuneado-del-blog
+categories: [blog]
+tags: [blog]
+description: 'Explico (un poco) como creé el blog y, un poco más, como lo tuneé a mi gusto.'
+#banner:   'banners/nest_pas_unconf.png'
+#images:     #['img/nest_pas_unconf.png']
+#menu: ''
+---
+
+
+```{r chunk_setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, eval = TRUE )
+```
+
+```{r options_setup, echo = FALSE}
+options(scipen = 999) #- para quitar la notacion científica
+```
+
+
+Pues eso, a contar(un poco) como cree el blog con blogdown, y un poco más como lo tunee a mi gusto.
+
+### Creación del blog
+
+Hay muchos posts que explican como crear un blog con blogdown; así que aquí contaré lo mínimo-mínimo para recordarlo yo. En mi caso fue "suficiente" con leer (a trozos) el libro de Yihiu. En resumiendo (y no muy bien contado) lo que hice es:
+
+- Primero, lógicamente, has de instalar blogdown.
+
+- En RStudio creas un Rproject del tipo `Website using blogdown`. El theme por defecto es `yihui/hugo-lithium-theme`. Yo lo cambie a `digitalcraftsman/hugo-icarus-theme` porque como explique en el anterior post quería usar el `icarus-theme`.
+
+- En RStudio pinchar en el menú de `Addings` y seleccionar `Serve Site`. Ya está!!!
+
+Con estos 3 pasos el blog está creado, sólo queda tunearlo (poner tu nombre etc...) y subirlo a internete.
+
+
+### Tuneado del blog (lo mínimo)
+
+Se pueden hacer muchas cosas, pero como yo no es que sepa mucho de html, css y demás, cuanto menos toque mejor, pero claro, el blog ha de llevar tu nombre, tus fotos, tus posts, etc...
+
+- Lo primero es limpiar el blog (lo puedes hacer al final):  
+
+  - En RStudio pinchas en el menú: `Build >> More >> Clean All`. 
+  
+  - También hay que quitar los post de muestra. Están en la carpeta `content/posts/`. Borras todos los archivos.
+  
+- Hay que modificar el archivo `config.toml`. Concretamente yo modifiqué (que me acuerde) lo siguiente:
+
+```yaml
+#---------------- al principo hay que modificar
+baseurl = "/"     # después habrá que poner la dirección de internet, p.ej: "https://example.org/"
+title = "R & flowers V"
+
+#---------------- en el apartado [params] hay que modificar
+[params]
+    author = "Pedro J. Pérez"
+    bio = "Viciado con R"
+    location = "Valencia(Spain)"
+    site_description = "Blog para jugar y aprender con R"
+    avatar = "css/img/tu_avatar.png"  #- has de poner el archivo "tu_avatar.png" en la carpeta /static/css/img
+    logo = "css/img/tu_logo.jpg"   #- has de poner el archivo "tu_logo.png" en la carpeta /static/css/img
+
+
+#----------- en el apartado [social] hay que poner tus datos de contacto(si los tienes)
+[social]
+    github  = "digitalcraftsman"
+    twitter = "spf13"
+
+```
+
+
+Esto es el tuneado básico. Además, hay que modificar el fichero `content/about/_index.md` para contar algo de ti. Luego cambié alguna cosa más, pero ya no es importante. De momento lo único que no me gusta de mi blog es el highlight de los r chunks. Ya veré como se cambian.
+
+
+¿Qué falta? Pues escribir un post(recuerda que los hemos borrado todos)
+
+
+### Escribiendo un post
+
+Yo suelo escribir los post en el formato Rmd. Puedes créalo en RStudio pero has de cambiar el yaml header para que se ajuste a la sintaxis de Hugo. Un ejemplo es el siguiente:
+
+
+```yaml
+---
+title: Hello world!!
+author: Pedro J. Pérez
+date: '2018-01-17'
+slug: hello-world
+categories: [blog]
+tags: [hello]
+description: 'Este post es simplemente un hello world'
+#banner:   'banners/foto.png'
+#images:    ['img/first_post.png']
+#menu: ''
+---
+
+
+Este es mi primer post. Hello world!!
+
+Mañana escribo más.
+
+Bye
+
+```
+
+
+
+Si volvemos a pinchar en esta secuencia de menús `Addings >> Serve Site`, el blog se creará en la carpeta `public`. ya puedes subir esa carpeta a un servidor de Internet. Yihui recomienda alojarlo en Netlify, así que eso hice. Pero antes lo alojaré en Github
+
+
+### Subiendo el blog a Github
+
+Github es un sitio web (una plataforma para alojar) para alojar proyectos (como nuestro blog) utilizando el sistema de control de versiones Git. ¿Y qué es Git? Todo se complica (sí, al principio no es fácil), pues es un programa que permite controlar las versiones de un proyecto. El caso es que  tener en Github el blog/proyecto alojado como un repo facilita su gestión. Para ello:
+
+  - Primero crear un nuevo repo en Github  y guardar el origin. En mi caso: `https://github.com/perezp44/my_blog_rflowers5.git`
+
+  - En bash te sitúas en la carpeta local donde está tu blog; en mi caso con: `cd c:/Users/perezp/Desktop/a_GIT_2016a/my_blog_rflowers5`. Para luego hacer:
+  
+
+```r
+git init
+git remote add origin https://github.com/perezp44/my_blog_rflowers5.git
+git add .
+git commit --all --message "primer comit"
+git push -u origin master
+```
+
+Sí, cuesta entenderlo, pero es que es para que no se me olvide a mi!!
+
+
+Cuando modifiques el blog por ejemplo al escribir un nuevo post has de hacer un deploy con RStudio `Addings >> Serve site` o desde la consola con `blogdown::hugo_build()`.
+
+Para subir los cambios a Github, desde Bash o desde la Terminal en RStudio:
+
+```r
+git add -A
+git commit --all --message "el comentario q quieras"
+git push -u origin master
+```
+
+
+Una vez alojado el Rproject que contiene el blog en un repo de Github queda subirlo a Netlify.
+
+
+
+
+### Alojando el blog en Netlify
+
+
+En Netlify entras haciendo login con tu cuenta de Github. Creas un nuevo site y sólo has de tener en cuenta:
+
+- poner en Publish directory: public
+- poner en Branch deploy: master
+- algunos también ponen en Build command: hugo deploy (creo, xq yo no lo he hecho)
+
+Luego ya si quieres cambia el default subdomain. Yo lo he cambiado a `rflowers5.netlify.com`
+
+
+Algo como:
+
+
+```{r echo = FALSE, comment = "",  out.width = '90%', fig.align = 'center'}
+knitr::include_graphics( c("/posts/2018/2018_01_17_tuneando_el_blog/deploy_in_netlify.png") )
+```
+
+###  Nuevas cosas hechas
+
+- He añadido el archivo `LICENSE`. 
+
+
+
+
+
+### Cosas a hacer
+
+- Las afotos tengo que mejorarlas. Hacer nuevas o al menos hacerlas redonditas
+
+- No me gusta el highlight de los r-chunks
+
+- Jugar un poco a ver si admite bien los htmlwidgets y demás.
+
+- Me gustaria tener una sección nueva que sea `Archives`
+
+
+
+### Cosas nuevas que aprendo sobre Hugo-Icarus
+
+
+- me ha dado por ver el [source code de Icarus](https://github.com/digitalcraftsman/hugo-icarus-theme) que está en Gitbub y resulta que ahora mismo(17-enero-2018) hay 22 issues abiertas y 6 pull requests. Vamos que no se actualiza dsede hace 8 meses. 
+
+
+---------
+
+PD: (consejos de Yihui)
+
+- We strongly recommend that you uncheck the option “Preview site after building” in your RStudio project options You can also uncheck the option “Re-knit current preview when supporting files change,” since this option is not really useful after you call serve_site(). [Hecho]
+

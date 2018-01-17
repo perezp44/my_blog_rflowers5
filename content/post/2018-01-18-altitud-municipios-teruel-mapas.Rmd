@@ -1,0 +1,221 @@
+---
+title: Altitud municipios Teruel (mapas)
+author: Pedro J. Pérez
+date: '2018-01-18'
+slug: altitud-municipios-teruel-mapas
+categories: [municipios]
+tags: [spatial maps]
+description: 'Voy a refrescar mis conocimientos sobre mapas en R. Para ello voy a hacer varios gráficos espaciales con las altitudes de los municipios de Teruel. Usaré el paquete `sf`.'
+#banner:   'banners/nest_pas_unconf.png'
+#images:     #['img/nest_pas_unconf.png']
+#menu: ''
+---
+
+
+```{r chunk_setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, eval = TRUE )
+```
+
+```{r options_setup, echo = FALSE}
+options(scipen = 999) #- para quitar la notacion científica
+```
+ 
+
+### Intro
+
+En el post anterior hice [web scrapping](https://es.wikipedia.org/wiki/Web_scraping) bajándome una tabla con los municipios de Teruel con su altitud; pero no hice ningún mapa. Hoy voy a hacerlos.
+
+
+Primero hace falta bajarse [esta tabla](https://es.wikipedia.org/wiki/Anexo:Municipios_de_la_provincia_de_Teruel) de la Wikipedia con las altitudes y guardarla en un dataframe. Esto lo expliqué en el [post anterior](http://rflowers4.netlify.com/blog/2017/12/23/altitud-de-los-pueblos-de-teruel-web-scrapping/) así que ya tenemos la tabla con las altitudes almacenada en un dataframe que se llama `Teruel`. Tuvimos que limpiarla un poquito!! Abajo está todo el código que use en un único chunk:
+
+
+
+```{r}
+#devtools::install_github("perezp44/personal.pjp")
+library("personal.pjp")
+
+library("rvest")
+library("tidyverse")
+content <- read_html("https://es.wikipedia.org/wiki/Anexo:Municipios_de_la_provincia_de_Teruel")
+head <- content %>% html_nodes('head') 
+head <- content %>% html_nodes('head') %>% html_text()
+
+body_table <- content %>% html_nodes('body')  %>%
+                    html_nodes('table') %>%
+                    html_table(dec = ",") 
+Teruel <- body_table[[1]]
+names(Teruel) <- c("Nombre", "Extension", "Poblacion", "Densidad", "Comarca", "Partido_judicial", "Altitud")
+library(stringr)
+Teruel <- Teruel %>% map(str_trim) %>% as.tibble() #- quita caracteres al final
+Teruel <- Teruel %>% mutate(Altitud = str_replace_all(Altitud,"[[:punct:]]", ""))
+Teruel <- Teruel %>% mutate(Poblacion = str_replace_all(Poblacion," ", ""))
+Teruel <- Teruel %>% mutate(Poblacion = as.double(Poblacion))
+Teruel <- Teruel %>% mutate(Altitud = as.double(Altitud)) %>%    
+                     arrange(desc(Altitud))
+```
+
+Os recordaré que Valdelinares es el pueblo "más alto" de Teruel, seguido de Griegos, pero ¿y mi pueblo? Mi pueblo se llama [Pancrudo](https://es.wikipedia.org/wiki/Pancrudo) y es muuuuuuyy alto, pero veámoslo en un gráfico.
+
+
+<br>
+
+###  Mapa con las altitudes
+
+
+```{r, eval = FALSE, echo = FALSE}
+# Primero bajé los datos de GADM database of Global Administrative Areas.
+esp_adm4 <- readRDS(file = 'C:/Users/perezp/Desktop/ESP_adm4.rds')  #- municipios
+municipios_df <- as.data.frame(esp_adm4, encoding = 'UTF-8', use_iconv = T)   #- 8.116 municipios
+municipios_df <- municipios_df %>% filter(NAME_2 == "Teruel")
+z_merged <- dplyr::left_join(Teruel, municipios_df, by = c("Nombre" = "NAME_4") )  #- 8118 lógicamente(los poligonos que hay en GNGI)   #- 8.116
+```
+
+
+```{r, echo = FALSE, eval = FALSE}
+#- antes lo hacia asi:
+#  municipios <- readOGR(dsn = "./datos/spatial/Municipios2011_ETRS89_LAEA" , layer = "Municipios2011_ETRS89_LAEA", encoding = 'UTF-8', use_iconv = TRUE)
+# municipios_df <- as.data.frame(municipios, encoding = 'UTF-8', use_iconv = T)   #- 8.116 municipios
+# municipios_df <- municipios_df %>% filter(NombreProv == "Teruel")
+# z_merged <- dplyr::left_join(municipios_df, Teruel, by = c( "NombreMuni" = "Nombre "))  #- 8118 lógicamente(los poligonos que hay en GNGI)   #- 8.116
+# municipios@data <- z_merged
+```
+
+<br>
+
+Primero he cargar los datos de lindes municipales. No quiero liarme mucho así que cargaré el fichero que usaba hace uno/dos añitos. No lo voy a actualizar ni chequear. **PERO**, lo que sí que he hecho es crear un package en Github para poder cargar los datos que uso en el blog desde R. Lo puedes ver [aquí](https://github.com/perezp44/mypkgDataforblog). Creo que en uno de los siguientes post contaré cómo y porque lo he hecho. No me quiero liar ahora. Me hacía falta!!
+
+```{r}
+#devtools::install_github("perezp44/mypkgDataforblog")
+library(mypkgDataforblog)
+library(rgdal)
+municipios <- municipios_CNIG  #- los cargo de mi pkg
+rm(aa, body_table, content, head)
+```
+
+<br>
+
+Selecciono los municipios de Teruel. Se me hace raro seleccionar con R-base pero es la única forma que conozco de seleccionar en `SpatialPoly`.
+
+```{r}
+sel <- municipios$NombreProv == "Teruel"
+municipios <- municipios[sel,]
+```
+
+<br>
+
+A fusionar los ficheros de lindes con los de altitud sacados de Internete; es decir, incorporo la información de altitudes y demás al fichero con los polígonos espaciales.
+
+```{r}
+aa <- municipios@data
+municipios@data <-  left_join( municipios@data , Teruel, by = c("NombreMuni"= "Nombre"))
+```
+
+<br>
+
+Pues ya está. Sólo queda hacer el gráfico con `sp::spplot`:
+
+
+```{r}
+sp::spplot(municipios, zcol = "Altitud", cuts = 2, col.regions  = c("cadetblue1", "antiquewhite2", "antiquewhite4"))
+```
+
+
+Gráfico de los municipios por altura. En color azulito las zonas por debajo de 600 metros, aproximadamente el [Bajo Aragón](https://es.wikipedia.org/wiki/Bajo_Arag%C3%B3n). En marrón oscuro las zonas más altas entre ellas mi pueblo. 
+
+
+Tengo que aprender un poco de palettes!! Justo acabo de ver [este pkg](https://github.com/AndreaCirilloAC/paletter)
+
+
+
+Pero seguro que con `tmap` sale más bonito, y voy a poner algún corte más en la escala
+
+
+```{r}
+library(tmap)
+library(viridisLite)
+
+  tm_shape(municipios, alpha = 0.3) +
+  tm_fill(col = "Altitud", title = "Altitud", n = 5) +
+  tm_polygons(border.alpha = 0.6) +
+  tm_layout(legend.position = c("right", "bottom"))
+```
+
+Sí!! Sale un poco más bonito.
+
+<br>
+
+Ahora un gráfico con los pueblos más altos que Pancrudo. Pancrudo es mi pueblo y lo voy a poner en rojo. En marrón oscuro los que nos ganan en altura. Tan tan arriba no creo que sea sano vivir!!  `r emo::ji("fear")` `r emo::ji(":D")`
+
+<br>
+
+### Mapa con los pueblos más altos que Pancrudo
+
+
+```{r, eval = TRUE, collapse = TRUE}
+#jpeg("./grafico_altura_Teruel.jpg")
+#dev.off()
+plot(municipios, col = "antiquewhite2") 
+my_sel <- subset(municipios, municipios$NombreMuni == "Pancrudo")
+sel <- municipios$Altitud > my_sel$Altitud  & !is.na(municipios$Altitud)
+plot(municipios[ sel, ], col = "antiquewhite4", add = TRUE) 
+sel <- municipios$Altitud == my_sel$Altitud  & !is.na(municipios$Altitud)
+plot(municipios[ sel, ], col = "red", add = TRUE) # add selected zones to map
+```
+
+
+Como veis, Pancrudo está bastante alto, 1.235 metros según la Wiki, un poco menos según mi primo. Rillo nos gana, pero solo por 34 metros. ¿Seguro que han medido bien?
+
+
+Ya que estamos me da curiosidad y quiero hacer el **mapa por densidad de población**:
+
+
+```{r, echo = FALSE}
+aa <- municipios@data 
+municipios@data$Densidad <- as.double(municipios@data$Densidad )
+```
+
+<br>
+
+## Mapa por densidad de población
+
+```{r, eval = TRUE}
+sp::spplot(municipios, zcol = "Densidad", cuts = 2, col.regions  = c("cadetblue1", "antiquewhite2", "antiquewhite4"))
+```
+
+
+
+
+Las 3 poblaciones en marrón (densidad > q casi 60) son en este orden Utrillas, Teruel y Andorra. El agujero (polígono en blanco) que hay al lado de Teruel creo que es La Puebla de valverde. Aparece en blanco porque en los datos sacados del INE su nombre es "Puebla de Valverde, La" y en la tabla de internet es "La Puebla de Valverde". No lo arreglo porque este blog es para aprender y relajarme y ya vale por hoy.
+
+<br>
+
+Bueno, como veis mis conocimientos sobre gráficos espaciales (y gráficos en general) en R es limitado, pero estoy en ello. De hecho hace como año y medio hacia gráficos bastante más potentes. Usé `ggmpap`  `leaflet` y `ggplot2` y alguno más, pero todo se olvida, y ahora prefiero empezar con datos espaciales por lo nuevo; that is, el pkg `sf`. `r emo::ji("sunglasses")`, pero será en el próximo post.
+
+<br>
+
+**P.S:** (Bastante técnico, al menos para mi)
+
+Resulta que yo quería haber puesto los 2 post sobre altitudes en uno sólo, pero resulta que cuando los juntaba me daba problemas la datatable. Mirando por internet vi la solución [aquí](https://stackoverflow.com/questions/43594039/dt-package-not-working-with-blogdown-using-hugo-future-imperfect-theme), pero funciona sólo a medias. La verdad es que lo mejor de R es la comunidad de usuarios!!
+
+La solución consiste en grabar la datatable como un objeto e insertarla en un iframe. Abajo está el código. 
+
+```{r, eval = FALSE}
+library(DT)
+aa <- decimales_df_pjp(Teruel, 2)  %>% select(1,7,3,5) #- rtdos con 2 decimales
+datatable_Teruel <- datatable(aa, extensions = 'Scroller', options = list( pageLength = 10, deferRender = TRUE,scrollY = 400,scroller = TRUE), rownames = F, filter = "top")
+```
+ 
+```{r, message=FALSE, warning=FALSE, eval = FALSE}
+library(htmlwidgets)
+library(htmltools)
+htmlwidgets::saveWidget(datatable_Teruel, file = "C://Users/perezp/desktop/datatable_Teruel.html", selfcontained = TRUE)
+```
+
+e insertar la datatable así
+
+```yaml
+Tabla: Municipios de Teruel ordenados por altitud
+
+<iframe seamless src="/datatable_Teruel.html" width="100%" height="500"></iframe>
+```
+

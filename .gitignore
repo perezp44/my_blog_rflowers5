@@ -1,0 +1,13 @@
+#--------------- RStudio files
+.Rproj.user
+#--------------- R history
+.Rhistory
+.RData
+.Ruserdata
+#--------------- Public folder
+public  
+blogdown
+Thumbs.db  #- para windows users
+#---------------
+_cache/
+drafts/
