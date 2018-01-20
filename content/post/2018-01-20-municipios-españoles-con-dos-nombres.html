@@ -255,7 +255,7 @@ Bizkaia
 
 library(DT)
 DT_1 &lt;- datatable(aa, caption = &quot;Cuadro 3: Municipios con dos nombres oficiales&quot;,extensions = &#39;Scroller&#39;, options = list( pageLength = 10, deferRender = TRUE,scrollY = 400,scroller = TRUE), rownames = F, filter = &quot;top&quot;,  fillContainer = T )</code></pre>
-<p>La datatable no se muestra. Es un problema que no acabo de entender del todo, pero parece que lo que pasa es que <code>blogdown</code> tiene un problema con los htmlwidgets si el hugo-theme usa las mismas librerias de javascipt. <a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a> Así que no me queda más remedio que hacerlo a capón: grabar el objeto como un <code>htmlwidget</code>, copiarlo en la carpera <code>/static/</code> y cargarlo como un <code>iframe</code> (massa para mi). A ver si sale:</p>
+<p>La datatable no se muestra. Es un problema que no acabo de entender del todo, pero parece que lo que pasa es que <code>blogdown</code> tiene un problema con los htmlwidgets si el hugo-theme usa las mismas librerias de javascipt <a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a> . Así que no me queda más remedio que hacerlo a capón: grabar el objeto como un <code>htmlwidget</code>, copiarlo en la carpera <code>/static/</code> y cargarlo como un <code>iframe</code> (massa para mi). A ver si sale:</p>
 <pre class="r"><code>library(htmlwidgets)
 library(htmltools)
 #saveWidget(DT_1, &quot;C://Users/perezp/Desktop/DT_1.html&quot;)
@@ -263,7 +263,7 @@ library(htmltools)
 <iframe seamless src="/posts/2018/2018_01_20_municipios_2_nombres/DT_1.html" width="100%" height="500">
 </iframe>
 <p><br></p>
-<p>Sí, si que se muestra la datatabl, no tan bonita como si se hiciera directamente … pero bueno.</p>
+<p>Sí, si que se muestra la datatable, no tan bonita como si se hiciera directamente … pero bueno.</p>
 <p><br></p>
 </div>
 <div id="ya-deberia-estar-pero" class="section level3">

@@ -5,7 +5,7 @@ date: '2018-01-21'
 slug: mapas-de-municipios-españoles-con-dos-nombres
 categories: [municipios]
 tags: [spatial maps]
-description: 'En el post anterior identifique los municipios españoles con dos nombres oficiales, ahora hago mapas espaciales con los paquetes sf, tmap y leaflet. Salen chulos'
+description: 'En el post anterior identifiqué los municipios españoles con dos nombres oficiales, ahora voy a mostrarlos en varios mapas hechos con los paquetes sf, tmap y leaflet. Salen chulos.'
 #banner:   'banners/nest_pas_unconf.png'
 #images:     #['img/nest_pas_unconf.png']
 #menu: ''
@@ -69,27 +69,22 @@ Cargo los shapefiles. Los tengo en mi paquete de datos y en formato `sf`
 
 
 ```{r}
-#- https://emmavestesson.netlify.com/2018/01/maps/
-#- https://cran.r-project.org/web/packages/sf/vignettes/sf1.html#reading-and-writing
-#- https://cran.r-project.org/web/packages/sf/vignettes/sf2.html
-#- https://github.com/mtennekes/tmap
-
 library(sf)
 library(tmap)
 zz <- CNIG_municipios_sf #- cargo shape files (8116 municipios)
 ```
 
 
-Primer problema; además, no voy a solucionarlo (recordáis lo de que la perfección no mola!!). Resulta que los datos con los nombres oficiales de municipios son del INE a 1 de diciembre de 2016, pero la shapefile es de 2011 o por ahí (tengo que actualizarla), y claro, desde 2011 ha ocurrido que algunos municipios que se han independizado, juntado etc...
+Primer problema; además, no voy a solucionarlo (recordáis que hace dos o tres posts hablé de de que la perfección no mola!! pues eso ...). Resulta que los datos con los nombres oficiales de municipios son del INE a 1 de diciembre de 2016, pero la shapefile es de 2011 o por ahí (tengo que actualizarla), y claro, desde 2011 ha ocurrido que algunos municipios que se han independizado, juntado etc...
 
 En concreto: 
 
-  - 2 municipios que existían en 2011 (Cesuras y Oza), y por tanto tienen shape, decidieron juntarse y en 2016 ya eran Oza-Cesuras
+  - 2 municipios que existían en 2011 (Cesuras y Oza), y por tanto tienen shape/polígono en mi archivo de lindes de 2011, decidieron juntarse y en 2016 ya eran Oza-Cesuras
   
-  - Hay 11 municipios que existían en 2016 (y espero que sigan existiendo ahora en 2018) pero que no existían en 2011 y por tanto, no tienen shape en mi fichero). Por ejemplo el municipio de Balanegra en Almería, que se "independizo" de Berja en junio de 2015.  
+  - Hay 11 municipios que existían en 2016 (y espero que sigan existiendo ahora en 2018) pero que no existían en 2011 y por tanto, no tienen shape en mi fichero. Por ejemplo, el municipio de Balanegra en Almería que se "independizo" de Berja en junio de 2015.  
 
   
-Si te entra curiosidad por saber que municipios son los que se han creado, puedes hacerlo con el chunk de abajo. Hay 4 pueblos de Granada.
+Si te entra curiosidad por saber que municipios son los que se han creado en los últimos años, puedes hacerlo con el chunk de abajo. Hay 4 pueblos de Granada.
 
 ```{r, eval = FALSE}
 aa <- df %>% select(INECodMuni, NombreMuni, NombreProv)
@@ -172,7 +167,7 @@ comunitat_val <-   comunitat_val + tm_shape(zz_b, alpha = 0.2) + tm_polygons(lwd
 ```
 
 
-Lo mismo que me pasa con las `datatables` me pasa con los `tmaps`. En RStudio sí se muestran, pero no se muestran en el blog; así que hasta que lo solucione, los grabo y los pego.
+Lo mismo que me pasa con las `datatables` me pasa con los `tmaps` [^1] . En RStudio sí se muestran, pero no se muestran en el blog; así que hasta que lo solucione, los grabo y los pego.
 
 
 ```{r echo = FALSE, comment = "",  out.width = '95%', fig.align = 'center'}
@@ -507,4 +502,8 @@ leaflet(bb, options = leafletOptions( minZoom=6, maxZoom=12) )%>%
             opacity = 1
    )
 ```
+
+
+
+[^1]: Resulta que el blog no muestra bien los htmlwidgets. Es un problema que no acabo de entender del todo, pero parece que lo que pasa es que `blogdown` tiene un problema con los htmlwidgets si el hugo-theme usa las mismas librerias de ¿Javascipt?. No acabo de entenderlo del todo, pero no sólo me pasa a mi, le pasa a muuucha gente, por ejemplo [aquí](https://github.com/rstudio/blogdown/issues/32). Ya hay un [package](https://bhaskarvk.github.io/widgetframe/articles/Using_widgetframe.html) que parece que es la solución pero no me ha funcionado (supongo que no habré sabido). Ya probaré más adelante!!). 
 

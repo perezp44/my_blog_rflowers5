@@ -132,7 +132,7 @@ library(DT)
 DT_1 <- datatable(aa, caption = "Cuadro 3: Municipios con dos nombres oficiales",extensions = 'Scroller', options = list( pageLength = 10, deferRender = TRUE,scrollY = 400,scroller = TRUE), rownames = F, filter = "top",  fillContainer = T )
 ```
 
-La datatable no se muestra. Es un problema que no acabo de entender del todo, pero parece que lo que pasa es que `blogdown` tiene un problema con los htmlwidgets si el hugo-theme usa las mismas librerias de javascipt. [^1] Así que no me queda más remedio que hacerlo a capón: grabar el objeto como un `htmlwidget`, copiarlo en la carpera `/static/` y cargarlo como un `iframe` (massa para mi). A ver si sale:
+La datatable no se muestra. Es un problema que no acabo de entender del todo, pero parece que lo que pasa es que `blogdown` tiene un problema con los htmlwidgets si el hugo-theme usa las mismas librerias de javascipt [^1] . Así que no me queda más remedio que hacerlo a capón: grabar el objeto como un `htmlwidget`, copiarlo en la carpera `/static/` y cargarlo como un `iframe` (massa para mi). A ver si sale:
 
 
 
@@ -149,7 +149,7 @@ library(htmltools)
 
 <br>
   
-Sí, si que se muestra la datatabl, no tan bonita como si se hiciera directamente ... pero bueno.
+Sí, si que se muestra la datatable, no tan bonita como si se hiciera directamente ... pero bueno.
 
 <br>
   

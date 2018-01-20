@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="author" content="Pedro J. Pérez">
     
-      <meta name="description" content="En el post anterior identifique los municipios españoles con dos nombres oficiales, ahora hago mapas espaciales con los paquetes sf, tmap y leaflet. Salen chulos">
+      <meta name="description" content="En el post anterior identifiqué los municipios españoles con dos nombres oficiales, ahora voy a mostrarlos en varios mapas hechos con los paquetes sf, tmap y leaflet. Salen chulos.">
     
     
     <link rel="canonical" href="/2018/01/21/mapas-de-municipios-espa%C3%B1oles-con-dos-nombres/"/>
@@ -23,7 +23,7 @@
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
     <meta property="og:title" content="Mapas de municipios españoles con dos nombres" />
-<meta property="og:description" content="En el post anterior identifique los municipios españoles con dos nombres oficiales, ahora hago mapas espaciales con los paquetes sf, tmap y leaflet. Salen chulos" />
+<meta property="og:description" content="En el post anterior identifiqué los municipios españoles con dos nombres oficiales, ahora voy a mostrarlos en varios mapas hechos con los paquetes sf, tmap y leaflet. Salen chulos." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/2018/01/21/mapas-de-municipios-espa%C3%B1oles-con-dos-nombres/" />
 
@@ -46,19 +46,19 @@
     
     
 <meta itemprop="name" content="Mapas de municipios españoles con dos nombres">
-<meta itemprop="description" content="En el post anterior identifique los municipios españoles con dos nombres oficiales, ahora hago mapas espaciales con los paquetes sf, tmap y leaflet. Salen chulos">
+<meta itemprop="description" content="En el post anterior identifiqué los municipios españoles con dos nombres oficiales, ahora voy a mostrarlos en varios mapas hechos con los paquetes sf, tmap y leaflet. Salen chulos.">
 
 
 <meta itemprop="datePublished" content="2018-01-21T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2018-01-21T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="1159">
+<meta itemprop="wordCount" content="1262">
 
 
 
 <meta itemprop="keywords" content="spatial maps," />
 
     <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Mapas de municipios españoles con dos nombres"/>
-<meta name="twitter:description" content="En el post anterior identifique los municipios españoles con dos nombres oficiales, ahora hago mapas espaciales con los paquetes sf, tmap y leaflet. Salen chulos"/>
+<meta name="twitter:description" content="En el post anterior identifiqué los municipios españoles con dos nombres oficiales, ahora voy a mostrarlos en varios mapas hechos con los paquetes sf, tmap y leaflet. Salen chulos."/>
 <meta name="twitter:site" content="@pjpv4444"/>
 
     
@@ -284,7 +284,7 @@
             <i class="fa fa-calendar"></i>
             <time datetime="2018-01-21 00:00:00 &#43;0000 UTC" itemprop="datePublished">2018-01-21</time>
             &middot;
-            1159
+            1262
             words
             &middot;
             6
@@ -342,21 +342,16 @@ df &lt;- df %&gt;% mutate(yes_2_names_A = str_detect(NombreMuni, &quot;/&quot;))
 <div id="cargando-los-shapefiles" class="section level3">
 <h3>Cargando los shapefiles</h3>
 <p>Cargo los shapefiles. Los tengo en mi paquete de datos y en formato <code>sf</code></p>
-<pre class="r"><code>#- https://emmavestesson.netlify.com/2018/01/maps/
-#- https://cran.r-project.org/web/packages/sf/vignettes/sf1.html#reading-and-writing
-#- https://cran.r-project.org/web/packages/sf/vignettes/sf2.html
-#- https://github.com/mtennekes/tmap
-
-library(sf)
+<pre class="r"><code>library(sf)
 library(tmap)
 zz &lt;- CNIG_municipios_sf #- cargo shape files (8116 municipios)</code></pre>
-<p>Primer problema; además, no voy a solucionarlo (recordáis lo de que la perfección no mola!!). Resulta que los datos con los nombres oficiales de municipios son del INE a 1 de diciembre de 2016, pero la shapefile es de 2011 o por ahí (tengo que actualizarla), y claro, desde 2011 ha ocurrido que algunos municipios que se han independizado, juntado etc…</p>
+<p>Primer problema; además, no voy a solucionarlo (recordáis que hace dos o tres posts hablé de de que la perfección no mola!! pues eso …). Resulta que los datos con los nombres oficiales de municipios son del INE a 1 de diciembre de 2016, pero la shapefile es de 2011 o por ahí (tengo que actualizarla), y claro, desde 2011 ha ocurrido que algunos municipios que se han independizado, juntado etc…</p>
 <p>En concreto:</p>
 <ul>
-<li><p>2 municipios que existían en 2011 (Cesuras y Oza), y por tanto tienen shape, decidieron juntarse y en 2016 ya eran Oza-Cesuras</p></li>
-<li><p>Hay 11 municipios que existían en 2016 (y espero que sigan existiendo ahora en 2018) pero que no existían en 2011 y por tanto, no tienen shape en mi fichero). Por ejemplo el municipio de Balanegra en Almería, que se “independizo” de Berja en junio de 2015.</p></li>
+<li><p>2 municipios que existían en 2011 (Cesuras y Oza), y por tanto tienen shape/polígono en mi archivo de lindes de 2011, decidieron juntarse y en 2016 ya eran Oza-Cesuras</p></li>
+<li><p>Hay 11 municipios que existían en 2016 (y espero que sigan existiendo ahora en 2018) pero que no existían en 2011 y por tanto, no tienen shape en mi fichero. Por ejemplo, el municipio de Balanegra en Almería que se “independizo” de Berja en junio de 2015.</p></li>
 </ul>
-<p>Si te entra curiosidad por saber que municipios son los que se han creado, puedes hacerlo con el chunk de abajo. Hay 4 pueblos de Granada.</p>
+<p>Si te entra curiosidad por saber que municipios son los que se han creado en los últimos años, puedes hacerlo con el chunk de abajo. Hay 4 pueblos de Granada.</p>
 <pre class="r"><code>aa &lt;- df %&gt;% select(INECodMuni, NombreMuni, NombreProv)
 bb &lt;- zz %&gt;% select(INECodMuni, NombreMuni, NombreProv)
 cambios_muni &lt;- full_join(aa ,bb, by = &quot;INECodMuni&quot;) %&gt;% filter(is.na(NombreMuni.x)|is.na(NombreMuni.y)) 
@@ -411,7 +406,7 @@ comunitat_val &lt;-   comunitat_val + tm_shape(zz_b, alpha = 0.2) + tm_polygons(
 
 #Show both plots next to each other (gracias Suzan!) ()
 #tmap_arrange(navarra, pais_vasco, comunitat_val)</code></pre>
-<p>Lo mismo que me pasa con las <code>datatables</code> me pasa con los <code>tmaps</code>. En RStudio sí se muestran, pero no se muestran en el blog; así que hasta que lo solucione, los grabo y los pego.</p>
+<p>Lo mismo que me pasa con las <code>datatables</code> me pasa con los <code>tmaps</code> <a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a> . En RStudio sí se muestran, pero no se muestran en el blog; así que hasta que lo solucione, los grabo y los pego.</p>
 <p><img src="/posts/2018/2018_01_21_mapas_muni_2_nombres/tmap_1.png" width="95%" style="display: block; margin: auto;" /></p>
 <p>El gráfico esta decente, solo que al poner los 3 gráficos en cuadricula, parece que la Comunitat Valenciana sea la C.A. más pequeña, cuando no es así, en el siguiente gráfico sí se pueden comparar los tamaños.</p>
 <p>Ahora un gráfico con las 3 CC.AA. juntas y sobre el mapa de España. A ver como salen las 3 juntas:</p>
@@ -466,6 +461,12 @@ library(htmltools)
 <p>Para mi vale. Faltaría poner los lindes provinciales, pero ya vale por hoy. El problema de los htmlwidgets me fastidia un poquito. Otro día más.</p>
 <p><br></p>
 <p>PD: (para mí) en el source de este post tienes como hacer gráficos con <code>ggplot2</code> y <code>sf</code> y alguna prueba más.</p>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>Resulta que el blog no muestra bien los htmlwidgets. Es un problema que no acabo de entender del todo, pero parece que lo que pasa es que <code>blogdown</code> tiene un problema con los htmlwidgets si el hugo-theme usa las mismas librerias de ¿Javascipt?. No acabo de entenderlo del todo, pero no sólo me pasa a mi, le pasa a muuucha gente, por ejemplo <a href="https://github.com/rstudio/blogdown/issues/32">aquí</a>. Ya hay un <a href="https://bhaskarvk.github.io/widgetframe/articles/Using_widgetframe.html">package</a> que parece que es la solución pero no me ha funcionado (supongo que no habré sabido). Ya probaré más adelante!!).<a href="#fnref1">↩</a></p></li>
+</ol>
 </div>
 
         </div>
