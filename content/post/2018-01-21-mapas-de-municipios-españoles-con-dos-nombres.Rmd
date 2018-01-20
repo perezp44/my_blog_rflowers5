@@ -1,0 +1,471 @@
+---
+title: Mapas de municipios españoles con dos nombres
+author: Pedro J. Pérez
+date: '2018-01-21'
+slug: mapas-de-municipios-españoles-con-dos-nombres
+categories: [municipios]
+tags: [spatial maps]
+description: 'En el post anterior identifique los municipios españoles con dos nombres oficiales, ahora hago mapas espaciales con los paquetes sf, tmap y leaflet. Salen chulos'
+#banner:   'banners/nest_pas_unconf.png'
+#images:     #['img/nest_pas_unconf.png']
+#menu: ''
+---
+
+
+```{r chunk_setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, eval = TRUE )
+```
+
+```{r options_setup, echo = FALSE}
+options(scipen = 999) #- para quitar la notacion científica
+```
+ 
+ 
+### Intro 
+
+En el anterior post, inspirado en [este post](https://suzanbaert.netlify.com/2017/12/bilingualtowns) de [Suzan Baert](https://github.com/suzanbaert) decidí ver cuantos municipios españoles tenían dos nombres oficiales. La verdad es que acabé un poco harto (por un problema con los nombres compuestos ...), PERO, quiero ver si aprendo un poco a hacer mapas. Antes sabía, pero ahora quiero hacerlos con el package `sf`. Vamos allá.
+
+
+Lo primero es cargar los datos y señalar los pueblos con 2 nombres. Lo voy a hacer sólo de la primera forma en que lo hago en el post anterior; es decir, usaré la lista de municipios con dos nombres oficiales y me olvidaré de los municipios con nombre compuesto por el nombre en dos lenguas; por ejemplo: `Maó-Mahón`.
+
+
+
+### Cargando paquetes y datos
+
+```{r , echo = TRUE}
+#devtools::install_github("perezp44/mypkgDataforblog")
+library(mypkgDataforblog) #- personal pkg
+library(stringr)
+library(tidyverse)
+library(kableExtra)
+```
+
+
+```{r}
+df <- cod_INE_muni_pjp
+#- primer criterio (estricto): municipios con  "/" en NombreMuni
+df <- df %>% mutate(yes_2_names_A = str_detect(NombreMuni, "/"))
+```
+
+
+```{r, eval = FALSE, echo = FALSE}
+#- segundo criterio (más laxo): municipios con "/" y/o "-" en Nombre Muni
+df <- df %>% mutate(yes_2_names_B = yes_2_names_A)
+CCAA_in <- c("País Vasco", "Navarra, Comunidad Foral de", "Balears, Illes")
+CCAA_in <- c("16", "15", "04")
+df <- df %>% mutate(yes_2_names_B = if_else( (INECodCCAA %in% CCAA_in) & (str_detect(NombreMuni, "-")), TRUE, yes_2_names_B)) %>% select(INECodMuni, NombreMuni, yes_2_names_A, yes_2_names_B, NombreCCAA, NombreProv, everything())
+```
+
+
+
+
+Ok, ya tenemos marcados los municipios con 2 nombres oficiales.
+
+### Cargando los shapefiles
+
+
+Cargo los shapefiles. Los tengo en mi paquete de datos y en formato `sf`
+
+
+
+```{r}
+#- https://emmavestesson.netlify.com/2018/01/maps/
+#- https://cran.r-project.org/web/packages/sf/vignettes/sf1.html#reading-and-writing
+#- https://cran.r-project.org/web/packages/sf/vignettes/sf2.html
+#- https://github.com/mtennekes/tmap
+
+library(sf)
+library(tmap)
+zz <- CNIG_municipios_sf #- cargo shape files (8116 municipios)
+```
+
+
+Primer problema; además, no voy a solucionarlo (recordáis lo de que la perfección no mola!!). Resulta que los datos con los nombres oficiales de municipios son del INE a 1 de diciembre de 2016, pero la shapefile es de 2011 o por ahí (tengo que actualizarla), y claro, desde 2011 ha ocurrido que algunos municipios que se han independizado, juntado etc...
+
+En concreto: 
+
+  - 2 municipios que existían en 2011 (Cesuras y Oza), y por tanto tienen shape, decidieron juntarse y en 2016 ya eran Oza-Cesuras
+  
+  - Hay 11 municipios que existían en 2016 (y espero que sigan existiendo ahora en 2018) pero que no existían en 2011 y por tanto, no tienen shape en mi fichero). Por ejemplo el municipio de Balanegra en Almería, que se "independizo" de Berja en junio de 2015.  
+
+  
+Si te entra curiosidad por saber que municipios son los que se han creado, puedes hacerlo con el chunk de abajo. Hay 4 pueblos de Granada.
+
+```{r, eval = FALSE}
+aa <- df %>% select(INECodMuni, NombreMuni, NombreProv)
+bb <- zz %>% select(INECodMuni, NombreMuni, NombreProv)
+cambios_muni <- full_join(aa ,bb, by = "INECodMuni") %>% filter(is.na(NombreMuni.x)|is.na(NombreMuni.y)) 
+#kable(cambios_muni)
+```
+
+
+<br>
+
+### Solo hay municipios con 2 nombres en 3 CC.AA.
+
+Resulta que sólo hay municipios con 2 nombres en Navarra, País Vasco y Comunitat Valenciana, así que voy a seleccionar esas CC.AA. y el gráfico saldrá mejor. Haré uno para cada CC.AA.
+
+
+Fusiono la lista de municipios (df) con la shapefile(zz):
+
+```{r}
+df <- df %>% select(INECodMuni, NombreMuni, NombreCCAA, yes_2_names_A)
+zz <- zz %>% select(INECodMuni, INECodProv, INECodCCAA)
+aa <- right_join(zz, df, by = "INECodMuni")
+```
+
+
+A ver si me salen unos gráficos chulos. Los chunks de Suzan Baert [en este post](https://suzanbaert.netlify.com/2017/12/bilingualtowns) me fueron muy-muy útiles.
+
+
+
+```{r}
+library(tmap)
+library(viridisLite)
+library(leaflet)
+```
+
+Cargo también el fichero con los lindes provinciales:
+
+
+
+```{r}
+zz_prov <- CNIG_provincias_sf #- cargo shape files provincial
+zz_prov <- zz_prov %>% select(INECodProv, NombreProv, INECodCCAA, NombreCCAA)
+```
+
+```{r}
+virpalette <- c("white", "#E41A1C")
+
+#- Navarra
+zz_b <- zz_prov %>% filter(INECodCCAA == "16")
+bb <- aa %>% filter(INECodCCAA == "16")  #- 15 = Navarra; 16 = PV, 10 = Valencia
+bb_a <- bb %>% mutate(yes_2_names_A = ifelse(yes_2_names_A == TRUE, "2 nombres", ""))
+pais_vasco <- tm_shape(bb_a, alpha = 0.3) +
+  tm_fill(col = "yes_2_names_A", palette = virpalette, title = "País Vasco") +
+  tm_polygons(border.alpha = 0.6) +
+  tm_layout(legend.position = c("left", "bottom"))
+pais_vasco <-   pais_vasco + tm_shape(zz_b, alpha = 0.2) + tm_polygons(lwd = 1.8, border.col = "black", alpha = 0.2)
+
+#- País Vasco
+zz_b <- zz_prov %>% filter(INECodCCAA == "15")
+bb <- aa %>% filter(INECodCCAA == "15")  #- 15 = Navarra; 16 = PV, 10 = Valencia
+bb_a <- bb %>% mutate(yes_2_names_A = ifelse(yes_2_names_A == TRUE, "2 nombres", ""))
+navarra <- tm_shape(bb_a, alpha = 0.3) +
+  tm_fill(col = "yes_2_names_A", palette = virpalette, title = "Comunidad Foral de Navarra") +
+  tm_polygons(border.alpha = 0.6) +
+  tm_layout(legend.position = c("left", "bottom"))
+navarra <-   navarra + tm_shape(zz_b, alpha = 0.2) + tm_polygons(lwd = 1.8, border.col = "black", alpha = 0.2)
+
+#- Comunitat Valenciana
+zz_b <- zz_prov %>% filter(INECodCCAA == "10")
+bb <- aa %>% filter(INECodCCAA == "10")  #- 15 = Navarra; 16 = PV, 10 = Valencia
+bb_a <- bb %>% mutate(yes_2_names_A = ifelse(yes_2_names_A == TRUE, "2 nombres", ""))
+comunitat_val <- tm_shape(bb_a, alpha = 0.3) +
+  tm_fill(col = "yes_2_names_A", palette = virpalette, title = "Comunitat Valenciana") +
+  tm_polygons(border.alpha = 0.6) +
+  tm_layout(legend.position = c("left", "bottom"))
+comunitat_val <-   comunitat_val + tm_shape(zz_b, alpha = 0.2) + tm_polygons(lwd = 1.8, border.col = "black", alpha = 0.2)
+
+#Show both plots next to each other (gracias Suzan)
+tmap_arrange(navarra, pais_vasco, comunitat_val)
+```
+
+
+
+Ahora un gráfico con las 3 CC.AA. juntas y sobre el mapa de España. A ver como salen las 3 juntas:
+ 
+```{r}
+#Plot different regions
+virpalette <- c("white", "#E41A1C")
+
+CCAA_in <- c("País Vasco", "Navarra, Comunidad Foral de", "Comunitat Valenciana")
+CCAA_in <- c("16", "15", "10")
+
+zz_b <- zz_prov %>% filter(INECodCCAA %in% CCAA_in)
+
+bb <- aa %>% filter(INECodCCAA %in% CCAA_in)  #- 15 = Navarra; 16 = PV, 10 = Valencia 
+bb_a <- bb %>% mutate(yes_2_names_A = ifelse(yes_2_names_A == TRUE, "2 nombres", ""))
+
+map_las_3 <- tm_shape(bb_a, alpha = 0.3) +
+  tm_fill(col = "yes_2_names_A", palette = virpalette, title = "Municipios 2 nombres") +
+  tm_polygons(border.alpha = 0.6) +
+  tm_layout(legend.position = c("left", "bottom"))
+map_las_3 <- map_las_3 + tm_shape(zz_b, alpha = 0.2) + tm_polygons(lwd = 1.8, border.col = "black", alpha = 0.2)
+
+hh <- CNIG_CCAA_sf #- cargo shape files (8116 municipios)
+map_las_3 <- map_las_3 + tm_shape(hh, alpha = 0.2) + tm_polygons(lwd = 1.8, border.col = "black", alpha = 0.2)
+
+
+tmap_arrange(map_las_3)
+
+``` 
+
+Bien. Decente.
+
+
+
+
+
+
+
+
+
+```{r, echo = FALSE, eval = FALSE}
+#--------------- sf with ggplot2
+#- http://ggplot2.tidyverse.org/reference/ggsf.html
+#- http://strimas.com/r/tidy-sf/
+#- https://cran.r-project.org/web/packages/sf/vignettes/sf5.html
+# http://strimas.com/r/tidy-sf/
+
+#devtools::install_github("tidyverse/ggplot2") #- tuve que instalar rlang antes
+#library(ggplot2)
+zz_b <- zz_prov %>% filter(INECodCCAA == "10")
+bb <- aa %>% filter(INECodCCAA == "10")  #- 15 = Navarra; 16 = PV, 10 = Valencia
+bb_a <- bb %>% mutate(yes_2_names_A = ifelse(yes_2_names_A == TRUE, "2 nombres", ""))
+
+ggplot(bb_a) +
+  geom_sf(aes(fill = yes_2_names_A)) +
+  ggtitle("Comunitat Valenciana") +
+  theme_bw()
+  #scale_fill_viridis("yes_2_names_A") +
+
+ggplot(bb_a) +
+  geom_sf(aes(fill = yes_2_names_A)) +
+  coord_sf(crs = st_crs(102003)) +
+  ggtitle("Comunitat Valenciana") +
+  theme_bw()
+```
+
+
+
+
+```{r, eval = FALSE, echo = FALSE}
+## aprender sf 
+
+# http://strimas.com/r/tidy-sf/
+
+xx <- st_geometry(zz_prov)
+xx <- st_geometry(zz)
+xx[[1]] %>% class  #- cada elemnto es un poligono de 2 dimensiones
+
+#- se pueden calcular areas (sale como S3)
+xx <- bb %>%   mutate(area_m2 = st_area(geometry)) %>%   as_tibble()
+xx <- xx %>% select(INECodMuni, area_m2)   #- area es un S3: te muestra las unidades
+```
+
+
+
+```{r}, eval = FALSE, echo = FALSE}
+# tmap(trainning)
+
+#- https://emmavestesson.netlify.com/2018/01/maps/
+#- https://cran.r-project.org/web/packages/sf/vignettes/sf1.html#reading-and-writing
+#- https://cran.r-project.org/web/packages/sf/vignettes/sf2.html
+#- https://github.com/mtennekes/tmap
+
+#- tmap in nutshell (https://cran.r-project.org/web/packages/tmap/vignettes/tmap-nutshell.html)
+library(tmaptools)
+
+data(Europe)
+qtm(Europe)
+qtm(Europe, fill="well_being", text="iso_a3", text.size="AREA", format="Europe", style="gray", 
+    text.root=5, fill.title="Well-Being Index", fill.textNA="Non-European countries")
+
+#aa <- right_join(zz, df, by = "INECodMuni")
+
+bb <- aa %>% filter(INECodCCAA == "10")  #- 15 = Navarra; 16 = PV, 10 = Valencia 
+prov <- zz_prov %>% filter(INECodCCAA == "10")
+plot(prov)
+
+navarra <-  tm_shape(prov)  + tm_borders(col = "red", lwd = 3, lty = "solid", alpha = NA) +
+  tm_shape(bb) +
+  tm_fill(col = "yes_2_names_A", palette = virpalette, title = "Navarra") +
+  tm_polygons() +
+  tm_layout(legend.position = c("left", "bottom")) 
+
+```
+
+
+
+# Mapa con leaflet
+
+A ver si puedo hacer un leaflet map
+
+
+```{r}
+library(leaflet)
+virpalette <- rev(viridis(2)) #- gracias Suzan
+CCAA_in <- c("País Vasco", "Navarra, Comunidad Foral de", "Comunitat Valenciana")
+CCAA_in <- c("16", "15", "10")
+
+zz_b <- zz_prov %>% filter(INECodCCAA %in% CCAA_in)
+bb <- aa %>% filter(INECodCCAA %in% CCAA_in)  #- 15 = Navarra; 16 = PV, 10 = Valencia 
+
+CCAA_3 <- tm_shape(bb) +
+  tm_fill(col = "yes_2_names_A", palette = virpalette, title = "¿Dos nombres?", popup.vars = "NombreMuni") +
+  tm_polygons() +
+  tm_layout(legend.position = c("left", "bottom"))
+
+library(leaflet)
+tmap_leaflet(CCAA_3) 
+```
+
+
+Para mi bastante bien. Faltaría poner los lindes provinciales, pero ya vale por hoy.
+
+
+```{r, eval = FALSE, echo = FALSE}
+
+CCAA_3a <-  tm_shape(zz_b)  + 
+            tm_borders(col = "grey", lwd = 4, lty = "solid", alpha = NA) + 
+            tm_polygons()
+
+CCAA_3b <- CCAA_3a + tm_shape(bb) +
+  tm_fill(col = "yes_2_names_A", palette = virpalette, title = "Navarra") +
+  tm_polygons() +
+  tm_layout(legend.position = c("left", "bottom"))
+
+#-   tm_text("INECodMuni", size="AREA", root=5)  para poner texto en el mapa
+
+```
+
+
+
+
+
+
+```{r, eval = FALSE, echo = FALSE}
+#-- mas cosas de leaflet 
+tmap_leaflet(navarra) + addPolygons(zz_b) #- no chuta
+
+tm_bubbles()
+tmap_mode("view")
+## tmap mode set to interactive viewing
+# if (Sys.getenv("USER") != "CRAN")
+tm_shape(nc) + tm_fill("BIR74", palette = sf.colors(5))
+
+
+library(tmap)  #- ejemplo de una vignette
+data(Europe)
+carte2 <- tm_shape(Europe) +
+  tm_borders(alpha = 0.5) +
+  tm_fill(col = "well_being")
+
+leafmap <- tmap_leaflet(carte2)
+
+#https://stackoverflow.com/questions/41940403/popup-on-a-shape-using-tmap
+# this is a hack, since I do not see a clean mechanism to accomplish
+# look at the leaflet map calls for addPolygons
+leafmap <- tmap_leaflet(navarra)
+
+# if you are ok using another package
+# install.packages("listviewer")
+# listviewer::jsonedit(leafmap$x$calls)
+
+# if not then
+str(leafmap$x$calls, max.level=2)
+
+# addPolygons is the call we need to adjust
+#  in this example it is the fourth call
+str(leafmap$x$calls[[4]], max.level=2)
+# the popups are the fifth element of the args
+leafmap$x$calls[[4]]$args[[5]]
+# adjust these how you like
+leafmap$x$calls[[4]]$args[[5]] <- leaflet:::evalFormula(
+  ~paste0(
+    "<b>",CodeMuni,"</b><br/>",
+    ": ", NameMuni,
+    " <br/>Well being : " ),
+  data=bb
+)
+
+# widget <- tmap_leaflet(int_plot)
+# library(htmlwidgets)
+# saveWidget(widget, "interactivePlot.html")
+
+```
+
+
+
+
+
+
+```{r, echo = FALSE, eval = FALSE}
+#- un ejmplo de leaflete (no chuta)
+pal <- colorNumeric("magma", bb$yes_2_names_A)
+
+leaflet(bb, options= leafletOptions( minZoom=6, maxZoom=12) )%>% 
+  addProviderTiles(providers$OpenStreetMap.Mapnik) %>%
+  addPolygons(stroke=TRUE, weight=1, color="black", 
+              fillColor = ~pal(count), fillOpacity=0.5,  
+              label = ~paste0(INECodMuni, ": ", NombreMuni),
+              highlight = highlightOptions(
+                weight = 5,
+                color = "#666",
+                dashArray = "",
+                fillOpacity = 0.7,
+                bringToFront = TRUE)) %>%
+  addLegend("topleft", pal = pal, values = ~yes_2_names_A,
+            title = "Municipios con 2 nombres ",
+            labFormat = labelFormat(prefix = ""),
+            opacity = 1
+   )
+```
+
+
+
+
+ 
+
+
+
+
+```{r, eval = FALSE, echo = FALSE}
+# las 3 CC.AA. juntas
+
+#- lo intento pero no sale x long/lat
+bb <- aa %>% filter(INECodCCAA == "15")  #- 15 = Navarra; 16 = PV, 10 = Valencia 
+
+pal <- colorNumeric("magma", bb$yes_2_names_A)
+
+leaflet(bb, options = leafletOptions( minZoom=6, maxZoom=12) )%>% 
+  addProviderTiles(providers$OpenStreetMap.Mapnik) %>%
+  addPolygons(stroke = TRUE, weight=1, color="black", 
+              fillOpacity=0.5,  
+              highlight = highlightOptions(
+                weight = 5,
+                color = "#666",
+                dashArray = "",
+                fillOpacity = 0.7,
+                bringToFront = TRUE)) 
+    )
+
+
+# https://emmavestesson.netlify.com/2018/01/maps/
+#- pero no sale xq:
+#1: sf layer is not long-lat data 
+#2: sf layer has inconsistent datum (+proj=laea +lat_0=52 +lon_0=10 +x_0=4321000 +y_0=3210000 +ellps=GRS80 +units=m +no_defs).
+Need '+proj=longlat +datum=WGS84' 
+
+
+qtm(bb)
+
+leaflet(bb, options = leafletOptions( minZoom=6, maxZoom=12) )%>% 
+  addProviderTiles(providers$OpenStreetMap.Mapnik) %>%
+  addPolygons(stroke = TRUE, weight=1, color="black", 
+              fillColor = ~pal(yes_2_names_A), fillOpacity=0.5,  
+              label = ~paste0(NombreMuni, ": ", prettyNum(yes_2_names_A, big.mark = ",", format="f")),
+              highlight = highlightOptions(
+                weight = 5,
+                color = "#666",
+                dashArray = "",
+                fillOpacity = 0.7,
+                bringToFront = TRUE)) %>%
+  addLegend("topleft", pal = pal, values = ~yes_2_names_A,
+            title = "Prescribed antibiotic items <br> per 1000 residents ",
+            labFormat = labelFormat(prefix = ""),
+            opacity = 1
+   )
+```
+

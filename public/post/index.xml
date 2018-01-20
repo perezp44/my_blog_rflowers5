@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Powered by [Hugo](//gohugo.io). Theme by [PPOffice](http://github.com/ppoffice).</copyright>
-    <lastBuildDate>Sat, 20 Jan 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 21 Jan 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Mapas de municipios españoles con dos nombres</title>
+      <link>/2018/01/21/mapas-de-municipios-espa%C3%B1oles-con-dos-nombres/</link>
+      <pubDate>Sun, 21 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/2018/01/21/mapas-de-municipios-espa%C3%B1oles-con-dos-nombres/</guid>
+      <description>Intro En el anterior post, inspirado en este post de Suzan Baert decidí ver cuantos municipios españoles tenían dos nombres oficiales. La verdad es que acabé un poco harto (por un problema con los nombres compuestos …), PERO, quiero ver si aprendo un poco a hacer mapas. Antes sabía, pero ahora quiero hacerlos con el package sf. Vamos allá.
+Lo primero es cargar los datos y señalar los pueblos con 2 nombres.</description>
+    </item>
     
     <item>
       <title>Municipios españoles con dos nombres</title>
