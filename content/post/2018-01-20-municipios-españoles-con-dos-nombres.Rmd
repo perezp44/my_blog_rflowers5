@@ -130,9 +130,14 @@ library(DT)
 aa <- df %>% filter(yes_2_names != 0) %>% 
   select(NombreMuni, NombreProv, NombreCCAA)
 
-datatable(aa, extensions = 'Scroller', options = list( pageLength = 10, deferRender = TRUE,scrollY = 400,scroller = TRUE), rownames = F, filter = "top" )
+DT_1 <- datatable(aa, extensions = 'Scroller', options = list( pageLength = 10, deferRender = TRUE,scrollY = 400,scroller = TRUE), rownames = F, filter = "top" )
 ```
 
+No se porque pero no se muestra la datatable
+
+```{r}
+DT_1
+```
 
   <br>
   
