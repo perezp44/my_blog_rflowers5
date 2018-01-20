@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Powered by [Hugo](//gohugo.io). Theme by [PPOffice](http://github.com/ppoffice).</copyright>
-    <lastBuildDate>Thu, 18 Jan 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 20 Jan 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Municipios españoles con dos nombres</title>
+      <link>/2018/01/20/municipios-espa%C3%B1oles-con-dos-nombres/</link>
+      <pubDate>Sat, 20 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/2018/01/20/municipios-espa%C3%B1oles-con-dos-nombres/</guid>
+      <description>Nuevo post. Voy a hacer un gráfico con los municipios españoles que tienen dos nombres oficiales, por ejemplo: Alicante/Alacant.
+Que ¿por qué? pues resulta que estaba tratando de recordar cómo se hacen mapas en R y vi este post de Suzan Baert. Suzan es belga y en Bélgica hay muchas localidades con 2 nombres, por ejemplo Liège/Luik en French y en Dutch respectivamente, y resulta que … , con sus palabras:</description>
+    </item>
     
     <item>
       <title>Mapas de altitudes municipios de Teruel</title>

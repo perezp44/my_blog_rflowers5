@@ -1,0 +1,279 @@
+---
+title: Municipios españoles con dos nombres
+author: Pedro J. Pérez
+date: '2018-01-20'
+slug: municipios-españoles-con-dos-nombres
+categories: [municipios]
+tags: [data munging]
+description: 'Inspirado por un post de Suzan Baert me ha dado por ver cuantos municipios españoles tienen dos nombres oficiales. Avanzo el resultado: en España representan el 1,46%, mientras que en Bélgica son un 16%. Nos ganan!! Los mapas los dejo para el siguiente post.'
+#banner:   'banners/nest_pas_unconf.png'
+#images:     #['img/nest_pas_unconf.png']
+#menu: ''
+---
+
+
+```{r chunk_setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, eval = TRUE )
+```
+
+```{r options_setup, echo = FALSE}
+options(scipen = 999) #- para quitar la notacion científica
+```
+
+
+Nuevo post. Voy a hacer un gráfico con los municipios españoles que tienen dos nombres oficiales, por ejemplo: Alicante/Alacant. 
+
+Que ¿por qué? pues resulta que estaba tratando de recordar cómo se hacen mapas en R y vi [este post](https://suzanbaert.netlify.com/2017/12/bilingualtowns) de [Suzan Baert](https://github.com/suzanbaert). Suzan es belga y en Bélgica hay muchas localidades con 2 nombres, por ejemplo Liège/Luik en French y en Dutch respectivamente, y resulta que ... , con sus palabras:
+
+> Two week ago, I heard again a story from foreigners who got very confused, and I realized I have no idea how many towns/cities we have like this. Sounds like a perfect time to play around with `tmap` and `leaflet`!
+
+
+A mi me pasa lo mismo, no sé cuantos municipios españoles tienen 2 nombres y cuando vi el post justamente estaba jugando con los ficheros del INE, así que perfect time! Aún no me he leído su post, pero creo que la única diferencia es que como mi objetivo es aprender sobre mapas voy a intentar hacerlo con el package `sf`. Vamos allá!!
+
+
+Lo primero cargar las librerías
+
+```{r, echo = FALSE}
+library(personal.pjp)    #- personal packages
+```
+
+
+
+```{r , echo = TRUE}
+#devtools::install_github("perezp44/mypkgDataforblog")
+library(mypkgDataforblog) #- personal pkg
+library(stringr)
+library(tidyverse)
+library(kableExtra)
+```
+
+<br>
+
+
+### Los datos
+
+Los datos con los nombres oficiales de los municipios son del INE. Los bajé hace unos 3-4 meses y son datos a 1 de enero de 2016, ahora hay un nuevo fichero (es un fichero `.xlsx`) pero al intentar abrirlo (tanto desde R como desde Excel) me da errores, así que sigo con el fichero antiguo, no es un post tan serio!! , pero si quieres probar a descargarlo tu, puedes hacerlo así: 
+
+```{r, eval = FALSE}
+url <- "http://www.ine.es/daco/daco42/codmun/codmun17/17codmun.xlsx"
+download.file(url, destfile = "./datos/cod_2_municipios.xlsx")
+df  <- read_excel("./datos/cod_2_municipios.xlsx")
+```
+
+Los datos los cargo desde el package [mypkgDataforblog](https://github.com/perezp44/mypkgDataforblog). Es un paquete creado por mi precisamente para facilitarme la utilización de datos en este blog. Sencillamente contiene un conjunto de datos y así los utilizo en el blog más fácilmente. Por ejemplo:
+
+```{r}
+df <- cod_INE_muni_pjp
+```
+
+En el fichero `cod_INE_muni_pjp` hay **8125 municipios**.  Los municipios con dos nombres oficiales se pueden identificar por que los 2 nombres aparecen separados por el carácter `/`, por ejemplo: Alicante/Alacant.
+
+
+### Manipulación de datos
+
+En el fichero aparecen los dos nombres juntos en una misma columna (`NombreMuni`) así que hay que separarlos: 
+
+```{r}
+df <- df %>% mutate(NOMBRE_tmp = NombreMuni) %>% 
+  separate(NOMBRE_tmp, into = c("name_1", "name_2"), sep = "/")  %>% 
+  mutate(yes_2_names = if_else(is.na(name_2), 0.0, 1.0)) %>% 
+  select(INECodMuni, NombreMuni, yes_2_names, name_1, name_2, NombreCCAA, everything())
+```
+
+
+Ok, ya está. Solo queda contar cuantos municipios tienen dos nombres y en que provincia/CC.AA. están. Primero por CC.AA. Vamos a ello:
+
+
+```{r}
+aa <- df %>% group_by(NombreCCAA) %>% 
+  summarise(Municipios = n(), Muni_2_nombres = sum(yes_2_names), percent = Muni_2_nombres/Municipios) %>% 
+  filter(Muni_2_nombres != 0) %>% 
+  arrange(desc(percent))
+```
+
+Hagamos el cuadro:
+
+
+```{r}
+library(knitr)
+aa %>% kable("html", digits = 2, caption = "Cuadro 1: Municipios españoles con dos nombres oficiales (por CC.AA.)") %>% kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+```
+
+En total hay 119 municipios con dos nombres. Como en el listado que manejo hay 8.125 municipios esto supone **tan sólo el 1,46%, digo tan sólo porque en Bélgica son un 16%**. La mayoría de ellos están en Navarra, concretamente 64. Con mucha diferencia Navarra es, con un 23,5%, la Comunidad con mayor porcentaje de municipios con 2 nombres.
+
+
+Hagámoslo por provincias:
+
+
+```{r}
+aa <- df %>% group_by(NombreProv) %>% 
+  summarise(Municipios = n(), Muni_2_nombres = sum(yes_2_names), percent = Muni_2_nombres/Municipios) %>% 
+  filter(Muni_2_nombres != 0) %>% 
+  arrange(desc(percent))
+
+#- tabla simple
+aa %>% kable("html", digits = 2, caption = "Cuadro 2: Municipios españoles con dos nombres oficiales (por provincia)") %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+```
+
+La verdad es que por provincias los resultados *"cambian"*, incluso hay cuatro provincias con 2 nombres oficiales. Araba/Álava es la provincia con mayor porcentaje (35%) de municipios con dos nombres oficiales: 18 municipios de 51. Después haré un gráfico.
+
+<br>
+
+Para el que tenga curiosidad en ver exactamente que municipios son los que tienen dos nombres:
+
+
+```{r}
+#- datatable
+aa <- df %>% filter(yes_2_names != 0) %>% 
+  select(NombreMuni, NombreProv, NombreCCAA)
+
+library(DT)
+datatable(aa, caption = "Cuadro 3: Municipios con dos nombres oficiales",extensions = 'Scroller', options = list( pageLength = 10, deferRender = TRUE,scrollY = 400,scroller = TRUE), rownames = F, filter = "top" )
+```
+
+
+  <br>
+  
+### Ya debería estar PERO ...
+
+Bueno, pues ya debería estar, faltarían los mapas, **PERO** ... las cosas no son tan sencillas en España. Hay un pequeño lío!!! Resulta que lo que he hecho arriba es correcto: en España hay 119 municipios con 2 nombres oficiales, pero resulta que también hay municipios que aunque sólo tienen un nombre oficial, este único nombre oficial incluye el nombre del municipio en 2 idiomas. Se entiende mejor con un ejemplo: el municipio con código `07032` tiene nombre oficial `Maó-Mahón`. Según la Wikipedia en castellano:
+
+> Mahón (en catalán, Maó, oficialmente desde 2012, Maó-Mahón, la pronunciación local es Mó) es una ciudad situada en el este de la isla de Menorca (Baleares, España). 
+
+Según la Viquipedia, o [wikipedia en catalán](https://ca.wikipedia.org/wiki/Portada):
+
+> Maó (oficialment Maó-Mahón) és un municipi i ciutat de l'illa de Menorca, situat a l'est de l'illa i actual seu del Consell Insular de Menorca.
+
+Bien, Maó-Mahón, da la casualidad de que es el único municipio de Baleares con 2 nombres oficiales, bueno, con un único nombre oficial pero que incluye el nombre en catalán y castellano.
+
+Bueno, nos/me toca repetir el análisis, ahora incorporando los municipios como `Maó-Mahón`
+
+<br>
+
+### Repetimos para incluir a los municipios como `Maó-Mahón`
+
+Pues lo dicho a incorporar los municipios con un nombre oficial, pero que ese nombre tenga el nombre en dos lenguas:
+
+```{r}
+df <- cod_INE_muni_pjp
+df_2 <- df %>% mutate(NOMBRE_tmp = NombreMuni) %>% 
+   filter(str_detect(NombreMuni, "-"))
+```
+
+Bueno, hay 113 pueblos que en su nombre oficial aparece el carácter `-`; PERO no es tan fácil porque resulta que hay municipios que tienen un nombre compuesto; por ejemplo: Casas-Ibañez o Vélez-Rubio. Estos, obviamente, hay que quitarlos. El problema es que hay que quitarlos usando la inspección visual/juicio experto, eso sí, ayudándome de R. 
+
+A mi buen entender sólo hay municipios con "2 nombres" en las siguientes comunidades: Navarra, País Vasco, Comunitat Valenciana y un único municipio en Baleares (Maó-Mahón), en el resto de CC.AA. en los que parece `-` en el nombre de un municipio es porque ese municipio tiene un nombre compuesto.
+
+### Pero aún se complican un poco más las cosas:
+
+Pero aún se complican un poco más las cosas, porque:
+
+  - En el caso de **Navarra** y **País Vasco** considero que los municipios en los que parece `-` es porque sí que tienen 2 nombres (para ser exactos un único nombre oficial, pero compuesto por el "nombre" en 2 lenguas); en realidad es fácil que tambien haya algun municipio con nombre compuesto, pero como no se euskera pues lo dejo correr y considero que son "nombres con doble nombre". He mirado algunos de ellos en la Wikipedia y en esos casos estaba en lo cierto, pero no lo he hecho con todos [^1]. Disculpas!! 
+  
+  - PERO, en la **Comunitat Valenciana**, los dos municipios en los que parece `-`, aparece porque tienen un nombre compuesto: Vila-real, Riba-roja de Túria 
+
+
+  - Y ya para decirlo todo, hay un municipio en Navarra: `Oroz-Betelu/Orotz-Betelu` que como veis tiene dos nombres oficiales y cada nombre oficial es compuesto. 
+  
+No le doy más vueltas, ya no me estoy divirtiendo!!, pero vamos  a acabar la faena.
+
+Vamos a filtrarlos:
+
+```{r}
+df <- cod_INE_muni_pjp
+#-----selecciono municipios con con "/" y/o "-" en Nombre Muni
+df_2 <- df %>% mutate(NOMBRE_tmp = NombreMuni) %>% 
+       filter(str_detect(NombreMuni, "(-|/)"))   #- 231 pueblos 
+#-----selecciono municipios con "/" y "-" en las CC.AA. oportunas
+CCAA_in <- c("País Vasco", "Navarra, Comunidad Foral de", "Comunitat Valenciana", "Balears, Illes")
+CCAA_in <- c("16", "15", "10", "04")
+df_2 <- df_2 %>% filter(INECodCCAA %in% CCAA_in)  #- 151
+#---- quito los municipios valencianos con nombre compuesto
+df_2 <- df_2 %>% filter(!(INECodCCAA == "10" & str_detect(NombreMuni, "-")))  #- 149
+```
+
+Creo que está todo correcto. Finalmente son 149 municipios con "2 nombres"; antes eran 119. Veamos los nuevos resultados por CC.AA. y provincias.
+
+
+```{r}
+muni_in <- as.vector(df_2$INECodMuni)
+aa <- df %>% group_by(NombreCCAA) %>% 
+       mutate(yes_2_names = if_else(INECodMuni %in% muni_in, 1,0)) %>% 
+       summarise(Municipios = n(), Muni_2_nombres = sum(yes_2_names), percent = Muni_2_nombres/Municipios) %>%        filter(Muni_2_nombres != 0) %>% 
+       arrange(desc(percent))
+
+aa %>% kable("html", digits = 2, caption = "Cuadro 1a: Municipios españoles con \"dos nombres\" oficiales (por CC.AA.)") %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+```
+
+<br>
+
+Comparando los cuadros 1 y 1a vemos que los resultados cambian "un poco". Lo más evidente es que ahora aparece una cuarta comunidad autónoma: Illes Balears (por Maó-Mahón). La Comunitat Valenciana se queda igual. En la Comunidad Foral de Navarra aparecen 6 municipios nuevos. Los cambios más importantes se dan en País Vasco, donde se suman 23 municipios y el porcentaje sube del 8,7% al 17,9%.
+
+<br>
+
+#### Por provincias:
+
+
+```{r}
+muni_in <- df_2$INECodMuni
+aa <- df %>% group_by(NombreProv) %>% 
+       mutate(yes_2_names = if_else(INECodMuni %in% muni_in, 1,0)) %>% 
+       summarise(Municipios = n(), Muni_2_nombres = sum(yes_2_names), percent = Muni_2_nombres/Municipios) %>%        filter(Muni_2_nombres != 0) %>% 
+       arrange(desc(percent))
+
+aa %>% kable("html", digits = 2, caption = "Cuadro 2a: Municipios españoles con \"dos nombres\" oficiales (por provincias)") %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+```
+
+
+La provincia española con mayor porcentaje de municipios con "2 nombres" sigue siendo `Araba/Álava`, acercándose al 50%.
+
+<br>
+
+
+Para finalizar una tabla con los 31 nuevos municipios con 2 nombres que han aparecido con el nuevo criterio. Primero hay que filtrarlos:
+
+```{r}
+df <- cod_INE_muni_pjp
+#-----selecciono municipios con con  "-" en Nombre Muni
+df_2 <- df %>% mutate(NOMBRE_tmp = NombreMuni) %>% 
+       filter(str_detect(NombreMuni, "-"))   #- 113 pueblos 
+#-----selecciono municipios con "-" en las CC.AA. oportunas
+CCAA_in <- c("País Vasco", "Navarra, Comunidad Foral de", "Comunitat Valenciana", "Balears, Illes")
+CCAA_in <- c("16", "15", "10", "04")
+df_2 <- df_2 %>% filter(INECodCCAA %in% CCAA_in)  #- 33
+#---- quito los municipios valencianos con nombre compuesto
+df_2 <- df_2 %>% filter(!(INECodCCAA == "10" & str_detect(NombreMuni, "-")))  #- 31
+```
+
+La tabla:
+
+```{r}
+aa <- df_2 %>% select(NombreMuni, NombreProv, NombreCCAA)
+library(DT)
+datatable(aa, caption = "Cuadro 3a: (nuevos) Municipios con \"dos nombres oficiales\"",extensions = 'Scroller', options = list( pageLength = 10, deferRender = TRUE,scrollY = 400,scroller = TRUE), rownames = F, filter = "top" )
+```
+
+
+<br>
+
+Se acabo!!! Faltan los mapas, pero para otro día/post. Me están entrando ganas de ver que provincia/CC.AA. española tiene mas municipios con nombre compuesto; por lo que he ido viendo al hacer el post apostaría por una de las dos Castillas, casi por Castilla-La Mancha, pero me resisto a la tentación.
+
+
+<br>
+
+**PD:** La verdad es que el [post de Suzan Baert](https://suzanbaert.netlify.com/2017/12/bilingualtowns) estaba más mejor. Hacía unos mapas muy chulos y además intentaba buscar una explicación, o agrupar los municipios con doble nombre. La explicación más obvia es que hay más municipios de este tipo cerca de la frontera entre Flandes y Valonia, pero hay otras.
+
+En mi caso, he evitado hacer comentarios/especulaciones sobre motivos por los que aparecen las dobles denominaciones. El nombre de los pueblos es algo importante para los lugareños: lo dice uno de Pancrudo, un pueblo de Teruel al que muchos denominan "Panduro". Nos hace mucha gracia!!! `r emo::ji("boom")` `r emo::ji("smile")`. 
+
+Agur
+
+
+
+
+[^1]: A los 30 minutos de dar por cerrado el post ya he encontrado tres municipios que contienen `-` en su nombre porque es un nombre compuesto: dos en el País Vasco (`Gernika-Lumo` y `Bidania-Goiatz`) y uno en Navarra (`Tiebas-Muruarte de Reta`). Seguro que hay alguno más!! , pero ya no lo corrijo, al menos por hoy. Tengo justificaciones varias: "La perfección es una pulida colección de errores" (Mario Benedetti), o "La perfección se logra al fin, no cuando no hay nada que agregar, sino cuando ya no hay nada que obtener" (Antoine de Saint-Exupéry) o "Procurando lo mejor estropeamos a menudo lo que está bien" (William Shakespeare) o "buscando perfección encontró dolor" (mía, a medias, la original que me rondaba la cabeza es "la vida es parte buscar placer y parte hallar dolor" de Nacho Vegas) y muchas más que puedes encontrar en www.proverbia.net o similares. No he conseguido arreglar el formato de las tablas, y las datatables no salen!! `r emo::ji("-1")`. Al final tendré que cambiar el theme.
+
+
+

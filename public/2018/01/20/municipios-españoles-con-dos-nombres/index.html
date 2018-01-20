@@ -1,0 +1,1307 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <title>Municipios españoles con dos nombres &middot; R &amp; flowers V</title>
+    <meta name="generator" content="Hugo 0.31" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="author" content="Pedro J. Pérez">
+    
+      <meta name="description" content="Inspirado por un post de Suzan Baert me ha dado por ver cuantos municipios españoles tienen dos nombres oficiales. Avanzo el resultado: en España representan el 1,46%, mientras que en Bélgica son un 16%. Nos ganan!! Los mapas los dejo para el siguiente post.">
+    
+    
+    <link rel="canonical" href="/2018/01/20/municipios-espa%C3%B1oles-con-dos-nombres/"/>
+    <link rel="icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png"/>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/monokai.css">
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+    
+    <link rel="stylesheet" href="/css/monokai.css">
+    
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
+    <meta property="og:title" content="Municipios españoles con dos nombres" />
+<meta property="og:description" content="Inspirado por un post de Suzan Baert me ha dado por ver cuantos municipios españoles tienen dos nombres oficiales. Avanzo el resultado: en España representan el 1,46%, mientras que en Bélgica son un 16%. Nos ganan!! Los mapas los dejo para el siguiente post." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/2018/01/20/municipios-espa%C3%B1oles-con-dos-nombres/" />
+
+
+
+<meta property="article:published_time" content="2018-01-20T00:00:00&#43;00:00"/>
+
+<meta property="article:modified_time" content="2018-01-20T00:00:00&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+<meta itemprop="name" content="Municipios españoles con dos nombres">
+<meta itemprop="description" content="Inspirado por un post de Suzan Baert me ha dado por ver cuantos municipios españoles tienen dos nombres oficiales. Avanzo el resultado: en España representan el 1,46%, mientras que en Bélgica son un 16%. Nos ganan!! Los mapas los dejo para el siguiente post.">
+
+
+<meta itemprop="datePublished" content="2018-01-20T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2018-01-20T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="2592">
+
+
+
+<meta itemprop="keywords" content="data munging," />
+
+    <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Municipios españoles con dos nombres"/>
+<meta name="twitter:description" content="Inspirado por un post de Suzan Baert me ha dado por ver cuantos municipios españoles tienen dos nombres oficiales. Avanzo el resultado: en España representan el 1,46%, mientras que en Bélgica son un 16%. Nos ganan!! Los mapas los dejo para el siguiente post."/>
+<meta name="twitter:site" content="@pjpv4444"/>
+
+    
+
+    
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+<body>
+<div class="container">
+
+
+<div id="container">
+	<header id="header">
+  <div id="header-main" class="header-inner">
+    <div class="outer">
+      <a href="/" id="logo">
+          
+          <i class="logo" style="background-image: url('/css/img/logo.jpg')"></i>
+          
+          <span class="site-title">R &amp; flowers V</span>
+      </a>
+      <nav id="main-nav">
+          
+          
+          <a class="main-nav-link" href="/">Home</a>
+          
+          
+          
+          
+          
+          
+
+          
+          <a class="main-nav-link" href="/about/">About</a>
+          
+
+          
+          
+          
+          
+          <a class="main-nav-link" href="/tags/">Tags</a>
+          
+          
+          
+          <a class="main-nav-link" href="/categories/">Categories</a>
+          
+          
+      </nav>
+        <nav id="sub-nav">
+          <div class="profile" id="profile-nav">
+            <a id="profile-anchor" href="javascript:;"><img class="avatar" src="/css/img/avatar_mio.png"><i class="fa fa-caret-down"></i></a>
+          </div>
+        </nav>
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form">
+              <input type="search" name="q" class="search-form-input" placeholder="Search">
+              <button type="submit" class="search-form-submit">
+              </button>
+              <input type="hidden" name="sitesearch" value="/" />
+         </form>
+        </div>
+    </div>
+  </div>
+  <div id="main-nav-mobile" class="header-sub header-inner">
+    <table class="menu outer">
+      <tbody>
+          <tr>
+          
+          
+          <td><a class="main-nav-link" href="/">Home</a></td>
+          
+          
+          
+          
+          
+          
+
+          
+          <td><a class="main-nav-link" href="/about/">About</a></td>
+          
+
+          
+          
+          
+          
+          <td><a class="main-nav-link" href="/tags/">Tags</a></td>
+          
+          
+          
+          <td><a class="main-nav-link" href="/categories/">Categories</a></td>
+          
+          
+          <td>
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form">
+          <input type="search" name="q" class="search-form-input" placeholder="Search">
+          <input type="hidden" name="sitesearch" value="/" />
+          </form>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</header>
+
+   	
+   	<div class="outer">
+   	
+    	<aside id="profile">
+  <div class="inner profile-inner">
+    <div class="base-info profile-block">
+      
+      <img id="avatar" src="/css/img/avatar_mio.png">
+      
+      <h2 id="name">Pedro J. Pérez</h2>
+      <h3 id="title">Jugando con R</h3>
+      <span id="location"><i class="fa fa-map-marker"></i>Valencia(Spain)</span>
+      
+          <a id="follow" href="https://github.com/digitalcraftsman">
+              Follow
+          </a>
+      
+    </div>
+    <div class="article-info profile-block">
+      <div class="article-info-block">
+        5
+        <span>Posts</span>
+      </div>
+      <div class="article-info-block">
+        
+          5
+        
+        <span>
+            Tags
+        </span>
+      </div>
+    </div>
+    <div class="profile-block social-links">
+      <table>
+        <tr>
+          
+<td><a href="//github.com/perezp44" target="_blank" title="GitHub"><i class="fa fa-github"></i></a></td>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<td><a href="//twitter.com/pjpv4444" target="_blank" title="Twitter"><i class="fa fa-twitter"></i></a></td>
+
+
+          <td><a href="/index.xml" target="_blank" title="RSS"><i class="fa fa-rss"></i></a></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</aside>
+
+    
+
+    <section id="main">
+    
+    <article id="page-undefined" class="article article-type-page" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+
+        <header class="article-header">
+    <a href="/2018/01/20/municipios-espa%C3%B1oles-con-dos-nombres/">
+    <h1 class="article-title" itemprop="name">
+        Municipios españoles con dos nombres
+    </h1>
+    </a>
+    <div class="article-meta">
+
+        
+        <div class="article-date">
+            <i class="fa fa-calendar"></i>
+            <time datetime="2018-01-20 00:00:00 &#43;0000 UTC" itemprop="datePublished">2018-01-20</time>
+            &middot;
+            2592
+            words
+            &middot;
+            13
+            minute read
+        </div>
+        
+        
+            
+            
+            <div class="article-category">
+                <i class="fa fa-folder"></i>
+                
+                
+                <a class="article-category-link" href="/categories/municipios">municipios</a>
+                
+                
+            </div>
+            
+        
+
+        
+            
+            
+            <div class="article-category">
+                <i class="fa fa-tags"></i>
+                
+                
+                <a class="article-category-link" href="/tags/data-munging">data munging</a>
+                
+                
+            </div>
+            
+        
+    </div>
+</header>
+
+        <div class="article-entry" itemprop="articleBody">
+            <script src="2018-01-20-municipios-españoles-con-dos-nombres_files/htmlwidgets/htmlwidgets.js"></script>
+<script src="2018-01-20-municipios-españoles-con-dos-nombres_files/jquery/jquery.min.js"></script>
+<script src="2018-01-20-municipios-españoles-con-dos-nombres_files/datatables-binding/datatables.js"></script>
+<link href="2018-01-20-municipios-españoles-con-dos-nombres_files/dt-core/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="2018-01-20-municipios-españoles-con-dos-nombres_files/dt-core/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="2018-01-20-municipios-españoles-con-dos-nombres_files/dt-core/js/jquery.dataTables.min.js"></script>
+<link href="2018-01-20-municipios-españoles-con-dos-nombres_files/dt-ext-scroller/css/scroller.dataTables.min.css" rel="stylesheet" />
+<script src="2018-01-20-municipios-españoles-con-dos-nombres_files/dt-ext-scroller/js/dataTables.scroller.min.js"></script>
+<link href="2018-01-20-municipios-españoles-con-dos-nombres_files/nouislider/jquery.nouislider.min.css" rel="stylesheet" />
+<script src="2018-01-20-municipios-españoles-con-dos-nombres_files/nouislider/jquery.nouislider.min.js"></script>
+<link href="2018-01-20-municipios-españoles-con-dos-nombres_files/selectize/selectize.bootstrap3.css" rel="stylesheet" />
+<script src="2018-01-20-municipios-españoles-con-dos-nombres_files/selectize/selectize.min.js"></script>
+
+
+<p>Nuevo post. Voy a hacer un gráfico con los municipios españoles que tienen dos nombres oficiales, por ejemplo: Alicante/Alacant.</p>
+<p>Que ¿por qué? pues resulta que estaba tratando de recordar cómo se hacen mapas en R y vi <a href="https://suzanbaert.netlify.com/2017/12/bilingualtowns">este post</a> de <a href="https://github.com/suzanbaert">Suzan Baert</a>. Suzan es belga y en Bélgica hay muchas localidades con 2 nombres, por ejemplo Liège/Luik en French y en Dutch respectivamente, y resulta que … , con sus palabras:</p>
+<blockquote>
+<p>Two week ago, I heard again a story from foreigners who got very confused, and I realized I have no idea how many towns/cities we have like this. Sounds like a perfect time to play around with <code>tmap</code> and <code>leaflet</code>!</p>
+</blockquote>
+<p>A mi me pasa lo mismo, no sé cuantos municipios españoles tienen 2 nombres y cuando vi el post justamente estaba jugando con los ficheros del INE, así que perfect time! Aún no me he leído su post, pero creo que la única diferencia es que como mi objetivo es aprender sobre mapas voy a intentar hacerlo con el package <code>sf</code>. Vamos allá!!</p>
+<p>Lo primero cargar las librerías</p>
+<pre class="r"><code>#devtools::install_github(&quot;perezp44/mypkgDataforblog&quot;)
+library(mypkgDataforblog) #- personal pkg
+library(stringr)
+library(tidyverse)
+library(kableExtra)</code></pre>
+<p><br></p>
+<div id="los-datos" class="section level3">
+<h3>Los datos</h3>
+<p>Los datos con los nombres oficiales de los municipios son del INE. Los bajé hace unos 3-4 meses y son datos a 1 de enero de 2016, ahora hay un nuevo fichero (es un fichero <code>.xlsx</code>) pero al intentar abrirlo (tanto desde R como desde Excel) me da errores, así que sigo con el fichero antiguo, no es un post tan serio!! , pero si quieres probar a descargarlo tu, puedes hacerlo así:</p>
+<pre class="r"><code>url &lt;- &quot;http://www.ine.es/daco/daco42/codmun/codmun17/17codmun.xlsx&quot;
+download.file(url, destfile = &quot;./datos/cod_2_municipios.xlsx&quot;)
+df  &lt;- read_excel(&quot;./datos/cod_2_municipios.xlsx&quot;)</code></pre>
+<p>Los datos los cargo desde el package <a href="https://github.com/perezp44/mypkgDataforblog">mypkgDataforblog</a>. Es un paquete creado por mi precisamente para facilitarme la utilización de datos en este blog. Sencillamente contiene un conjunto de datos y así los utilizo en el blog más fácilmente. Por ejemplo:</p>
+<pre class="r"><code>df &lt;- cod_INE_muni_pjp</code></pre>
+<p>En el fichero <code>cod_INE_muni_pjp</code> hay <strong>8125 municipios</strong>. Los municipios con dos nombres oficiales se pueden identificar por que los 2 nombres aparecen separados por el carácter <code>/</code>, por ejemplo: Alicante/Alacant.</p>
+</div>
+<div id="manipulacion-de-datos" class="section level3">
+<h3>Manipulación de datos</h3>
+<p>En el fichero aparecen los dos nombres juntos en una misma columna (<code>NombreMuni</code>) así que hay que separarlos:</p>
+<pre class="r"><code>df &lt;- df %&gt;% mutate(NOMBRE_tmp = NombreMuni) %&gt;% 
+  separate(NOMBRE_tmp, into = c(&quot;name_1&quot;, &quot;name_2&quot;), sep = &quot;/&quot;)  %&gt;% 
+  mutate(yes_2_names = if_else(is.na(name_2), 0.0, 1.0)) %&gt;% 
+  select(INECodMuni, NombreMuni, yes_2_names, name_1, name_2, NombreCCAA, everything())</code></pre>
+<p>Ok, ya está. Solo queda contar cuantos municipios tienen dos nombres y en que provincia/CC.AA. están. Primero por CC.AA. Vamos a ello:</p>
+<pre class="r"><code>aa &lt;- df %&gt;% group_by(NombreCCAA) %&gt;% 
+  summarise(Municipios = n(), Muni_2_nombres = sum(yes_2_names), percent = Muni_2_nombres/Municipios) %&gt;% 
+  filter(Muni_2_nombres != 0) %&gt;% 
+  arrange(desc(percent))</code></pre>
+<p>Hagamos el cuadro:</p>
+<pre class="r"><code>library(knitr)
+aa %&gt;% kable(&quot;html&quot;, digits = 2, caption = &quot;Cuadro 1: Municipios españoles con dos nombres oficiales (por CC.AA.)&quot;) %&gt;% kable_styling(bootstrap_options = c(&quot;striped&quot;, &quot;hover&quot;, &quot;condensed&quot;, &quot;responsive&quot;))</code></pre>
+<table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-7">Table 1: </span>Cuadro 1: Municipios españoles con dos nombres oficiales (por CC.AA.)
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+NombreCCAA
+</th>
+<th style="text-align:right;">
+Municipios
+</th>
+<th style="text-align:right;">
+Muni_2_nombres
+</th>
+<th style="text-align:right;">
+percent
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Navarra, Comunidad Foral de
+</td>
+<td style="text-align:right;">
+272
+</td>
+<td style="text-align:right;">
+64
+</td>
+<td style="text-align:right;">
+0.24
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+País Vasco
+</td>
+<td style="text-align:right;">
+251
+</td>
+<td style="text-align:right;">
+22
+</td>
+<td style="text-align:right;">
+0.09
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Comunitat Valenciana
+</td>
+<td style="text-align:right;">
+542
+</td>
+<td style="text-align:right;">
+33
+</td>
+<td style="text-align:right;">
+0.06
+</td>
+</tr>
+</tbody>
+</table>
+<p>En total hay 119 municipios con dos nombres. Como en el listado que manejo hay 8.125 municipios esto supone <strong>tan sólo el 1,46%, digo tan sólo porque en Bélgica son un 16%</strong>. La mayoría de ellos están en Navarra, concretamente 64. Con mucha diferencia Navarra es, con un 23,5%, la Comunidad con mayor porcentaje de municipios con 2 nombres.</p>
+<p>Hagámoslo por provincias:</p>
+<pre class="r"><code>aa &lt;- df %&gt;% group_by(NombreProv) %&gt;% 
+  summarise(Municipios = n(), Muni_2_nombres = sum(yes_2_names), percent = Muni_2_nombres/Municipios) %&gt;% 
+  filter(Muni_2_nombres != 0) %&gt;% 
+  arrange(desc(percent))
+
+#- tabla simple
+aa %&gt;% kable(&quot;html&quot;, digits = 2, caption = &quot;Cuadro 2: Municipios españoles con dos nombres oficiales (por provincia)&quot;) %&gt;%
+  kable_styling(bootstrap_options = c(&quot;striped&quot;, &quot;hover&quot;, &quot;condensed&quot;, &quot;responsive&quot;))</code></pre>
+<table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-8">Table 2: </span>Cuadro 2: Municipios españoles con dos nombres oficiales (por provincia)
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+NombreProv
+</th>
+<th style="text-align:right;">
+Municipios
+</th>
+<th style="text-align:right;">
+Muni_2_nombres
+</th>
+<th style="text-align:right;">
+percent
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Araba/Álava
+</td>
+<td style="text-align:right;">
+51
+</td>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:right;">
+0.35
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Navarra
+</td>
+<td style="text-align:right;">
+272
+</td>
+<td style="text-align:right;">
+64
+</td>
+<td style="text-align:right;">
+0.24
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Alicante/Alacant
+</td>
+<td style="text-align:right;">
+141
+</td>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:right;">
+0.10
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Castellón/Castelló
+</td>
+<td style="text-align:right;">
+135
+</td>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:right;">
+0.10
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Gipuzkoa
+</td>
+<td style="text-align:right;">
+88
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Valencia/València
+</td>
+<td style="text-align:right;">
+266
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Bizkaia
+</td>
+<td style="text-align:right;">
+112
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+</tr>
+</tbody>
+</table>
+<p>La verdad es que por provincias los resultados <em>“cambian”</em>, incluso hay cuatro provincias con 2 nombres oficiales. Araba/Álava es la provincia con mayor porcentaje (35%) de municipios con dos nombres oficiales: 18 municipios de 51. Después haré un gráfico.</p>
+<p><br></p>
+<p>Para el que tenga curiosidad en ver exactamente que municipios son los que tienen dos nombres:</p>
+<pre class="r"><code>#- datatable
+aa &lt;- df %&gt;% filter(yes_2_names != 0) %&gt;% 
+  select(NombreMuni, NombreProv, NombreCCAA)
+
+library(DT)
+datatable(aa, caption = &quot;Cuadro 3: Municipios con dos nombres oficiales&quot;,extensions = &#39;Scroller&#39;, options = list( pageLength = 10, deferRender = TRUE,scrollY = 400,scroller = TRUE), rownames = F, filter = &quot;top&quot; )</code></pre>
+<div id="htmlwidget-1" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1">{"x":{"filter":"top","filterHTML":"<tr>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","extensions":["Scroller"],"caption":"<caption>Cuadro 3: Municipios con dos nombres oficiales<\/caption>","data":[["Ayala/Aiara","Baños de Ebro/Mañueta","Campezo/Kanpezu","Elburgo/Burgelu","Elvillar/Bilar","Erriberagoitia/Ribera Alta","Harana/Valle de Arana","Iruña Oka/Iruña de Oca","Labastida/Bastida","Lanciego/Lantziego","Laudio/Llodio","Moreda de Álava/Moreda Araba","Ribera Baja/Erribera Beitia","Salvatierra/Agurain","San Millán/Donemiliaga","Valdegovía/Gaubea","Villabuena de Álava/Eskuernaga","Yécora/Iekora","Alcoy/Alcoi","Alicante/Alacant","Benitachell/Poble Nou de Benitatxell, el","Campo de Mirra/Camp de Mirra, el","Elche/Elx","Fondó de les Neus, el/Hondón de las Nieves","Jávea/Xàbia","Jijona/Xixona","Lorcha/Orxa, l'","Monóvar/Monòver","Pinós, el/Pinoso","San Vicente del Raspeig/Sant Vicent del Raspeig","Torremanzanas/Torre de les Maçanes, la","Villajoyosa/Vila Joiosa, la","Almazora/Almassora","Alqueries, les/Alquerías del Niño Perdido","Benicasim/Benicàssim","Borriana/Burriana","Castellón de la Plana/Castelló de la Plana","Chilches/Xilxes","Chodos/Xodos","Oropesa del Mar/Orpesa","Peníscola/Peñíscola","Sant Jordi/San Jorge","Sueras/Suera","Useras/Useres, les","Villafranca del Cid/Vilafranca","Arrasate/Mondragón","Donostia/San Sebastián","Abárzuza/Abartzuza","Abaurregaina/Abaurrea Alta","Abaurrepea/Abaurrea Baja","Aibar/Oibar","Allín/Allin","Altsasu/Alsasua","Ancín/Antzin","Ansoáin/Antsoain","Aoiz/Agoitz","Aranarache/Aranaratxe","Arce/Artzi","Atez/Atetz","Auritz/Burguete","Ayegui/Aiegi","Berrioplano/Berriobeiti","Burgui/Burgi","Burlada/Burlata","Cendea de Olza/Oltza Zendea","Cirauqui/Zirauki","Ciriza/Ziritza","Doneztebe/Santesteban","Enériz/Eneritz","Esparza de Salazar/Espartza Zaraitzu","Ezcároz/Ezkaroze","Gallipienzo/Galipentzu","Gallués/Galoze","Güesa/Gorza","Guesálaz/Gesalatz","Hiriberri/Villanueva de Aezkoa","Huarte/Uharte","Isaba/Izaba","Iza/Itza","Izalzu/Itzaltzu","Leache/Leatxe","Leoz/Leotz","Lónguida/Longida","Luzaide/Valcarlos","Monreal/Elo","Navascués/Nabaskoze","Noáin (Valle de Elorz)/Noain (Elortzibar)","Ochagavía/Otsagabia","Olazti/Olazagutía","Olite/Erriberri","Olóriz/Oloritz","Oronz/Orontze","Oroz-Betelu/Orotz-Betelu","Orreaga/Roncesvalles","Pamplona/Iruña","Peralta/Azkoien","Puente la Reina/Gares","Roncal/Erronkari","Salinas de Oro/Jaitz","Sangüesa/Zangoza","Sarriés/Sartze","Unzué/Untzue","Urdazubi/Urdax","Urzainqui/Urzainki","Uztárroz/Uztarroze","Valle de Egüés/Eguesibar","Valle de Yerri/Deierri","Vidángoz/Bidankoze","Villava/Atarrabia","Zabalza/Zabaltza","Zizur Mayor/Zizur Nagusia","Mogente/Moixent","Montitxelvo/Montichelvo","Montroi/Montroy","Novelé/Novetlè","Sagunto/Sagunt","Vilallonga/Villalonga","Karrantza Harana/Valle de Carranza","Urduña/Orduña"],["Araba/Álava","Araba/Álava","Araba/Álava","Araba/Álava","Araba/Álava","Araba/Álava","Araba/Álava","Araba/Álava","Araba/Álava","Araba/Álava","Araba/Álava","Araba/Álava","Araba/Álava","Araba/Álava","Araba/Álava","Araba/Álava","Araba/Álava","Araba/Álava","Alicante/Alacant","Alicante/Alacant","Alicante/Alacant","Alicante/Alacant","Alicante/Alacant","Alicante/Alacant","Alicante/Alacant","Alicante/Alacant","Alicante/Alacant","Alicante/Alacant","Alicante/Alacant","Alicante/Alacant","Alicante/Alacant","Alicante/Alacant","Castellón/Castelló","Castellón/Castelló","Castellón/Castelló","Castellón/Castelló","Castellón/Castelló","Castellón/Castelló","Castellón/Castelló","Castellón/Castelló","Castellón/Castelló","Castellón/Castelló","Castellón/Castelló","Castellón/Castelló","Castellón/Castelló","Gipuzkoa","Gipuzkoa","Navarra","Navarra","Navarra","Navarra","Navarra","Navarra","Navarra","Navarra","Navarra","Navarra","Navarra","Navarra","Navarra","Navarra","Navarra","Navarra","Navarra","Navarra","Navarra","Navarra","Navarra","Navarra","Navarra","Navarra","Navarra","Navarra","Navarra","Navarra","Navarra","Navarra","Navarra","Navarra","Navarra","Navarra","Navarra","Navarra","Navarra","Navarra","Navarra","Navarra","Navarra","Navarra","Navarra","Navarra","Navarra","Navarra","Navarra","Navarra","Navarra","Navarra","Navarra","Navarra","Navarra","Navarra","Navarra","Navarra","Navarra","Navarra","Navarra","Navarra","Navarra","Navarra","Navarra","Navarra","Valencia/València","Valencia/València","Valencia/València","Valencia/València","Valencia/València","Valencia/València","Bizkaia","Bizkaia"],["País Vasco","País Vasco","País Vasco","País Vasco","País Vasco","País Vasco","País Vasco","País Vasco","País Vasco","País Vasco","País Vasco","País Vasco","País Vasco","País Vasco","País Vasco","País Vasco","País Vasco","País Vasco","Comunitat Valenciana","Comunitat Valenciana","Comunitat Valenciana","Comunitat Valenciana","Comunitat Valenciana","Comunitat Valenciana","Comunitat Valenciana","Comunitat Valenciana","Comunitat Valenciana","Comunitat Valenciana","Comunitat Valenciana","Comunitat Valenciana","Comunitat Valenciana","Comunitat Valenciana","Comunitat Valenciana","Comunitat Valenciana","Comunitat Valenciana","Comunitat Valenciana","Comunitat Valenciana","Comunitat Valenciana","Comunitat Valenciana","Comunitat Valenciana","Comunitat Valenciana","Comunitat Valenciana","Comunitat Valenciana","Comunitat Valenciana","Comunitat Valenciana","País Vasco","País Vasco","Navarra, Comunidad Foral de","Navarra, Comunidad Foral de","Navarra, Comunidad Foral de","Navarra, Comunidad Foral de","Navarra, Comunidad Foral de","Navarra, Comunidad Foral de","Navarra, Comunidad Foral de","Navarra, Comunidad Foral de","Navarra, Comunidad Foral de","Navarra, Comunidad Foral de","Navarra, Comunidad Foral de","Navarra, Comunidad Foral de","Navarra, Comunidad Foral de","Navarra, Comunidad Foral de","Navarra, Comunidad Foral de","Navarra, Comunidad Foral de","Navarra, Comunidad Foral de","Navarra, Comunidad Foral de","Navarra, Comunidad Foral de","Navarra, Comunidad Foral de","Navarra, Comunidad Foral de","Navarra, Comunidad Foral de","Navarra, Comunidad Foral de","Navarra, Comunidad Foral de","Navarra, Comunidad Foral de","Navarra, Comunidad Foral de","Navarra, Comunidad Foral de","Navarra, Comunidad Foral de","Navarra, Comunidad Foral de","Navarra, Comunidad Foral de","Navarra, Comunidad Foral de","Navarra, Comunidad Foral de","Navarra, Comunidad Foral de","Navarra, Comunidad Foral de","Navarra, Comunidad Foral de","Navarra, Comunidad Foral de","Navarra, Comunidad Foral de","Navarra, Comunidad Foral de","Navarra, Comunidad Foral de","Navarra, Comunidad Foral de","Navarra, Comunidad Foral de","Navarra, Comunidad Foral de","Navarra, Comunidad Foral de","Navarra, Comunidad Foral de","Navarra, Comunidad Foral de","Navarra, Comunidad Foral de","Navarra, Comunidad Foral de","Navarra, Comunidad Foral de","Navarra, Comunidad Foral de","Navarra, Comunidad Foral de","Navarra, Comunidad Foral de","Navarra, Comunidad Foral de","Navarra, Comunidad Foral de","Navarra, Comunidad Foral de","Navarra, Comunidad Foral de","Navarra, Comunidad Foral de","Navarra, Comunidad Foral de","Navarra, Comunidad Foral de","Navarra, Comunidad Foral de","Navarra, Comunidad Foral de","Navarra, Comunidad Foral de","Navarra, Comunidad Foral de","Navarra, Comunidad Foral de","Navarra, Comunidad Foral de","Comunitat Valenciana","Comunitat Valenciana","Comunitat Valenciana","Comunitat Valenciana","Comunitat Valenciana","Comunitat Valenciana","País Vasco","País Vasco"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>NombreMuni<\/th>\n      <th>NombreProv<\/th>\n      <th>NombreCCAA<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":10,"deferRender":true,"scrollY":400,"scroller":true,"order":[],"autoWidth":false,"orderClasses":false,"orderCellsTop":true},"selection":{"mode":"multiple","selected":null,"target":"row"}},"evals":[],"jsHooks":[]}</script>
+<p><br></p>
+</div>
+<div id="ya-deberia-estar-pero" class="section level3">
+<h3>Ya debería estar PERO …</h3>
+<p>Bueno, pues ya debería estar, faltarían los mapas, <strong>PERO</strong> … las cosas no son tan sencillas en España. Hay un pequeño lío!!! Resulta que lo que he hecho arriba es correcto: en España hay 119 municipios con 2 nombres oficiales, pero resulta que también hay municipios que aunque sólo tienen un nombre oficial, este único nombre oficial incluye el nombre del municipio en 2 idiomas. Se entiende mejor con un ejemplo: el municipio con código <code>07032</code> tiene nombre oficial <code>Maó-Mahón</code>. Según la Wikipedia en castellano:</p>
+<blockquote>
+<p>Mahón (en catalán, Maó, oficialmente desde 2012, Maó-Mahón, la pronunciación local es Mó) es una ciudad situada en el este de la isla de Menorca (Baleares, España).</p>
+</blockquote>
+<p>Según la Viquipedia, o <a href="https://ca.wikipedia.org/wiki/Portada">wikipedia en catalán</a>:</p>
+<blockquote>
+<p>Maó (oficialment Maó-Mahón) és un municipi i ciutat de l’illa de Menorca, situat a l’est de l’illa i actual seu del Consell Insular de Menorca.</p>
+</blockquote>
+<p>Bien, Maó-Mahón, da la casualidad de que es el único municipio de Baleares con 2 nombres oficiales, bueno, con un único nombre oficial pero que incluye el nombre en catalán y castellano.</p>
+<p>Bueno, nos/me toca repetir el análisis, ahora incorporando los municipios como <code>Maó-Mahón</code></p>
+<p><br></p>
+</div>
+<div id="repetimos-para-incluir-a-los-municipios-como-mao-mahon" class="section level3">
+<h3>Repetimos para incluir a los municipios como <code>Maó-Mahón</code></h3>
+<p>Pues lo dicho a incorporar los municipios con un nombre oficial, pero que ese nombre tenga el nombre en dos lenguas:</p>
+<pre class="r"><code>df &lt;- cod_INE_muni_pjp
+df_2 &lt;- df %&gt;% mutate(NOMBRE_tmp = NombreMuni) %&gt;% 
+   filter(str_detect(NombreMuni, &quot;-&quot;))</code></pre>
+<p>Bueno, hay 113 pueblos que en su nombre oficial aparece el carácter <code>-</code>; PERO no es tan fácil porque resulta que hay municipios que tienen un nombre compuesto; por ejemplo: Casas-Ibañez o Vélez-Rubio. Estos, obviamente, hay que quitarlos. El problema es que hay que quitarlos usando la inspección visual/juicio experto, eso sí, ayudándome de R.</p>
+<p>A mi buen entender sólo hay municipios con “2 nombres” en las siguientes comunidades: Navarra, País Vasco, Comunitat Valenciana y un único municipio en Baleares (Maó-Mahón), en el resto de CC.AA. en los que parece <code>-</code> en el nombre de un municipio es porque ese municipio tiene un nombre compuesto.</p>
+</div>
+<div id="pero-aun-se-complican-un-poco-mas-las-cosas" class="section level3">
+<h3>Pero aún se complican un poco más las cosas:</h3>
+<p>Pero aún se complican un poco más las cosas, porque:</p>
+<ul>
+<li><p>En el caso de <strong>Navarra</strong> y <strong>País Vasco</strong> considero que los municipios en los que parece <code>-</code> es porque sí que tienen 2 nombres (para ser exactos un único nombre oficial, pero compuesto por el “nombre” en 2 lenguas); en realidad es fácil que tambien haya algun municipio con nombre compuesto, pero como no se euskera pues lo dejo correr y considero que son “nombres con doble nombre”. He mirado algunos de ellos en la Wikipedia y en esos casos estaba en lo cierto, pero no lo he hecho con todos <a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>. Disculpas!!</p></li>
+<li><p>PERO, en la <strong>Comunitat Valenciana</strong>, los dos municipios en los que parece <code>-</code>, aparece porque tienen un nombre compuesto: Vila-real, Riba-roja de Túria</p></li>
+<li><p>Y ya para decirlo todo, hay un municipio en Navarra: <code>Oroz-Betelu/Orotz-Betelu</code> que como veis tiene dos nombres oficiales y cada nombre oficial es compuesto.</p></li>
+</ul>
+<p>No le doy más vueltas, ya no me estoy divirtiendo!!, pero vamos a acabar la faena.</p>
+<p>Vamos a filtrarlos:</p>
+<pre class="r"><code>df &lt;- cod_INE_muni_pjp
+#-----selecciono municipios con con &quot;/&quot; y/o &quot;-&quot; en Nombre Muni
+df_2 &lt;- df %&gt;% mutate(NOMBRE_tmp = NombreMuni) %&gt;% 
+       filter(str_detect(NombreMuni, &quot;(-|/)&quot;))   #- 231 pueblos 
+#-----selecciono municipios con &quot;/&quot; y &quot;-&quot; en las CC.AA. oportunas
+CCAA_in &lt;- c(&quot;País Vasco&quot;, &quot;Navarra, Comunidad Foral de&quot;, &quot;Comunitat Valenciana&quot;, &quot;Balears, Illes&quot;)
+CCAA_in &lt;- c(&quot;16&quot;, &quot;15&quot;, &quot;10&quot;, &quot;04&quot;)
+df_2 &lt;- df_2 %&gt;% filter(INECodCCAA %in% CCAA_in)  #- 151
+#---- quito los municipios valencianos con nombre compuesto
+df_2 &lt;- df_2 %&gt;% filter(!(INECodCCAA == &quot;10&quot; &amp; str_detect(NombreMuni, &quot;-&quot;)))  #- 149</code></pre>
+<p>Creo que está todo correcto. Finalmente son 149 municipios con “2 nombres”; antes eran 119. Veamos los nuevos resultados por CC.AA. y provincias.</p>
+<pre class="r"><code>muni_in &lt;- as.vector(df_2$INECodMuni)
+aa &lt;- df %&gt;% group_by(NombreCCAA) %&gt;% 
+       mutate(yes_2_names = if_else(INECodMuni %in% muni_in, 1,0)) %&gt;% 
+       summarise(Municipios = n(), Muni_2_nombres = sum(yes_2_names), percent = Muni_2_nombres/Municipios) %&gt;%        filter(Muni_2_nombres != 0) %&gt;% 
+       arrange(desc(percent))
+
+aa %&gt;% kable(&quot;html&quot;, digits = 2, caption = &quot;Cuadro 1a: Municipios españoles con \&quot;dos nombres\&quot; oficiales (por CC.AA.)&quot;) %&gt;%
+  kable_styling(bootstrap_options = c(&quot;striped&quot;, &quot;hover&quot;, &quot;condensed&quot;, &quot;responsive&quot;))</code></pre>
+<table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-12">Table 3: </span>Cuadro 1a: Municipios españoles con “dos nombres” oficiales (por CC.AA.)
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+NombreCCAA
+</th>
+<th style="text-align:right;">
+Municipios
+</th>
+<th style="text-align:right;">
+Muni_2_nombres
+</th>
+<th style="text-align:right;">
+percent
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Navarra, Comunidad Foral de
+</td>
+<td style="text-align:right;">
+272
+</td>
+<td style="text-align:right;">
+70
+</td>
+<td style="text-align:right;">
+0.26
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+País Vasco
+</td>
+<td style="text-align:right;">
+251
+</td>
+<td style="text-align:right;">
+45
+</td>
+<td style="text-align:right;">
+0.18
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Comunitat Valenciana
+</td>
+<td style="text-align:right;">
+542
+</td>
+<td style="text-align:right;">
+33
+</td>
+<td style="text-align:right;">
+0.06
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Balears, Illes
+</td>
+<td style="text-align:right;">
+67
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p>Comparando los cuadros 1 y 1a vemos que los resultados cambian “un poco”. Lo más evidente es que ahora aparece una cuarta comunidad autónoma: Illes Balears (por Maó-Mahón). La Comunitat Valenciana se queda igual. En la Comunidad Foral de Navarra aparecen 6 municipios nuevos. Los cambios más importantes se dan en País Vasco, donde se suman 23 municipios y el porcentaje sube del 8,7% al 17,9%.</p>
+<p><br></p>
+<div id="por-provincias" class="section level4">
+<h4>Por provincias:</h4>
+<pre class="r"><code>muni_in &lt;- df_2$INECodMuni
+aa &lt;- df %&gt;% group_by(NombreProv) %&gt;% 
+       mutate(yes_2_names = if_else(INECodMuni %in% muni_in, 1,0)) %&gt;% 
+       summarise(Municipios = n(), Muni_2_nombres = sum(yes_2_names), percent = Muni_2_nombres/Municipios) %&gt;%        filter(Muni_2_nombres != 0) %&gt;% 
+       arrange(desc(percent))
+
+aa %&gt;% kable(&quot;html&quot;, digits = 2, caption = &quot;Cuadro 2a: Municipios españoles con \&quot;dos nombres\&quot; oficiales (por provincias)&quot;) %&gt;%
+  kable_styling(bootstrap_options = c(&quot;striped&quot;, &quot;hover&quot;, &quot;condensed&quot;, &quot;responsive&quot;))</code></pre>
+<table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-13">Table 4: </span>Cuadro 2a: Municipios españoles con “dos nombres” oficiales (por provincias)
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+NombreProv
+</th>
+<th style="text-align:right;">
+Municipios
+</th>
+<th style="text-align:right;">
+Muni_2_nombres
+</th>
+<th style="text-align:right;">
+percent
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Araba/Álava
+</td>
+<td style="text-align:right;">
+51
+</td>
+<td style="text-align:right;">
+25
+</td>
+<td style="text-align:right;">
+0.49
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Navarra
+</td>
+<td style="text-align:right;">
+272
+</td>
+<td style="text-align:right;">
+70
+</td>
+<td style="text-align:right;">
+0.26
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Bizkaia
+</td>
+<td style="text-align:right;">
+112
+</td>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:right;">
+0.12
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Alicante/Alacant
+</td>
+<td style="text-align:right;">
+141
+</td>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:right;">
+0.10
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Castellón/Castelló
+</td>
+<td style="text-align:right;">
+135
+</td>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:right;">
+0.10
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Gipuzkoa
+</td>
+<td style="text-align:right;">
+88
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+0.08
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Valencia/València
+</td>
+<td style="text-align:right;">
+266
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Balears, Illes
+</td>
+<td style="text-align:right;">
+67
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+</tr>
+</tbody>
+</table>
+<p>La provincia española con mayor porcentaje de municipios con “2 nombres” sigue siendo <code>Araba/Álava</code>, acercándose al 50%.</p>
+<p><br></p>
+<p>Para finalizar una tabla con los 31 nuevos municipios con 2 nombres que han aparecido con el nuevo criterio. Primero hay que filtrarlos:</p>
+<pre class="r"><code>df &lt;- cod_INE_muni_pjp
+#-----selecciono municipios con con  &quot;-&quot; en Nombre Muni
+df_2 &lt;- df %&gt;% mutate(NOMBRE_tmp = NombreMuni) %&gt;% 
+       filter(str_detect(NombreMuni, &quot;-&quot;))   #- 113 pueblos 
+#-----selecciono municipios con &quot;-&quot; en las CC.AA. oportunas
+CCAA_in &lt;- c(&quot;País Vasco&quot;, &quot;Navarra, Comunidad Foral de&quot;, &quot;Comunitat Valenciana&quot;, &quot;Balears, Illes&quot;)
+CCAA_in &lt;- c(&quot;16&quot;, &quot;15&quot;, &quot;10&quot;, &quot;04&quot;)
+df_2 &lt;- df_2 %&gt;% filter(INECodCCAA %in% CCAA_in)  #- 33
+#---- quito los municipios valencianos con nombre compuesto
+df_2 &lt;- df_2 %&gt;% filter(!(INECodCCAA == &quot;10&quot; &amp; str_detect(NombreMuni, &quot;-&quot;)))  #- 31</code></pre>
+<p>La tabla:</p>
+<pre class="r"><code>aa &lt;- df_2 %&gt;% select(NombreMuni, NombreProv, NombreCCAA)
+library(DT)
+datatable(aa, caption = &quot;Cuadro 3a: (nuevos) Municipios con \&quot;dos nombres oficiales\&quot;&quot;,extensions = &#39;Scroller&#39;, options = list( pageLength = 10, deferRender = TRUE,scrollY = 400,scroller = TRUE), rownames = F, filter = &quot;top&quot; )</code></pre>
+<div id="htmlwidget-2" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-2">{"x":{"filter":"top","filterHTML":"<tr>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","extensions":["Scroller"],"caption":"<caption>Cuadro 3a: (nuevos) Municipios con \"dos nombres oficiales\"<\/caption>","data":[["Alegría-Dulantzi","Arraia-Maeztu","Arratzua-Ubarrundia","Iruraiz-Gauna","Oyón-Oion","Peñacerrada-Urizaharra","Vitoria-Gasteiz","Maó-Mahón","Bidania-Goiatz","Ezkio-Itsaso","Lasarte-Oria","Leintz-Gatzaga","Soraluze-Placencia de las Armas","Beintza-Labaien","Biurrun-Olcoz","Estella-Lizarra","Lizoáin-Arriasgoiti","Oroz-Betelu/Orotz-Betelu","Tiebas-Muruarte de Reta","Urroz-Villa","Abanto y Ciérvana-Abanto Zierbena","Amorebieta-Etxano","Gamiz-Fika","Gernika-Lumo","Markina-Xemein","Maruri-Jatabe","Munitibar-Arbatzegi Gerrikaitz","Trucios-Turtzioz","Ugao-Miraballes","Valle de Trápaga-Trapagaran","Ziortza-Bolibar"],["Araba/Álava","Araba/Álava","Araba/Álava","Araba/Álava","Araba/Álava","Araba/Álava","Araba/Álava","Balears, Illes","Gipuzkoa","Gipuzkoa","Gipuzkoa","Gipuzkoa","Gipuzkoa","Navarra","Navarra","Navarra","Navarra","Navarra","Navarra","Navarra","Bizkaia","Bizkaia","Bizkaia","Bizkaia","Bizkaia","Bizkaia","Bizkaia","Bizkaia","Bizkaia","Bizkaia","Bizkaia"],["País Vasco","País Vasco","País Vasco","País Vasco","País Vasco","País Vasco","País Vasco","Balears, Illes","País Vasco","País Vasco","País Vasco","País Vasco","País Vasco","Navarra, Comunidad Foral de","Navarra, Comunidad Foral de","Navarra, Comunidad Foral de","Navarra, Comunidad Foral de","Navarra, Comunidad Foral de","Navarra, Comunidad Foral de","Navarra, Comunidad Foral de","País Vasco","País Vasco","País Vasco","País Vasco","País Vasco","País Vasco","País Vasco","País Vasco","País Vasco","País Vasco","País Vasco"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>NombreMuni<\/th>\n      <th>NombreProv<\/th>\n      <th>NombreCCAA<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":10,"deferRender":true,"scrollY":400,"scroller":true,"order":[],"autoWidth":false,"orderClasses":false,"orderCellsTop":true},"selection":{"mode":"multiple","selected":null,"target":"row"}},"evals":[],"jsHooks":[]}</script>
+<p><br></p>
+<p>Se acabo!!! Faltan los mapas, pero para otro día/post. Me están entrando ganas de ver que provincia/CC.AA. española tiene mas municipios con nombre compuesto; por lo que he ido viendo al hacer el post apostaría por una de las dos Castillas, casi por Castilla-La Mancha, pero me resisto a la tentación.</p>
+<p><br></p>
+<p><strong>PD:</strong> La verdad es que el <a href="https://suzanbaert.netlify.com/2017/12/bilingualtowns">post de Suzan Baert</a> estaba más mejor. Hacía unos mapas muy chulos y además intentaba buscar una explicación, o agrupar los municipios con doble nombre. La explicación más obvia es que hay más municipios de este tipo cerca de la frontera entre Flandes y Valonia, pero hay otras.</p>
+<p>En mi caso, he evitado hacer comentarios/especulaciones sobre motivos por los que aparecen las dobles denominaciones. El nombre de los pueblos es algo importante para los lugareños: lo dice uno de Pancrudo, un pueblo de Teruel al que muchos denominan “Panduro”. Nos hace mucha gracia!!! 💥 😄.</p>
+<p>Agur</p>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>A los 30 minutos de dar por cerrado el post ya he encontrado tres municipios que contienen <code>-</code> en su nombre porque es un nombre compuesto: dos en el País Vasco (<code>Gernika-Lumo</code> y <code>Bidania-Goiatz</code>) y uno en Navarra (<code>Tiebas-Muruarte de Reta</code>). Seguro que hay alguno más!! , pero ya no lo corrijo, al menos por hoy. Tengo justificaciones varias: “La perfección es una pulida colección de errores” (Mario Benedetti), o “La perfección se logra al fin, no cuando no hay nada que agregar, sino cuando ya no hay nada que obtener” (Antoine de Saint-Exupéry) o “Procurando lo mejor estropeamos a menudo lo que está bien” (William Shakespeare) o “buscando perfección encontró dolor” (mía, a medias, la original que me rondaba la cabeza es “la vida es parte buscar placer y parte hallar dolor” de Nacho Vegas) y muchas más que puedes encontrar en www.proverbia.net o similares. No he conseguido arreglar el formato de las tablas, y las datatables no salen!! 👎. Al final tendré que cambiar el theme.<a href="#fnref1">↩</a></p></li>
+</ol>
+</div>
+
+        </div>
+        <footer class="article-footer">
+    <a data-url="/2018/01/20/municipios-espa%C3%B1oles-con-dos-nombres/" data-id="3785c674c5fe730df5b4da378d4c1fc6" class="article-share-link">
+        <i class="fa fa-share"></i>
+        Share
+    </a>
+    
+
+    <script>
+    (function ($) {
+        
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+    </script>
+</footer>
+
+    </div>
+
+    
+<nav id="article-nav">
+    
+    <a href="/2018/01/18/mapas-de-altitudes-municipios-de-teruel/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">
+          Older
+      </strong>
+      <div class="article-nav-title">Mapas de altitudes municipios de Teruel</div>
+    </a>
+    
+
+    
+</nav>
+
+
+</article>
+
+
+
+    </section>
+
+   	
+    	<aside id="sidebar">
+    
+<div class="widget-wrap">
+    <h3 class="widget-title">
+        Recents
+    </h3>
+    <div class="widget">
+        <ul id="recent-post">
+            
+            <li>
+                <div class="item-thumbnail">
+                    <a href="/2018/01/20/municipios-espa%C3%B1oles-con-dos-nombres/" class="thumbnail">
+                    
+                        <span class="thumbnail-image thumbnail-none"></span>
+                    
+                    </a>
+                </div>
+                <div class="item-inner">
+                    
+                    
+                    <p class="item-category">
+                        
+                        <a class="article-category-link" href="/categories/municipios">
+                        municipios
+                        </a>
+                    </p>
+                    
+                    
+                    <p class="item-title"><a href="/2018/01/20/municipios-espa%C3%B1oles-con-dos-nombres/" class="title">Municipios españoles con dos nombres</a></p>
+                    <p class="item-date">
+                        <time datetime="2018-01-20 00:00:00 &#43;0000 UTC" itemprop="datePublished">2018-01-20</time>
+                    </p>
+                </div>
+            </li>
+            
+            <li>
+                <div class="item-thumbnail">
+                    <a href="/2018/01/18/mapas-de-altitudes-municipios-de-teruel/" class="thumbnail">
+                    
+                        <span class="thumbnail-image thumbnail-none"></span>
+                    
+                    </a>
+                </div>
+                <div class="item-inner">
+                    
+                    
+                    <p class="item-category">
+                        
+                        <a class="article-category-link" href="/categories/municipios">
+                        municipios
+                        </a>
+                    </p>
+                    
+                    
+                    <p class="item-title"><a href="/2018/01/18/mapas-de-altitudes-municipios-de-teruel/" class="title">Mapas de altitudes municipios de Teruel</a></p>
+                    <p class="item-date">
+                        <time datetime="2018-01-18 00:00:00 &#43;0000 UTC" itemprop="datePublished">2018-01-18</time>
+                    </p>
+                </div>
+            </li>
+            
+            <li>
+                <div class="item-thumbnail">
+                    <a href="/2018/01/17/altitud-de-los-municipios-de-teruel/" class="thumbnail">
+                    
+                        <span class="thumbnail-image thumbnail-none"></span>
+                    
+                    </a>
+                </div>
+                <div class="item-inner">
+                    
+                    
+                    <p class="item-category">
+                        
+                        <a class="article-category-link" href="/categories/municipios">
+                        municipios
+                        </a>
+                    </p>
+                    
+                    
+                    <p class="item-title"><a href="/2018/01/17/altitud-de-los-municipios-de-teruel/" class="title">Altitud de los municipios de Teruel</a></p>
+                    <p class="item-date">
+                        <time datetime="2018-01-17 00:00:00 &#43;0000 UTC" itemprop="datePublished">2018-01-17</time>
+                    </p>
+                </div>
+            </li>
+            
+            <li>
+                <div class="item-thumbnail">
+                    <a href="/2018/01/17/creacion-y-tuneado-del-blog/" class="thumbnail">
+                    
+                        <span class="thumbnail-image thumbnail-none"></span>
+                    
+                    </a>
+                </div>
+                <div class="item-inner">
+                    
+                    
+                    <p class="item-category">
+                        
+                        <a class="article-category-link" href="/categories/blog">
+                        blog
+                        </a>
+                    </p>
+                    
+                    
+                    <p class="item-title"><a href="/2018/01/17/creacion-y-tuneado-del-blog/" class="title">Creación y tuneado del blog</a></p>
+                    <p class="item-date">
+                        <time datetime="2018-01-17 00:00:00 &#43;0000 UTC" itemprop="datePublished">2018-01-17</time>
+                    </p>
+                </div>
+            </li>
+            
+            <li>
+                <div class="item-thumbnail">
+                    <a href="/2018/01/17/elecci%C3%B3n-del-hugo-theme/" class="thumbnail">
+                    
+                        <span class="thumbnail-image thumbnail-none"></span>
+                    
+                    </a>
+                </div>
+                <div class="item-inner">
+                    
+                    
+                    <p class="item-category">
+                        
+                        <a class="article-category-link" href="/categories/blog">
+                        blog
+                        </a>
+                    </p>
+                    
+                    
+                    <p class="item-title"><a href="/2018/01/17/elecci%C3%B3n-del-hugo-theme/" class="title">Elección del Hugo theme</a></p>
+                    <p class="item-date">
+                        <time datetime="2018-01-17 00:00:00 &#43;0000 UTC" itemprop="datePublished">2018-01-17</time>
+                    </p>
+                </div>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+
+    
+
+
+<div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+        <ul class="category-list">
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="/categories/blog">
+                    blog
+                </a>
+                <span class="category-list-count">2</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="/categories/municipios">
+                    municipios
+                </a>
+                <span class="category-list-count">3</span>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+
+
+
+    
+
+
+<div class="widget-wrap">
+    <h3 class="widget-title">
+        Tags
+    </h3>
+    <div class="widget">
+        <ul class="category-list">
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="/tags/blog">
+                    blog
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="/tags/data-munging">
+                    data-munging
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="/tags/hugo-themes">
+                    hugo-themes
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="/tags/spatial-maps">
+                    spatial-maps
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+            <li class="category-list-item">
+                
+                <a class="category-list-link" href="/tags/web-scrapping">
+                    web-scrapping
+                </a>
+                <span class="category-list-count">1</span>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+
+
+
+    
+
+
+<div class="widget-wrap">
+    <h3 class="widget-title">
+        Tag cloud
+    </h3>
+    <div class="widget tagcloud">
+        
+        
+        <a href="/tags/blog" style="font-size: 12px;">blog</a>
+        
+        
+        <a href="/tags/data-munging" style="font-size: 12px;">data-munging</a>
+        
+        
+        <a href="/tags/hugo-themes" style="font-size: 12px;">hugo-themes</a>
+        
+        
+        <a href="/tags/spatial-maps" style="font-size: 12px;">spatial-maps</a>
+        
+        
+        <a href="/tags/web-scrapping" style="font-size: 12px;">web-scrapping</a>
+        
+    </div>
+</div>
+
+
+
+
+
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+
+    
+	</div>
+</div>
+
+<footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018
+      Powered by <a href="//gohugo.io">Hugo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>.
+    </div>
+  </div>
+</footer>
+
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-71846326-5', 'auto');
+ga('send', 'pageview');
+</script>
+
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script src="/js/script.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"></script>
+
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']]}
+  });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+
+
+</body>
+</html>
