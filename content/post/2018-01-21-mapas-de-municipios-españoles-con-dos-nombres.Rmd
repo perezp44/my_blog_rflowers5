@@ -293,7 +293,7 @@ navarra <-  tm_shape(prov)  + tm_borders(col = "red", lwd = 3, lty = "solid", al
 A ver si puedo hacer un leaflet map
 
 
-```{r}
+```{r, eval = FALSE}
 library(leaflet)
 virpalette <- rev(viridis(2)) #- gracias Suzan
 CCAA_in <- c("País Vasco", "Navarra, Comunidad Foral de", "Comunitat Valenciana")
@@ -307,12 +307,13 @@ CCAA_3 <- tm_shape(bb) +
   tm_polygons() +
   tm_layout(legend.position = c("left", "bottom"))
 
-library(leaflet)
 tmap_leaflet(CCAA_3) 
 ```
 
 
 Para mi bastante bien. Faltaría poner los lindes provinciales, pero ya vale por hoy.
+
+PERO ... los gráficos se ven en mi ordenador, pero no cuando subo el blog a netlify. El gozo en un pozo!!
 
 
 ```{r, eval = FALSE, echo = FALSE}
