@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Spatial Maps on R &amp; flowers V</title>
-    <link>/tags/spatial-maps/</link>
+    <link>https://rflowers5.netlify.com/tags/spatial-maps/</link>
     <description>Recent content in Spatial Maps on R &amp; flowers V</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Powered by [Hugo](//gohugo.io). Theme by [PPOffice](http://github.com/ppoffice).</copyright>
     <lastBuildDate>Thu, 18 Jan 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/tags/spatial-maps/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://rflowers5.netlify.com/tags/spatial-maps/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Mapas de altitudes municipios de Teruel</title>
-      <link>/2018/01/18/mapas-de-altitudes-municipios-de-teruel/</link>
+      <link>https://rflowers5.netlify.com/2018/01/18/mapas-de-altitudes-municipios-de-teruel/</link>
       <pubDate>Thu, 18 Jan 2018 00:00:00 +0000</pubDate>
       
-      <guid>/2018/01/18/mapas-de-altitudes-municipios-de-teruel/</guid>
+      <guid>https://rflowers5.netlify.com/2018/01/18/mapas-de-altitudes-municipios-de-teruel/</guid>
       <description>IntroEn el post anterior hice web scrapping bajándome una tabla con los municipios de Teruel con su altitud; pero no hice ningún mapa. Hoy voy a hacerlos.
 Primero hace falta bajarse esta tabla de la Wikipedia con las altitudes y guardarla en un dataframe. Esto lo expliqué en el post anterior así que ya tenemos la tabla con las altitudes almacenada en un dataframe que se llama Teruel. Tuvimos que limpiarla un poquito!</description>
     </item>
