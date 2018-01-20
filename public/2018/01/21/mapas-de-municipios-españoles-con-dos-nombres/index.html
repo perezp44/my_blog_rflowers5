@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en-us">
 <head>
-    <title>Elección del Hugo theme &middot; R &amp; flowers V</title>
+    <title>Mapas de municipios españoles con dos nombres &middot; R &amp; flowers V</title>
     <meta name="generator" content="Hugo 0.31" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="author" content="Pedro J. Pérez">
     
-      <meta name="description" content="Este blog está hecho desde R con el paquete Blogdown. Blogdown usa Hugo, y Hugo tiene diversas skins o themes. El theme de Hugo que he elegido para mi blog es Icarus. En este post describo el proceso y explico los motivos por los que me acabé decidiendo por Icarus; vamos que en el post cuento ¿cómo elegí el theme de mi Hugo blog?">
+      <meta name="description" content="En el post anterior identifique los municipios españoles con dos nombres oficiales, ahora hago mapas espaciales con los paquetes sf, tmap y leaflet. Salen chulos">
     
     
-    <link rel="canonical" href="/2018/01/17/elecci%C3%B3n-del-hugo-theme/"/>
+    <link rel="canonical" href="/2018/01/21/mapas-de-municipios-espa%C3%B1oles-con-dos-nombres/"/>
     <link rel="icon" href="/favicon.ico">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png"/>
     <link rel="stylesheet" href="/css/style.css">
@@ -22,16 +22,16 @@
     
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro' rel='stylesheet' type='text/css'>
-    <meta property="og:title" content="Elección del Hugo theme" />
-<meta property="og:description" content="Este blog está hecho desde R con el paquete Blogdown. Blogdown usa Hugo, y Hugo tiene diversas skins o themes. El theme de Hugo que he elegido para mi blog es Icarus. En este post describo el proceso y explico los motivos por los que me acabé decidiendo por Icarus; vamos que en el post cuento ¿cómo elegí el theme de mi Hugo blog?" />
+    <meta property="og:title" content="Mapas de municipios españoles con dos nombres" />
+<meta property="og:description" content="En el post anterior identifique los municipios españoles con dos nombres oficiales, ahora hago mapas espaciales con los paquetes sf, tmap y leaflet. Salen chulos" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="/2018/01/17/elecci%C3%B3n-del-hugo-theme/" />
+<meta property="og:url" content="/2018/01/21/mapas-de-municipios-espa%C3%B1oles-con-dos-nombres/" />
 
 
 
-<meta property="article:published_time" content="2018-01-17T00:00:00&#43;00:00"/>
+<meta property="article:published_time" content="2018-01-21T00:00:00&#43;00:00"/>
 
-<meta property="article:modified_time" content="2018-01-17T00:00:00&#43;00:00"/>
+<meta property="article:modified_time" content="2018-01-21T00:00:00&#43;00:00"/>
 
 
 
@@ -45,20 +45,20 @@
 
     
     
-<meta itemprop="name" content="Elección del Hugo theme">
-<meta itemprop="description" content="Este blog está hecho desde R con el paquete Blogdown. Blogdown usa Hugo, y Hugo tiene diversas skins o themes. El theme de Hugo que he elegido para mi blog es Icarus. En este post describo el proceso y explico los motivos por los que me acabé decidiendo por Icarus; vamos que en el post cuento ¿cómo elegí el theme de mi Hugo blog?">
+<meta itemprop="name" content="Mapas de municipios españoles con dos nombres">
+<meta itemprop="description" content="En el post anterior identifique los municipios españoles con dos nombres oficiales, ahora hago mapas espaciales con los paquetes sf, tmap y leaflet. Salen chulos">
 
 
-<meta itemprop="datePublished" content="2018-01-17T00:00:00&#43;00:00" />
-<meta itemprop="dateModified" content="2018-01-17T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="981">
+<meta itemprop="datePublished" content="2018-01-21T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2018-01-21T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="1035">
 
 
 
-<meta itemprop="keywords" content="Hugo themes," />
+<meta itemprop="keywords" content="spatial maps," />
 
-    <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Elección del Hugo theme"/>
-<meta name="twitter:description" content="Este blog está hecho desde R con el paquete Blogdown. Blogdown usa Hugo, y Hugo tiene diversas skins o themes. El theme de Hugo que he elegido para mi blog es Icarus. En este post describo el proceso y explico los motivos por los que me acabé decidiendo por Icarus; vamos que en el post cuento ¿cómo elegí el theme de mi Hugo blog?"/>
+    <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Mapas de municipios españoles con dos nombres"/>
+<meta name="twitter:description" content="En el post anterior identifique los municipios españoles con dos nombres oficiales, ahora hago mapas espaciales con los paquetes sf, tmap y leaflet. Salen chulos"/>
 <meta name="twitter:site" content="@pjpv4444"/>
 
     
@@ -272,9 +272,9 @@
         
 
         <header class="article-header">
-    <a href="/2018/01/17/elecci%C3%B3n-del-hugo-theme/">
+    <a href="/2018/01/21/mapas-de-municipios-espa%C3%B1oles-con-dos-nombres/">
     <h1 class="article-title" itemprop="name">
-        Elección del Hugo theme
+        Mapas de municipios españoles con dos nombres
     </h1>
     </a>
     <div class="article-meta">
@@ -282,9 +282,9 @@
         
         <div class="article-date">
             <i class="fa fa-calendar"></i>
-            <time datetime="2018-01-17 00:00:00 &#43;0000 UTC" itemprop="datePublished">2018-01-17</time>
+            <time datetime="2018-01-21 00:00:00 &#43;0000 UTC" itemprop="datePublished">2018-01-21</time>
             &middot;
-            981
+            1035
             words
             &middot;
             5
@@ -298,7 +298,7 @@
                 <i class="fa fa-folder"></i>
                 
                 
-                <a class="article-category-link" href="/categories/blog">blog</a>
+                <a class="article-category-link" href="/categories/municipios">municipios</a>
                 
                 
             </div>
@@ -312,7 +312,7 @@
                 <i class="fa fa-tags"></i>
                 
                 
-                <a class="article-category-link" href="/tags/hugo-themes">Hugo themes</a>
+                <a class="article-category-link" href="/tags/spatial-maps">spatial maps</a>
                 
                 
             </div>
@@ -322,75 +322,146 @@
 </header>
 
         <div class="article-entry" itemprop="articleBody">
-            <p>¿Qué porque elegí el <code>icarus-theme</code> para mi blog? Pues es una historia larga y de poco interés salvo que quieras hacer tu mismo otro blog para hablar de tus avances con R; pero para mi es útil poder recordar un poco este proceso. Así que vamos allá.</p>
-<div id="intro" class="section level3">
+            <div id="intro" class="section level3">
 <h3>Intro</h3>
-<p>Llevo tres o cuatro años jugando con R (me divierto!!) y hace como dos años me dio por hacer un blog y resulta que me gusto la experiencia. Hace un mes me desatasque de faenas varias y me ha dado por retomar lo del blog (se aprende un montón!!), pero esta vez un poco más en serio (ya veremos!!). Lo más moderno y que parece más fácil ahora es hacerlo con <a href="https://bookdown.org/yihui/blogdown/">blogdown</a>, así que en uno-dos días me leí por encima el libro de Yihui Xie y en 3-4 horas de pruebas tenía el blog en <a href="https://www.netlify.com/">Netlify</a>. Fue increíblemente fácil comparado con el proceso del anterior blog en el que usaba Jekyll.<br />
-<a href="https://bookdown.org/yihui/blogdown/">Blogdown</a> es un paquete de R hecho por <a href="https://yihui.name/en/">Yihiu Xie</a> y sirve para crear páginas web usando R Markdown y Hugo. <a href="https://gohugo.io/">Hugo</a> es un framework (hecho en <code>Go</code>) que sirve para generar páginas web estáticas como este blog. Es open-source y es muy utilizado entre otras cosas porque es rápido. Resulta que Hugo permite usar diferentes <code>themes</code> que además de proporcionar diferentes funcionalidades (tags, etc…) hacen que la página tenga una visualización especifica. Así que había que elegir un theme.</p>
+<p>En el anterior post, inspirado en <a href="https://suzanbaert.netlify.com/2017/12/bilingualtowns">este post</a> de <a href="https://github.com/suzanbaert">Suzan Baert</a> decidí ver cuantos municipios españoles tenían dos nombres oficiales. La verdad es que acabé un poco harto (por un problema con los nombres compuestos …), PERO, quiero ver si aprendo un poco a hacer mapas. Antes sabía, pero ahora quiero hacerlos con el package <code>sf</code>. Vamos allá.</p>
+<p>Lo primero es cargar los datos y señalar los pueblos con 2 nombres. Lo voy a hacer sólo de la primera forma en que lo hago en el post anterior; es decir, usaré la lista de municipios con dos nombres oficiales y me olvidaré de los municipios con nombre compuesto por el nombre en dos lenguas; por ejemplo: <code>Maó-Mahón</code>.</p>
 </div>
-<div id="primero-elegi-el-blackburn-theme-pero" class="section level3">
-<h3>Primero elegí el blackburn theme, pero …</h3>
-<p>Por diversas razones <a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a> el tema que más me gusto fue el <a href="https://themes.gohugo.io/blackburn/">blackburn theme</a>, y con ese tema construí un blog que ya no existe. El blog se llamaba <code>R &amp; Flowers II</code> y me gustaba, y funcionaba, pero … claro jugando con él me lo cargué <a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a>, así que decidí empezar de nuevo y surgió <code>R &amp; Flowers 4</code> (que aún existe, el tres me lo salté). Al principio estaba encantado con mi blog, pero trasteando con el me dí cuenta que tenía varios problemas, algunos los solucioné pero otros no sabía cómo. Por ejemplo:</p>
-<ul>
-<li><p>No me gustaba el highlight de los chunks. Esto lo pude solucionar con <code>highlightjs = &quot;github&quot;</code> en la sección de <code>[params]</code> del fichero <code>config.toml</code></p></li>
-<li><p>Problemas con los <code>htmlwidgets</code>. Resulta que en los primeros post inserte varias datatables generadas con el paquete <code>DT</code> y … sólo se mostraba la primera datatable. La segunda y siguientes, para que se mostrarán tuve que hacer un hack que encontré <a href="https://stackoverflow.com/questions/43594039/dt-package-not-working-with-blogdown-using-hugo-future-imperfect-theme">aquí</a>. La “solución” consiste en grabar la datatable como un objeto e insertarlo en un iframe. Algo como:</p></li>
-</ul>
-<pre class="r"><code>library(htmlwidgets)
-library(htmltools)
-htmlwidgets::saveWidget(dt_Teruel, file = &quot;C://Users/perezp/desktop/dt_Teruel.html&quot;, selfcontained = TRUE)
-# para luego insertarlo con
-&lt;iframe seamless src=&quot;/dt_Teruel.html&quot; width=&quot;100%&quot; height=&quot;500&quot;&gt;&lt;/iframe&gt;</code></pre>
-<ul>
-<li><p>No tiene soporte para Mathjax (lo intenté pero era massa para mi)</p></li>
-<li><p>Las tablas: ya podía usar lo que fuera, que no me las formateaba como yo quería; sin embargo en otros blogs que cotilleé, simplemente con <code>kable()</code> les salían chulas.</p></li>
-</ul>
-<p>Vamos que me vi obligado a que cambiar de theme, pero algún día volveré al <code>blackburn-theme</code> porque visualmente me gusta. Volveré cuando vea por ahí algún blog que haya solucionado todo esto; vamos que me espero a que <a href="http://varianceexplained.org/">David Robinson</a> haga el paso de su blog de Jekyll a Hugo. Así que por si acaso vuelvo a blackburn, me apunto algunas cosas que aprendí:</p>
-<ul>
-<li><p>El logo (el ababol) está en el config-toml en <code>brand</code>. La afoto está en <code>./static/img/logo.jpg</code>, y el trozo de código está en <code>. /layout/partials/brand.html</code>.</p></li>
-<li><p>3 ejemplos de blogs con este theme: <a href="https://www.mattcraddock.com/" class="uri">https://www.mattcraddock.com/</a> ; <a href="http://yoshiharuyamashita.com/" class="uri">http://yoshiharuyamashita.com/</a> del creador del theme y <a href="https://simplystatistics.org/" class="uri">https://simplystatistics.org/</a> de Rafa Irizarry, Roger Peng y Jeff Leek.</p></li>
-<li><p>Si quieres que el deploy sea en <code>./docs</code> de Github tienes que incluir en el config. toml: <code>publishDir = &quot;docs&quot;</code> ; y además incluir un archivo named <code>.nojekyll</code> in the root of your pages repo and pushing it to GitHub. This should only be necessary if your site uses files or directories that start with underscores since Jekyll considers these to be special resources and does not copy them to the final site.</p></li>
-</ul>
+<div id="cargando-paquetes-y-datos" class="section level3">
+<h3>Cargando paquetes y datos</h3>
+<pre class="r"><code>#devtools::install_github(&quot;perezp44/mypkgDataforblog&quot;)
+library(mypkgDataforblog) #- personal pkg
+library(stringr)
+library(tidyverse)
+library(kableExtra)</code></pre>
+<pre class="r"><code>df &lt;- cod_INE_muni_pjp
+#- primer criterio (estricto): municipios con  &quot;/&quot; en NombreMuni
+df &lt;- df %&gt;% mutate(yes_2_names_A = str_detect(NombreMuni, &quot;/&quot;))</code></pre>
+<p>Ok, ya tenemos marcados los municipios con 2 nombres oficiales.</p>
 </div>
-<div id="tocaba-cambiar-de-theme" class="section level3">
-<h3>Tocaba cambiar de theme</h3>
-<p>Una vez decidido que dejaba el <code>blackburn theme</code>, me puse a mirar <a href="https://themes.gohugo.io/">Hugo themes</a> y estuve dudando entre: <a href="https://themes.gohugo.io/hugo-icarus/">Icarus</a>, <a href="https://themes.gohugo.io/whiteplain/">White Plain</a>, <a href="https://themes.gohugo.io/bootstrap/">Bootstap4</a>, <a href="https://themes.gohugo.io/mainroad/">Mainroad</a> y <a href="https://themes.gohugo.io/hugo-xmin/">Xmin</a>.</p>
-<p>El que más me gustaba visualmente era <a href="https://themes.gohugo.io/mainroad/">Mainroad</a>, pero al final vi que entre la R community los 2 temas más usados eran <a href="https://themes.gohugo.io/hugo-icarus/">Icarus</a> y <a href="https://themes.gohugo.io/hugo-tranquilpeak-theme/">Tranquilpeak</a>, bueno también <a href="https://themes.gohugo.io/academic/">Academic</a>, pero este no me gustaba.</p>
-<p>Primero me decidí por <a href="https://themes.gohugo.io/hugo-tranquilpeak-theme/">Tranquilpeak</a>. Visualmente no me gustaba, pero vi 3 blogs que parecía que tenían todo lo que yo quería (tablas chulas etc…). Los 3 blogs son: <a href="https://suzanbaert.netlify.com/">[Suzan Baert]</a>, <a href="https://shirinsplayground.netlify.com/">[Shirin’s playgRound]</a> y <a href="https://aurora-mareviv.github.io/">[aurora-mareviv]</a>.</p>
-<p>Hice pruebas con el <code>tranquil-peak theme</code> y mi gozo en un pozo. No mostraba ecuaciones en Látex. <a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a> Así que finalmente me decidí por el theme <a href="https://themes.gohugo.io/hugo-icarus/">Icarus</a>. Parece que tiene todo lo que quiero: tags, categorías, mathjax, nice tables, htmlwidgets … ya vorem.</p>
-<p>En el próximo post contaré mis aventuras tuneando mi <code>Hugo-Icarus blog</code></p>
-<p>Bye!!!</p>
+<div id="cargando-los-shapefiles" class="section level3">
+<h3>Cargando los shapefiles</h3>
+<p>Cargo los shapefiles. Los tengo en mi paquete de datos y en formato <code>sf</code></p>
+<pre class="r"><code>#- https://emmavestesson.netlify.com/2018/01/maps/
+#- https://cran.r-project.org/web/packages/sf/vignettes/sf1.html#reading-and-writing
+#- https://cran.r-project.org/web/packages/sf/vignettes/sf2.html
+#- https://github.com/mtennekes/tmap
+
+library(sf)
+library(tmap)
+zz &lt;- CNIG_municipios_sf #- cargo shape files (8116 municipios)</code></pre>
+<p>Primer problema; además, no voy a solucionarlo (recordáis lo de que la perfección no mola!!). Resulta que los datos con los nombres oficiales de municipios son del INE a 1 de diciembre de 2016, pero la shapefile es de 2011 o por ahí (tengo que actualizarla), y claro, desde 2011 ha ocurrido que algunos municipios que se han independizado, juntado etc…</p>
+<p>En concreto:</p>
+<ul>
+<li><p>2 municipios que existían en 2011 (Cesuras y Oza), y por tanto tienen shape, decidieron juntarse y en 2016 ya eran Oza-Cesuras</p></li>
+<li><p>Hay 11 municipios que existían en 2016 (y espero que sigan existiendo ahora en 2018) pero que no existían en 2011 y por tanto, no tienen shape en mi fichero). Por ejemplo el municipio de Balanegra en Almería, que se “independizo” de Berja en junio de 2015.</p></li>
+</ul>
+<p>Si te entra curiosidad por saber que municipios son los que se han creado, puedes hacerlo con el chunk de abajo. Hay 4 pueblos de Granada.</p>
+<pre class="r"><code>aa &lt;- df %&gt;% select(INECodMuni, NombreMuni, NombreProv)
+bb &lt;- zz %&gt;% select(INECodMuni, NombreMuni, NombreProv)
+cambios_muni &lt;- full_join(aa ,bb, by = &quot;INECodMuni&quot;) %&gt;% filter(is.na(NombreMuni.x)|is.na(NombreMuni.y)) 
+#kable(cambios_muni)</code></pre>
 <p><br></p>
-<hr />
 </div>
-<div id="ejemplos-de-icarus-blogs" class="section level3">
-<h3>Ejemplos de Icarus blogs</h3>
-<ul>
-<li><p><a href="https://maraaverick.rbind.io/">Mara Averick</a></p></li>
-<li><p><a href="https://www.znmeb.mobi/">Borasky Research Journal</a></p></li>
-</ul>
+<div id="solo-hay-municipios-con-2-nombres-en-3-cc.aa." class="section level3">
+<h3>Solo hay municipios con 2 nombres en 3 CC.AA.</h3>
+<p>Resulta que sólo hay municipios con 2 nombres en Navarra, País Vasco y Comunitat Valenciana, así que voy a seleccionar esas CC.AA. y el gráfico saldrá mejor. Haré uno para cada CC.AA.</p>
+<p>Fusiono la lista de municipios (df) con la shapefile(zz):</p>
+<pre class="r"><code>df &lt;- df %&gt;% select(INECodMuni, NombreMuni, NombreCCAA, yes_2_names_A)
+zz &lt;- zz %&gt;% select(INECodMuni, INECodProv, INECodCCAA)
+aa &lt;- right_join(zz, df, by = &quot;INECodMuni&quot;)</code></pre>
+<p>A ver si me salen unos gráficos chulos. Los chunks de Suzan Baert <a href="https://suzanbaert.netlify.com/2017/12/bilingualtowns">en este post</a> me fueron muy-muy útiles.</p>
+<pre class="r"><code>library(tmap)
+library(viridisLite)
+library(leaflet)</code></pre>
+<p>Cargo también el fichero con los lindes provinciales:</p>
+<pre class="r"><code>zz_prov &lt;- CNIG_provincias_sf #- cargo shape files provincial
+zz_prov &lt;- zz_prov %&gt;% select(INECodProv, NombreProv, INECodCCAA, NombreCCAA)</code></pre>
+<pre class="r"><code>virpalette &lt;- c(&quot;white&quot;, &quot;#E41A1C&quot;)
+
+#- Navarra
+zz_b &lt;- zz_prov %&gt;% filter(INECodCCAA == &quot;16&quot;)
+bb &lt;- aa %&gt;% filter(INECodCCAA == &quot;16&quot;)  #- 15 = Navarra; 16 = PV, 10 = Valencia
+bb_a &lt;- bb %&gt;% mutate(yes_2_names_A = ifelse(yes_2_names_A == TRUE, &quot;2 nombres&quot;, &quot;&quot;))
+pais_vasco &lt;- tm_shape(bb_a, alpha = 0.3) +
+  tm_fill(col = &quot;yes_2_names_A&quot;, palette = virpalette, title = &quot;País Vasco&quot;) +
+  tm_polygons(border.alpha = 0.6) +
+  tm_layout(legend.position = c(&quot;left&quot;, &quot;bottom&quot;))
+pais_vasco &lt;-   pais_vasco + tm_shape(zz_b, alpha = 0.2) + tm_polygons(lwd = 1.8, border.col = &quot;black&quot;, alpha = 0.2)
+
+#- País Vasco
+zz_b &lt;- zz_prov %&gt;% filter(INECodCCAA == &quot;15&quot;)
+bb &lt;- aa %&gt;% filter(INECodCCAA == &quot;15&quot;)  #- 15 = Navarra; 16 = PV, 10 = Valencia
+bb_a &lt;- bb %&gt;% mutate(yes_2_names_A = ifelse(yes_2_names_A == TRUE, &quot;2 nombres&quot;, &quot;&quot;))
+navarra &lt;- tm_shape(bb_a, alpha = 0.3) +
+  tm_fill(col = &quot;yes_2_names_A&quot;, palette = virpalette, title = &quot;Comunidad Foral de Navarra&quot;) +
+  tm_polygons(border.alpha = 0.6) +
+  tm_layout(legend.position = c(&quot;left&quot;, &quot;bottom&quot;))
+navarra &lt;-   navarra + tm_shape(zz_b, alpha = 0.2) + tm_polygons(lwd = 1.8, border.col = &quot;black&quot;, alpha = 0.2)
+
+#- Comunitat Valenciana
+zz_b &lt;- zz_prov %&gt;% filter(INECodCCAA == &quot;10&quot;)
+bb &lt;- aa %&gt;% filter(INECodCCAA == &quot;10&quot;)  #- 15 = Navarra; 16 = PV, 10 = Valencia
+bb_a &lt;- bb %&gt;% mutate(yes_2_names_A = ifelse(yes_2_names_A == TRUE, &quot;2 nombres&quot;, &quot;&quot;))
+comunitat_val &lt;- tm_shape(bb_a, alpha = 0.3) +
+  tm_fill(col = &quot;yes_2_names_A&quot;, palette = virpalette, title = &quot;Comunitat Valenciana&quot;) +
+  tm_polygons(border.alpha = 0.6) +
+  tm_layout(legend.position = c(&quot;left&quot;, &quot;bottom&quot;))
+comunitat_val &lt;-   comunitat_val + tm_shape(zz_b, alpha = 0.2) + tm_polygons(lwd = 1.8, border.col = &quot;black&quot;, alpha = 0.2)
+
+#Show both plots next to each other (gracias Suzan)
+tmap_arrange(navarra, pais_vasco, comunitat_val)</code></pre>
+<p><img src="2018-01-21-mapas-de-municipios-españoles-con-dos-nombres_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p>Ahora un gráfico con las 3 CC.AA. juntas y sobre el mapa de España. A ver como salen las 3 juntas:</p>
+<pre class="r"><code>#Plot different regions
+virpalette &lt;- c(&quot;white&quot;, &quot;#E41A1C&quot;)
+
+CCAA_in &lt;- c(&quot;País Vasco&quot;, &quot;Navarra, Comunidad Foral de&quot;, &quot;Comunitat Valenciana&quot;)
+CCAA_in &lt;- c(&quot;16&quot;, &quot;15&quot;, &quot;10&quot;)
+
+zz_b &lt;- zz_prov %&gt;% filter(INECodCCAA %in% CCAA_in)
+
+bb &lt;- aa %&gt;% filter(INECodCCAA %in% CCAA_in)  #- 15 = Navarra; 16 = PV, 10 = Valencia 
+bb_a &lt;- bb %&gt;% mutate(yes_2_names_A = ifelse(yes_2_names_A == TRUE, &quot;2 nombres&quot;, &quot;&quot;))
+
+map_las_3 &lt;- tm_shape(bb_a, alpha = 0.3) +
+  tm_fill(col = &quot;yes_2_names_A&quot;, palette = virpalette, title = &quot;Municipios 2 nombres&quot;) +
+  tm_polygons(border.alpha = 0.6) +
+  tm_layout(legend.position = c(&quot;left&quot;, &quot;bottom&quot;))
+map_las_3 &lt;- map_las_3 + tm_shape(zz_b, alpha = 0.2) + tm_polygons(lwd = 1.8, border.col = &quot;black&quot;, alpha = 0.2)
+
+hh &lt;- CNIG_CCAA_sf #- cargo shape files (8116 municipios)
+map_las_3 &lt;- map_las_3 + tm_shape(hh, alpha = 0.2) + tm_polygons(lwd = 1.8, border.col = &quot;black&quot;, alpha = 0.2)
+
+
+tmap_arrange(map_las_3)</code></pre>
+<p><img src="2018-01-21-mapas-de-municipios-españoles-con-dos-nombres_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p>Bien. Decente.</p>
 </div>
-<div id="documentacion-de-icarus" class="section level3">
-<h3>Documentación de Icarus</h3>
-<ul>
-<li><p><a href="https://gohugo.io/">Hugo</a></p></li>
-<li><p><a href="https://gohugo.io/getting-started/installing/">Guía oficial de Hugo</a></p></li>
-<li><p><a href="https://themes.gohugo.io/hugo-icarus/">Icarus-theme</a></p></li>
-<li><p><a href="https://github.com/digitalcraftsman/hugo-icarus-theme">Web de Icarus</a></p></li>
-</ul>
-<hr />
-</div>
-<div class="footnotes">
-<hr />
-<ol>
-<li id="fn1"><p>Visualmente me gusta , es sencillo y claro; además me gusta que tenga la opción de poner tags y categories a los posts.<a href="#fnref1">↩</a></p></li>
-<li id="fn2"><p>Resulta que hacer un blog con blogdown es muy-muy fácil, pero cuando vas cambiando cosas hay que saber algo de html, css y de más cosas, y en esto yo aun se bastante poco.<a href="#fnref2">↩</a></p></li>
-<li id="fn3"><p>Ahora creo que en realidad el tranquil-peak theme si que permite mostrar formulas, sólo que la visualización la hice en el navegador de RStudio. Esto lo pensé después de ver que con las pruebas que hacia con el Icarus theme mostraba bien las formulas en Firefox pero no en el navegador de RStudio. También me ayudo que ví que aurora-maveric había solucionado lo de Mathjax en Tranquilpeak. Lo ví <a href="https://github.com/kakawait/hugo-tranquilpeak-theme/pull/191">aquí</a>. Pero para entonces ya estaba decidido a probar Icarus.<a href="#fnref3">↩</a></p></li>
-</ol>
+<div id="mapa-con-leaflet" class="section level1">
+<h1>Mapa con leaflet</h1>
+<p>A ver si puedo hacer un leaflet map</p>
+<pre class="r"><code>library(leaflet)
+virpalette &lt;- rev(viridis(2)) #- gracias Suzan
+CCAA_in &lt;- c(&quot;País Vasco&quot;, &quot;Navarra, Comunidad Foral de&quot;, &quot;Comunitat Valenciana&quot;)
+CCAA_in &lt;- c(&quot;16&quot;, &quot;15&quot;, &quot;10&quot;)
+
+zz_b &lt;- zz_prov %&gt;% filter(INECodCCAA %in% CCAA_in)
+bb &lt;- aa %&gt;% filter(INECodCCAA %in% CCAA_in)  #- 15 = Navarra; 16 = PV, 10 = Valencia 
+
+CCAA_3 &lt;- tm_shape(bb) +
+  tm_fill(col = &quot;yes_2_names_A&quot;, palette = virpalette, title = &quot;¿Dos nombres?&quot;, popup.vars = &quot;NombreMuni&quot;) +
+  tm_polygons() +
+  tm_layout(legend.position = c(&quot;left&quot;, &quot;bottom&quot;))
+
+tmap_leaflet(CCAA_3) </code></pre>
+<p>Para mi bastante bien. Faltaría poner los lindes provinciales, pero ya vale por hoy.</p>
+<p>PERO … los gráficos se ven en mi ordenador, pero no cuando subo el blog a netlify. El gozo en un pozo!!</p>
 </div>
 
         </div>
         <footer class="article-footer">
-    <a data-url="/2018/01/17/elecci%C3%B3n-del-hugo-theme/" data-id="f94a65f2136c85c9a66457ece0428796" class="article-share-link">
+    <a data-url="/2018/01/21/mapas-de-municipios-espa%C3%B1oles-con-dos-nombres/" data-id="b090ea2cce172aca0213129de4682a76" class="article-share-link">
         <i class="fa fa-share"></i>
         Share
     </a>
@@ -467,14 +538,14 @@ htmlwidgets::saveWidget(dt_Teruel, file = &quot;C://Users/perezp/desktop/dt_Teru
     
 <nav id="article-nav">
     
-
-    
-    <a href="/2018/01/17/creacion-y-tuneado-del-blog/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/01/20/municipios-espa%C3%B1oles-con-dos-nombres/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">
-          Newer
+          Older
       </strong>
-      <div class="article-nav-title">Creación y tuneado del blog</div>
+      <div class="article-nav-title">Municipios españoles con dos nombres</div>
     </a>
+    
+
     
 </nav>
 
