@@ -253,7 +253,6 @@ La tabla:
 
 ```{r}
 aa <- df_2 %>% select(NombreMuni, NombreProv, NombreCCAA)
-library(DT)
 datatable(aa, caption = "Cuadro 3a: (nuevos) Municipios con \"dos nombres oficiales\"",extensions = 'Scroller', options = list( pageLength = 10, deferRender = TRUE,scrollY = 400,scroller = TRUE), rownames = F, filter = "top" )
 ```
 
