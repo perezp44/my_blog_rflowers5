@@ -167,9 +167,20 @@ comunitat_val <- tm_shape(bb_a, alpha = 0.3) +
   tm_layout(legend.position = c("left", "bottom"))
 comunitat_val <-   comunitat_val + tm_shape(zz_b, alpha = 0.2) + tm_polygons(lwd = 1.8, border.col = "black", alpha = 0.2)
 
-#Show both plots next to each other (gracias Suzan)
-tmap_arrange(navarra, pais_vasco, comunitat_val)
+#Show both plots next to each other (gracias Suzan!) ()
+#tmap_arrange(navarra, pais_vasco, comunitat_val)
 ```
+
+
+Lo mismo que me pasa con las `datatables` me pasa con los `tmaps`. En RStudio sí se muestran, pero no se muestran en el blog; así que hasta que lo solucione, los grabo y los pego.
+
+
+```{r echo = FALSE, comment = "",  out.width = '95%', fig.align = 'center'}
+knitr::include_graphics( c("/posts/2018/2018_01_21_mapas_muni_2_nombres/tmap_1.png") )
+```
+
+
+El gráfico esta decente, solo que al poner los 3 gráficos en cuadricula, parece que la Comunitat Valenciana sea la C.A. más pequeña, cuando no es así, en el siguiente gráfico sí se pueden comparar los tamaños.
 
 
 
@@ -196,15 +207,69 @@ map_las_3 <- map_las_3 + tm_shape(zz_b, alpha = 0.2) + tm_polygons(lwd = 1.8, bo
 hh <- CNIG_CCAA_sf #- cargo shape files (8116 municipios)
 map_las_3 <- map_las_3 + tm_shape(hh, alpha = 0.2) + tm_polygons(lwd = 1.8, border.col = "black", alpha = 0.2)
 
-
-tmap_arrange(map_las_3)
+#tmap_arrange(map_las_3)
 
 ``` 
+
+Ocurre lo mismo, como tengo problemas para mostrarlo en el blog, copio y muestro el tmap.
+
+
+```{r echo = FALSE, comment = "",  out.width = '90%', fig.align = 'center'}
+knitr::include_graphics( c("/posts/2018/2018_01_21_mapas_muni_2_nombres/tmap_2.png") )
+```
+
+
+
 
 Bien. Decente.
 
 
 
+
+# Mapa con leaflet
+
+A ver si puedo hacer un leaflet map. Ya tengo claro que lo tendré que guardar y pegar en un iframe.
+
+
+```{r, eval = FALSE}
+library(leaflet)
+virpalette <- rev(viridis(2)) #- gracias Suzan
+CCAA_in <- c("País Vasco", "Navarra, Comunidad Foral de", "Comunitat Valenciana")
+CCAA_in <- c("16", "15", "10")
+
+zz_b <- zz_prov %>% filter(INECodCCAA %in% CCAA_in)
+bb <- aa %>% filter(INECodCCAA %in% CCAA_in)  #- 15 = Navarra; 16 = PV, 10 = Valencia 
+
+CCAA_3 <- tm_shape(bb) +
+  tm_fill(col = "yes_2_names_A", palette = virpalette, title = "¿Dos nombres?", popup.vars = "NombreMuni") +
+  tm_polygons() +
+  tm_layout(legend.position = c("left", "bottom"))
+
+my_tmap_leaf_1 <- tmap_leaflet(CCAA_3) 
+```
+
+
+
+```{r}
+library(htmlwidgets)
+library(htmltools)
+#saveWidget(my_tmap_leaf_1, "C://Users/perezp/Desktop/pp/my_tmap_leaf_1.html")
+#<iframe seamless src="/posts/2018/2018_01_21_mapas_muni_2_nombres/my_tmap_leaf_1.html" width="100%" height="500"></iframe>
+```
+
+
+
+<iframe seamless src="/posts/2018/2018_01_21_mapas_muni_2_nombres/my_tmap_leaf_1.html" width="100%" height="500"></iframe>
+
+
+
+Para mi vale. Faltaría poner los lindes provinciales, pero ya vale por hoy. El problema de los htmlwidgets me fastidia un poquito. Otro día más.
+
+
+<br>
+
+
+PD: (para mí) en el source de este post tienes como hacer gráficos con `ggplot2` y `sf` y alguna prueba más.
 
 
 
@@ -287,33 +352,6 @@ navarra <-  tm_shape(prov)  + tm_borders(col = "red", lwd = 3, lty = "solid", al
 ```
 
 
-
-# Mapa con leaflet
-
-A ver si puedo hacer un leaflet map
-
-
-```{r, eval = FALSE}
-library(leaflet)
-virpalette <- rev(viridis(2)) #- gracias Suzan
-CCAA_in <- c("País Vasco", "Navarra, Comunidad Foral de", "Comunitat Valenciana")
-CCAA_in <- c("16", "15", "10")
-
-zz_b <- zz_prov %>% filter(INECodCCAA %in% CCAA_in)
-bb <- aa %>% filter(INECodCCAA %in% CCAA_in)  #- 15 = Navarra; 16 = PV, 10 = Valencia 
-
-CCAA_3 <- tm_shape(bb) +
-  tm_fill(col = "yes_2_names_A", palette = virpalette, title = "¿Dos nombres?", popup.vars = "NombreMuni") +
-  tm_polygons() +
-  tm_layout(legend.position = c("left", "bottom"))
-
-tmap_leaflet(CCAA_3) 
-```
-
-
-Para mi bastante bien. Faltaría poner los lindes provinciales, pero ya vale por hoy.
-
-PERO ... los gráficos se ven en mi ordenador, pero no cuando subo el blog a netlify. El gozo en un pozo!!
 
 
 ```{r, eval = FALSE, echo = FALSE}

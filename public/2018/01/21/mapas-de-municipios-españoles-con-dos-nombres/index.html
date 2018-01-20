@@ -51,7 +51,7 @@
 
 <meta itemprop="datePublished" content="2018-01-21T00:00:00&#43;00:00" />
 <meta itemprop="dateModified" content="2018-01-21T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="1035">
+<meta itemprop="wordCount" content="1159">
 
 
 
@@ -284,10 +284,10 @@
             <i class="fa fa-calendar"></i>
             <time datetime="2018-01-21 00:00:00 &#43;0000 UTC" itemprop="datePublished">2018-01-21</time>
             &middot;
-            1035
+            1159
             words
             &middot;
-            5
+            6
             minute read
         </div>
         
@@ -409,9 +409,11 @@ comunitat_val &lt;- tm_shape(bb_a, alpha = 0.3) +
   tm_layout(legend.position = c(&quot;left&quot;, &quot;bottom&quot;))
 comunitat_val &lt;-   comunitat_val + tm_shape(zz_b, alpha = 0.2) + tm_polygons(lwd = 1.8, border.col = &quot;black&quot;, alpha = 0.2)
 
-#Show both plots next to each other (gracias Suzan)
-tmap_arrange(navarra, pais_vasco, comunitat_val)</code></pre>
-<p><img src="2018-01-21-mapas-de-municipios-españoles-con-dos-nombres_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+#Show both plots next to each other (gracias Suzan!) ()
+#tmap_arrange(navarra, pais_vasco, comunitat_val)</code></pre>
+<p>Lo mismo que me pasa con las <code>datatables</code> me pasa con los <code>tmaps</code>. En RStudio sí se muestran, pero no se muestran en el blog; así que hasta que lo solucione, los grabo y los pego.</p>
+<p><img src="/posts/2018/2018_01_21_mapas_muni_2_nombres/tmap_1.png" width="95%" style="display: block; margin: auto;" /></p>
+<p>El gráfico esta decente, solo que al poner los 3 gráficos en cuadricula, parece que la Comunitat Valenciana sea la C.A. más pequeña, cuando no es así, en el siguiente gráfico sí se pueden comparar los tamaños.</p>
 <p>Ahora un gráfico con las 3 CC.AA. juntas y sobre el mapa de España. A ver como salen las 3 juntas:</p>
 <pre class="r"><code>#Plot different regions
 virpalette &lt;- c(&quot;white&quot;, &quot;#E41A1C&quot;)
@@ -433,14 +435,14 @@ map_las_3 &lt;- map_las_3 + tm_shape(zz_b, alpha = 0.2) + tm_polygons(lwd = 1.8,
 hh &lt;- CNIG_CCAA_sf #- cargo shape files (8116 municipios)
 map_las_3 &lt;- map_las_3 + tm_shape(hh, alpha = 0.2) + tm_polygons(lwd = 1.8, border.col = &quot;black&quot;, alpha = 0.2)
 
-
-tmap_arrange(map_las_3)</code></pre>
-<p><img src="2018-01-21-mapas-de-municipios-españoles-con-dos-nombres_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+#tmap_arrange(map_las_3)</code></pre>
+<p>Ocurre lo mismo, como tengo problemas para mostrarlo en el blog, copio y muestro el tmap.</p>
+<p><img src="/posts/2018/2018_01_21_mapas_muni_2_nombres/tmap_2.png" width="90%" style="display: block; margin: auto;" /></p>
 <p>Bien. Decente.</p>
 </div>
 <div id="mapa-con-leaflet" class="section level1">
 <h1>Mapa con leaflet</h1>
-<p>A ver si puedo hacer un leaflet map</p>
+<p>A ver si puedo hacer un leaflet map. Ya tengo claro que lo tendré que guardar y pegar en un iframe.</p>
 <pre class="r"><code>library(leaflet)
 virpalette &lt;- rev(viridis(2)) #- gracias Suzan
 CCAA_in &lt;- c(&quot;País Vasco&quot;, &quot;Navarra, Comunidad Foral de&quot;, &quot;Comunitat Valenciana&quot;)
@@ -454,9 +456,16 @@ CCAA_3 &lt;- tm_shape(bb) +
   tm_polygons() +
   tm_layout(legend.position = c(&quot;left&quot;, &quot;bottom&quot;))
 
-tmap_leaflet(CCAA_3) </code></pre>
-<p>Para mi bastante bien. Faltaría poner los lindes provinciales, pero ya vale por hoy.</p>
-<p>PERO … los gráficos se ven en mi ordenador, pero no cuando subo el blog a netlify. El gozo en un pozo!!</p>
+my_tmap_leaf_1 &lt;- tmap_leaflet(CCAA_3) </code></pre>
+<pre class="r"><code>library(htmlwidgets)
+library(htmltools)
+#saveWidget(my_tmap_leaf_1, &quot;C://Users/perezp/Desktop/pp/my_tmap_leaf_1.html&quot;)
+#&lt;iframe seamless src=&quot;/posts/2018/2018_01_21_mapas_muni_2_nombres/my_tmap_leaf_1.html&quot; width=&quot;100%&quot; height=&quot;500&quot;&gt;&lt;/iframe&gt;</code></pre>
+<iframe seamless src="/posts/2018/2018_01_21_mapas_muni_2_nombres/my_tmap_leaf_1.html" width="100%" height="500">
+</iframe>
+<p>Para mi vale. Faltaría poner los lindes provinciales, pero ya vale por hoy. El problema de los htmlwidgets me fastidia un poquito. Otro día más.</p>
+<p><br></p>
+<p>PD: (para mí) en el source de este post tienes como hacer gráficos con <code>ggplot2</code> y <code>sf</code> y alguna prueba más.</p>
 </div>
 
         </div>

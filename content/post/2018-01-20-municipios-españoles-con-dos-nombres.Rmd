@@ -6,8 +6,8 @@ slug: municipios-españoles-con-dos-nombres
 categories: [municipios]
 tags: [data munging]
 description: 'Inspirado por un post de Suzan Baert me ha dado por ver cuantos municipios españoles tienen dos nombres oficiales. Avanzo el resultado: en España representan el 1,46%, mientras que en Bélgica son un 16%. Nos ganan!! Los mapas los dejo para el siguiente post.'
-#banner:   'banners/nest_pas_unconf.png'
-#images:     #['img/nest_pas_unconf.png']
+#banner:   'banners/placeholder.png'
+#images:   ['banners/placeholder.png']
 #menu: ''
 ---
 
@@ -120,26 +120,38 @@ La verdad es que por provincias los resultados *"cambian"*, incluso hay cuatro p
 
 <br>
 
-Para el que tenga curiosidad en ver exactamente que municipios son los que tienen dos nombres:
+Para el que tenga curiosidad en ver exactamente que municipios son los que tienen dos nombres, voy a hacer una datatable:
 
-**Cuadro 3:** Municipios con dos nombres oficiales
 
 
 ```{r}
-library(DT)
 aa <- df %>% filter(yes_2_names != 0) %>% 
   select(NombreMuni, NombreProv, NombreCCAA)
 
-DT_1 <- datatable(aa, extensions = 'Scroller', options = list( pageLength = 10, deferRender = TRUE,scrollY = 400,scroller = TRUE), rownames = F, filter = "top" )
+library(DT)
+DT_1 <- datatable(aa, caption = "Cuadro 3: Municipios con dos nombres oficiales",extensions = 'Scroller', options = list( pageLength = 10, deferRender = TRUE,scrollY = 400,scroller = TRUE), rownames = F, filter = "top",  fillContainer = T )
 ```
 
-No se porque pero no se muestra la datatable
+La datatable no se muestra. Es un problema que no acabo de entender del todo, pero parece que lo que pasa es que `blogdown` tiene un problema con los htmlwidgets si el hugo-theme usa las mismas librerias de javascipt. [^1] Así que no me queda más remedio que hacerlo a capón: grabar el objeto como un `htmlwidget`, copiarlo en la carpera `/static/` y cargarlo como un `iframe` (massa para mi). A ver si sale:
+
+
 
 ```{r}
-DT_1
+library(htmlwidgets)
+library(htmltools)
+#saveWidget(DT_1, "C://Users/perezp/Desktop/DT_1.html")
+#<iframe seamless src="/posts/2018/2018_01_20_municipios_2_nombres/DT_1.html" width="100%" height="500"></iframe>
 ```
 
-  <br>
+
+
+<iframe seamless src="/posts/2018/2018_01_20_municipios_2_nombres/DT_1.html" width="100%" height="500"></iframe>
+
+<br>
+  
+Sí, si que se muestra la datatabl, no tan bonita como si se hiciera directamente ... pero bueno.
+
+<br>
   
 ### Ya debería estar PERO ...
 
@@ -175,7 +187,7 @@ A mi buen entender sólo hay municipios con "2 nombres" en las siguientes comuni
 
 Pero aún se complican un poco más las cosas, porque:
 
-  - En el caso de **Navarra** y **País Vasco** considero que los municipios en los que parece `-` es porque sí que tienen 2 nombres (para ser exactos un único nombre oficial, pero compuesto por el "nombre" en 2 lenguas); en realidad es fácil que tambien haya algun municipio con nombre compuesto, pero como no se euskera pues lo dejo correr y considero que son "nombres con doble nombre". He mirado algunos de ellos en la Wikipedia y en esos casos estaba en lo cierto, pero no lo he hecho con todos [^1]. Disculpas!! 
+  - En el caso de **Navarra** y **País Vasco** considero que los municipios en los que parece `-` es porque sí que tienen 2 nombres (para ser exactos un único nombre oficial, pero compuesto por el "nombre" en 2 lenguas); en realidad es fácil que tambien haya algun municipio con nombre compuesto, pero como no se euskera pues lo dejo correr y considero que son "nombres con doble nombre". He mirado algunos de ellos en la Wikipedia y en esos casos estaba en lo cierto, pero no lo he hecho con todos [^2]. Disculpas!! 
   
   - PERO, en la **Comunitat Valenciana**, los dos municipios en los que parece `-`, aparece porque tienen un nombre compuesto: Vila-real, Riba-roja de Túria 
 
@@ -258,8 +270,22 @@ La tabla:
 
 ```{r}
 aa <- df_2 %>% select(NombreMuni, NombreProv, NombreCCAA)
-datatable(aa, caption = "Cuadro 3a: (nuevos) Municipios con \"dos nombres oficiales\"",extensions = 'Scroller', options = list( pageLength = 10, deferRender = TRUE,scrollY = 400,scroller = TRUE), rownames = F, filter = "top" )
+DT_2 <- datatable(aa, caption = "Cuadro 3a: (nuevos) Municipios con \"dos nombres oficiales\"",extensions = 'Scroller', options = list( pageLength = 10, deferRender = TRUE,scrollY = 400,scroller = TRUE), rownames = F, filter = "top" )
 ```
+
+
+Otra vez no sale, asi que la grabo en `DT_2`: 
+
+```{r}
+library(htmlwidgets)
+library(htmltools)
+#saveWidget(DT_2, "C://Users/perezp/Desktop/DT_2.html")
+#<iframe seamless src="/posts/2018/2018_01_21_mapas_muni_2_nombres/DT_2.html" width="100%" height="500"></iframe>
+```
+
+
+
+<iframe seamless src="/posts/2018/2018_01_20_municipios_2_nombres/DT_2.html" width="100%" height="500"></iframe>
 
 
 <br>
@@ -276,9 +302,9 @@ En mi caso, he evitado hacer comentarios/especulaciones sobre motivos por los qu
 Agur
 
 
+[^1]: Esto no acabo de entenderlo del todo pero no sólo me pasa a mi, le pasa a muuucha gente, por ejemplo [aquí](https://github.com/rstudio/blogdown/issues/32). Ya hay un [package](https://bhaskarvk.github.io/widgetframe/articles/Using_widgetframe.html) que parece que es la solución pero no me ha funcionado (supongo que no habré sabido). Ya probaré más adelante!!). 
 
-
-[^1]: A los 30 minutos de dar por cerrado el post ya he encontrado tres municipios que contienen `-` en su nombre porque es un nombre compuesto: dos en el País Vasco (`Gernika-Lumo` y `Bidania-Goiatz`) y uno en Navarra (`Tiebas-Muruarte de Reta`). Seguro que hay alguno más!! , pero ya no lo corrijo, al menos por hoy. Tengo justificaciones varias: "La perfección es una pulida colección de errores" (Mario Benedetti), o "La perfección se logra al fin, no cuando no hay nada que agregar, sino cuando ya no hay nada que obtener" (Antoine de Saint-Exupéry) o "Procurando lo mejor estropeamos a menudo lo que está bien" (William Shakespeare) o "buscando perfección encontró dolor" (mía, a medias, la original que me rondaba la cabeza es "la vida es parte buscar placer y parte hallar dolor" de Nacho Vegas) y muchas más que puedes encontrar en www.proverbia.net o similares. No he conseguido arreglar el formato de las tablas, y las datatables no salen!! `r emo::ji("-1")`. Al final tendré que cambiar el theme.
+[^2]: A los 30 minutos de dar por cerrado el post ya he encontrado tres municipios que contienen `-` en su nombre porque es un nombre compuesto: dos en el País Vasco (`Gernika-Lumo` y `Bidania-Goiatz`) y uno en Navarra (`Tiebas-Muruarte de Reta`). Seguro que hay alguno más!! , pero ya no lo corrijo, al menos por hoy. Tengo justificaciones varias: "La perfección es una pulida colección de errores" (Mario Benedetti), o "La perfección se logra al fin, no cuando no hay nada que agregar, sino cuando ya no hay nada que obtener" (Antoine de Saint-Exupéry) o "Procurando lo mejor estropeamos a menudo lo que está bien" (William Shakespeare) o "buscando perfección encontró dolor" (mía, a medias, la original que me rondaba la cabeza es "la vida es parte buscar placer y parte hallar dolor" de Nacho Vegas) y muchas más que puedes encontrar en www.proverbia.net o similares. No he conseguido arreglar el formato de las tablas, y las datatables no salen!! `r emo::ji("-1")`. Al final tendré que cambiar el theme.
 
 
 
